@@ -1,0 +1,52 @@
+/* ===== BASE RESETS ===== */
+:root {
+  box-sizing: border-box;
+
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* ===== TYPOGRAPHY & LINKS ===== */
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ===== INTERACTIVE ELEMENTS ===== */
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+img, svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE/Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;  /* Chrome/Safari */
+}
+

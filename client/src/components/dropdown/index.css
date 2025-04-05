@@ -1,0 +1,40 @@
+.dropdown-container{
+    position: relative;
+}
+.dropdown__hidden{
+    display: none;
+}
+
+
+
+.dropdown__visible{
+    position: absolute;
+    list-style: none;
+    width: 250px;
+    backdrop-filter: unset;
+    background-color: rgba(2, 29, 53, 0.8); 
+    padding-bottom: 20px;
+    border-radius: 15px;
+
+}
+
+.dropdown__visible li{
+    padding-top: 15px;
+
+}
+
+.header__service{
+    font-family: 'open sans', sans-serif;    
+    font-size: 1.5rem;
+    color: white;
+    display: flex;
+}
+
+.header__service-text{
+    font-size: 1.3rem;
+
+}
+
+.header__service-caretdown{
+    margin-top: 5px;
+}

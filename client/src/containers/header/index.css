@@ -1,0 +1,351 @@
+
+.header {
+    width: 100vw;
+    font-family: "Open Sans-Bold", Helvetica;
+    letter-spacing: 0.2px;
+
+}
+   
+  .header__container {
+    position: fixed;
+    height: 5rem;
+    padding: 0.4rem 0;
+    top: 0;
+    width: 100%;
+    background: #176DC2;
+    z-index: 100;
+}
+
+.header__navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    z-index: 10;
+        
+}
+
+.header__navbar a {
+    padding: 10px 25px;
+    margin-right: 5px;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    text-wrap: nowrap;
+    color: #ececec; /* Gray */
+    transition: color 0.3s ease-in-out;
+}
+
+.header__navbar a:hover {
+    color: #ffcd38; /* Yellow on hover */
+}
+
+
+.header__navbar p{
+    padding: 10px 25px;
+    margin-right: 5px;
+    font-size: 1.2rem;
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 1);
+    text-wrap: nowrap;
+    cursor: pointer;
+}
+
+
+.header__loginButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 6rem;
+    height: 3rem;
+    width: 8rem;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #F8D775;
+    border: 2px solid #F8D775;
+    background-color: transparent;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+
+
+
+.header__service-caretdown{
+    margin-left: 10px;
+    height: 1rem;
+    width: 1rem;
+    fill: white;
+
+}
+
+
+.navbar__menu{
+    display: none;
+}
+
+.navbar__close-icon{
+    fill: white;
+    height: 2rem;
+    width: 2rem;
+}
+
+.navbar__menu-icon{
+    fill: white;
+    height: 2rem;
+    width: 2rem;
+
+}
+
+.header__deisgnNew{
+    display: flex;
+    height: 22rem;
+    width: 15rem;
+    bottom: 0;
+    right: 8rem;
+    z-index: 0;
+    position: absolute;
+}
+
+
+
+.nav__button-container {
+    height: auto;
+    width: 80px;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .nav__button-group {
+    height: auto;
+    width: 100%;
+  }
+  
+  .nav__overlap-group {
+    border: 4px solid;
+    border-color: #ffffff;
+    background: linear-gradient(to right, #008B00, #DBFF30);
+    border-radius: 20px;
+    height: auto;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  
+  .nav__register-button {
+    color: #ffffff;
+    font-family: "Roboto Flex-Black", Helvetica;
+    font-weight: 900;
+    letter-spacing: 2.00px;
+    text-align: center;
+    white-space: nowrap;
+    width: auto;
+    font-size: 24px;
+    padding: 5px 30px;
+  }
+  
+
+/*Media queries for responsiveness*/
+@media (min-width:1600px){
+    html{font-size: 12px;}
+}
+
+@media (max-width:1600px){
+    html{
+        font-size: 12px;
+    }
+}
+
+@media (max-width:1150px){
+    html{
+        font-size: 10px;
+    }
+}
+
+@media (max-width:700px){
+    html{
+        font-size: 8px;
+    }
+
+
+    
+.header__opacity-overlay {
+   
+    background-color: rgba(1, 18, 36, 0.7) /* Deep blue with 60% opacity */
+
+  }
+
+
+  .header .contact{
+    display: flex;
+    margin: 10px;
+    margin-left: 6%;
+    color:white;
+
+}
+
+/*Styling email section */ 
+.header .contact__email{
+    font-size: 1.3rem;
+
+
+
+}
+
+.header .contact__email-icon{
+    height: 1.2rem;
+    width: 1.2rem; 
+
+}
+
+/*Styling phone section */ 
+.header .contact__phone{
+  
+    font-size: 1.3rem;
+
+}
+
+.header .contact__phone-icon{
+    height: 1.2rem;
+    width: 1.2rem;
+    
+    
+}
+
+
+    .header__centerContainer{
+       
+        right:0;
+        margin-left: 10%;
+    }
+
+    .header__navbar a{
+        padding: 10px ;
+        margin-right: 0;
+        font-size: 1.2rem;
+        text-shadow: 5px 5px 5px rgba(0, 0, 0, 1);
+        text-wrap: nowrap;
+    }
+    
+    .header__navbar p{
+        padding: 10px ;
+        margin-right: 0;
+        font-size: 1.2rem;
+        text-shadow: 5px 5px 5px rgba(0, 0, 0, 1);
+        text-wrap: nowrap;
+        cursor: pointer;
+    }
+    
+    
+.header__logo{
+    margin-left: 3%;
+   
+    font-size: 4rem;
+
+}
+
+.header__centerContainer{
+
+    top:26%;
+}
+
+.header__title{
+    font-size: 6.5rem;
+    margin-bottom: 6rem;
+}
+
+
+.navbar__menu{
+    display: flex;
+    margin: 15px 0;
+    margin-right: 15%;
+    cursor: pointer;
+   
+        }
+ .navbar__menu-icon{
+    height: 2.5rem;
+    width: 2.5rem;
+    margin-right: -2rem;
+        
+ }
+
+.header__navbar{
+    display: none;
+}
+
+.header__navbar-hidden{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    top: 90px;
+    width: 67vw;
+    height: 50vh;
+    border: 1px solid var(--main-color);
+    border-radius: 25px;
+    text-align: center;
+    margin-left: 15%;
+    z-index: 10;
+    font-size: 2rem;
+    text-shadow: 0 0 25px var(--main-color);
+    background-color: rgba(2, 29, 53, 0.9); 
+        }
+
+
+.header__navbar-hidden .header__loginButton {
+            display: flex;
+            justify-content: center; /* Center the button horizontally */
+            align-items: center; /* Center the button vertically */
+            margin-left: 6rem;
+            font-size: 2.2rem;
+            width: 60%; /* Adjust width as needed */
+            max-width: 200px; /* Optional: Set a max-width for better appearance */
+        }
+ .header__navbar-hidden a{
+    padding: 2rem;
+    margin: 5px;
+
+ }
+
+ .header__navbar-hidden p{
+    padding: 2rem;
+    margin: 5px;
+}
+
+
+.header__centerButton {
+  
+    height: 6rem;
+    width: 18rem;
+    font-size: 2rem;
+    background-color: #e98c30; /* Orange */
+
+}
+
+
+
+.header__smallText{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 30px;
+    right: 15rem;
+    bottom: 6%;
+    font-size: 2rem;
+    font-weight: 600;
+}   
+
+.header__designThree{
+    bottom: 2%;
+    left: 4rem;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    row-gap: 20px;
+    position: absolute;
+    z-index: 3;
+}
+
+
+}

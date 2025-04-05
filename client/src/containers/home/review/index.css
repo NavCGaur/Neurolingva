@@ -1,0 +1,326 @@
+
+.review {
+    width: 100%;
+    background: linear-gradient(90deg, #1E90FF, #EDF9FF);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  
+  .review__header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .review__title {
+    color: white;
+    font-size: 36px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .review__carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+  }
+  
+  .review__carousel {
+    display: flex;
+    gap: 20px;
+    padding: 10px 0;
+    width: 100%; /* Make carousel only as wide as its content */
+    margin: 0 auto; /* Center the carousel */
+    transform: translateX(0); /* Remove previous transform */
+    overflow: hidden;
+    
+  }
+  
+  .review__card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 25px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  
+  .review__card.first-card {
+    margin-left: -50px;
+  }
+  
+  .review__card.last-card {
+    margin-right: -50px;
+  }
+  
+  .review__quote-icon {
+    color: #1E90FF;
+    font-size: 32px;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  
+  .review__text {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+    flex-grow: 1;
+  }
+  
+  .review__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 20px;
+  }
+  
+  .review__author {
+    text-align: left;
+  }
+  
+  .review__author-name {
+    font-weight: bold;
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .review__author-title {
+    margin: 0;
+    font-size: 12px;
+  }
+  
+  .review__rating {
+    color: gold;
+    font-size: 16px;
+  }
+  
+  .review__star {
+    margin-left: 2px;
+  }
+
+  .review__navigation{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 4%;
+  }
+
+  .review__nav-arrow {
+    color: white;
+    border: none;
+    border-radius: 50%; 
+    height: 5rem;
+    width: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+ /* Social Media Section */
+.socialmedia {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    color: white;
+    border: 5px solid white;
+    border-radius: 20px;
+    margin-bottom: 6rem;
+
+  }
+  
+  .socialmedia__details {
+    flex: 1;
+    max-width: 600px;
+    margin-left: 4%;
+  }
+  
+  .socialmedia h2 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  
+  .socialmedia p {
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: 0.2px;
+  }
+  
+  .socialmedia__links-facebook {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 1rem;
+    margin-bottom: 25px;
+    padding-left: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    height: 50px; /* Fixed height */
+
+    transition: all 0.3s ease;
+  }
+  
+  .socialmedia__links-facebook:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .socialmedia__links-others {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .socialmedia__links-others div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px 15px;
+    border-radius: 8px;
+    height: 50px; /* Fixed height */
+
+    transition: all 0.3s ease;
+  }
+  
+  .socialmedia__links-others div:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .socialmedia img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+  
+  .socialmedia__image img {
+    width: 500px;
+    height: auto;
+    object-fit: contain;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .joinNeurolingva{
+    background-image: url('../../../assets/joinneurolingvaimage.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    min-width: 100vw;
+    position: relative;
+    font-family: 'open sans', sans-serif;
+  }
+
+
+.joinNeurolingva__subtitle-container {
+    position: absolute;
+    width: 60%;
+    top: 35%;
+    left: 30%;
+    z-index: 10;
+  }
+  
+  .joinNeurolingva__subtitle-text-back {
+    font-family: 'open sans', sans-serif;
+    font-weight: 700;
+    font-size: 45px;
+    color: white;
+    position: absolute;
+    
+    z-index: 1;
+
+    -webkit-text-stroke: 7px #ffffff;
+
+  
+  }
+  
+  .joinNeurolingva__subtitle-text-front {
+    font-family: 'open sans', sans-serif;
+    font-weight: 700;
+    font-size: 45px;
+    color: #06A6FF; 
+    position: absolute;   
+    z-index: 2;
+  }
+
+  .joinNeurolingva__description-one{
+    background: #ffffff;
+    line-height: 1.5rem;
+    padding: 5px 20px;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    border-radius: 20px;
+    z-index: 10;
+  }
+
+  .joinNeurolingva__description-two{
+    background: #ffffff;
+    line-height: 1.5rem;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 53%;
+    left: 25%;
+    border-radius: 20px;
+    z-index: 9;
+  }
+
+
+  .gradient-bar {
+    background: linear-gradient(to right, #1E91FF, #EDF9FF);
+    height: 20px;
+    width: 100vw;
+}
+
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 900px) {
+    .socialmedia {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .socialmedia__links-facebook {
+      justify-content: center;
+    }
+    
+    .socialmedia__image img {
+      width: 200px;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .socialmedia__links-others {
+      grid-template-columns: 1fr;
+    }
+    
+    .socialmedia h2 {
+      font-size: 28px;
+    }
+  }
+  
+  /* Remove the first-card and last-card margin adjustments */
+  /* Instead, we'll handle the partial visibility through container padding */  

@@ -1,0 +1,115 @@
+.features-card {
+    height: 546px;
+    width: 622px;
+  }
+  
+  .featurescard__group {
+    height: 546px;
+    width: 626px;
+  }
+  
+  .featurescard__overlap-group {
+    height: 546px;
+    position: relative;
+    width: 622px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .featurescard__image {
+    height: 536px;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 10px;
+    width: 602px;
+  }
+  
+  .featurescard__rectangle {
+    background-color: #d1c98661;
+    border-radius: 20px;
+    height: 531px;
+    left: 20px;
+    position: absolute;
+    top: 0;
+    width: 602px;
+  }
+  
+  .featurescard__div {
+    background-color: #ffffff;
+    border-radius: 16px;
+    height: 234px;
+    left: 24px;
+    position: absolute;
+    top: 170px;
+    width: 357px;
+  }
+  
+  .featturescard__text-wrapper {
+    color: #1f1973;
+    font-family: "Open Sans-Regular", Helvetica;
+    font-size: 20px;
+    font-weight: 400;
+    left: 40px;
+    letter-spacing: 0;
+    line-height: 27px;
+    position: absolute;
+    text-shadow: 0px 4px 4px #00000040;
+    top: 185px;
+    width: 325px;
+  }
+  
+
+  
+.featurescard__title-container {
+   
+    display: flex;
+    justify-content: left;
+    position: relative;
+    width: 100%;
+  }
+  
+  .featurescard__title-text-back {
+    font-family: 'Roboto Flex', sans-serif;
+    font-weight: 600;
+    font-size: 27px;
+    letter-spacing: 0.2px;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    -webkit-text-stroke: 7px #ffffff;
+
+  
+  }
+  
+  .featurescard__title-text-front {
+    font-family: 'Roboto Flex', sans-serif;
+    font-weight: 600;
+    font-size: 27px;
+    letter-spacing: 0.2px;
+    top: 0;
+    left: 0;
+
+    color: #0080FF; 
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (max-width: 680px) {
+    .featurescard__image, .featurescard__group, .featurescard__overlap-group, .featurescard__rectangle {
+      width: 100%;
+    }
+    .featurescard__div {
+      width: 80%;
+    }
+    .featturescard__text-wrapper {
+      font-size: 1.5rem;
+      text-wrap: wrap;
+      width: 70%;
+    }
+  }

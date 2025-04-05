@@ -1,0 +1,141 @@
+.whysection {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #1E91FF, #EDF9FF);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.why {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.why__title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+    letter-spacing: 0.2px;
+    color: #ffffff;
+    text-align: left;
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.why__subtitle {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    letter-spacing: 0.2px;
+    color: #ffffff;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.why__features {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.why__features-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.why__features-container .featurescard__title-container {
+    top: -30%;
+    margin-left: 12%;
+}
+
+.why__features-container .featurescard__div {
+    height: 180px;
+}
+
+.why__features-container .featurescard__rectangle {
+    display: none;
+}
+
+.why__features-container .featurescard__image {
+    border-radius: 20px;
+    width: 100%;
+    height: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .why__title {
+        font-size: 36px;
+        margin-top: 1.5rem;
+    }
+    
+    .why__subtitle {
+        font-size: 18px;
+    }
+    
+    .why__features-container {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .why__title {
+        font-size: 32px;
+        text-align: center;
+    }
+    
+    .why__subtitle {
+        font-size: 16px;
+        text-align: center;
+    }
+    
+    .why__features-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin-left: 0;
+    }
+    
+    .why__features-container .featurescard__title-container {
+        top: -25%;
+        margin-left: 10%;
+    }
+    
+    .why__features-container .featurescard__div {
+        height: 160px;
+    }
+}
+
+@media (max-width: 480px) {
+    .why__title {
+        font-size: 28px;
+        margin-top: 1rem;
+    }
+    
+    .why__subtitle {
+        font-size: 14px;
+    }
+    
+    .why__features-container {
+        gap: 30px;
+    }
+    
+    .why__features-container .featurescard__div {
+        height: 140px;
+    }
+    
+    .why__features-container .featurescard__title-container {
+        top: -25%;
+    }
+}
