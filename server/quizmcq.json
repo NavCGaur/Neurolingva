@@ -1,0 +1,232 @@
+[
+    {
+      "questionType": "wordToDefinition",
+      "word": "ephemeral",
+      "definition": "Lasting for a very short time",
+      "difficulty": "hard",
+      "options": [
+        { "text": "Lasting for a very short time", "isCorrect": true },
+        { "text": "Relating to ghosts or spirits", "isCorrect": false },
+        { "text": "Extremely bright or shining", "isCorrect": false },
+        { "text": "Difficult to understand", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "wordToDefinition",
+      "word": "ubiquitous",
+      "definition": "Present, appearing, or found everywhere",
+      "difficulty": "medium",
+      "options": [
+        { "text": "Extremely rare or uncommon", "isCorrect": false },
+        { "text": "Present, appearing, or found everywhere", "isCorrect": true },
+        { "text": "Speaking fluently and persuasively", "isCorrect": false },
+        { "text": "Annoying or bothersome", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "wordToDefinition",
+      "word": "serendipity",
+      "definition": "Finding something good without looking for it",
+      "difficulty": "medium",
+      "options": [
+        { "text": "A state of complete peacefulness", "isCorrect": false },
+        { "text": "Finding something good without looking for it", "isCorrect": true },
+        { "text": "A strong feeling of dislike", "isCorrect": false },
+        { "text": "Careful planning and execution", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "wordToDefinition",
+      "word": "eloquent",
+      "definition": "Fluent or persuasive in speaking or writing",
+      "difficulty": "easy",
+      "options": [
+        { "text": "Speaking very quietly", "isCorrect": false },
+        { "text": "Lacking clear meaning", "isCorrect": false },
+        { "text": "Fluent or persuasive in speaking or writing", "isCorrect": true },
+        { "text": "Relating to ancient times", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "wordToDefinition",
+      "word": "resilient",
+      "definition": "Able to recover quickly from difficulties",
+      "difficulty": "easy",
+      "options": [
+        { "text": "Very stubborn or inflexible", "isCorrect": false },
+        { "text": "Easily broken or damaged", "isCorrect": false },
+        { "text": "Able to recover quickly from difficulties", "isCorrect": true },
+        { "text": "Lacking energy or enthusiasm", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "wordToDefinition",
+      "word": "gregarious",
+      "definition": "Sociable; fond of company",
+      "difficulty": "medium",
+      "options": [
+        { "text": "Preferring to be alone", "isCorrect": false },
+        { "text": "Sociable; fond of company", "isCorrect": true },
+        { "text": "Easily angered", "isCorrect": false },
+        { "text": "Extremely careful with details", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "wordToDefinition",
+      "word": "ambiguous",
+      "definition": "Having more than one possible meaning",
+      "difficulty": "easy",
+      "options": [
+        { "text": "Very clear and precise", "isCorrect": false },
+        { "text": "Extremely large", "isCorrect": false },
+        { "text": "Having more than one possible meaning", "isCorrect": true },
+        { "text": "Full of energy and excitement", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "wordToDefinition",
+      "word": "capricious",
+      "definition": "Changing mood or behavior suddenly and unexpectedly",
+      "difficulty": "medium",
+      "options": [
+        { "text": "Changing mood or behavior suddenly and unexpectedly", "isCorrect": true },
+        { "text": "Always acting in a predictable way", "isCorrect": false },
+        { "text": "Showing kindness and goodwill", "isCorrect": false },
+        { "text": "Very serious and formal", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "wordToDefinition",
+      "word": "fastidious",
+      "definition": "Very attentive to detail and accuracy",
+      "difficulty": "medium",
+      "options": [
+        { "text": "Eating very quickly", "isCorrect": false },
+        { "text": "Not caring about cleanliness", "isCorrect": false },
+        { "text": "Easily pleased or satisfied", "isCorrect": false },
+        { "text": "Very attentive to detail and accuracy", "isCorrect": true }
+      ]
+    },
+    {
+      "questionType": "wordToDefinition",
+      "word": "benevolent",
+      "definition": "Kind and well-meaning",
+      "difficulty": "easy",
+      "options": [
+        { "text": "Cruel or harmful", "isCorrect": false },
+        { "text": "Selfish and greedy", "isCorrect": false },
+        { "text": "Kind and well-meaning", "isCorrect": true },
+        { "text": "Easily frightened", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "definitionToWord",
+      "definition": "A state of perfect happiness or blissful pleasure",
+      "difficulty": "medium",
+      "options": [
+        { "text": "Turmoil", "isCorrect": false },
+        { "text": "Nirvana", "isCorrect": true },
+        { "text": "Agony", "isCorrect": false },
+        { "text": "Routine", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "definitionToWord",
+      "definition": "Lasting for an extremely long time",
+      "difficulty": "easy",
+      "options": [
+        { "text": "Brief", "isCorrect": false },
+        { "text": "Temporary", "isCorrect": false },
+        { "text": "Perpetual", "isCorrect": true },
+        { "text": "Instantaneous", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "definitionToWord",
+      "definition": "Able to be touched or felt; tangible",
+      "difficulty": "medium",
+      "options": [
+        { "text": "Abstract", "isCorrect": false },
+        { "text": "Invisible", "isCorrect": false },
+        { "text": "Theoretical", "isCorrect": false },
+        { "text": "Palpable", "isCorrect": true }
+      ]
+    },
+    {
+      "questionType": "definitionToWord",
+      "definition": "To make something less severe, serious, or painful",
+      "difficulty": "medium",
+      "options": [
+        { "text": "Aggravate", "isCorrect": false },
+        { "text": "Mitigate", "isCorrect": true },
+        { "text": "Intensify", "isCorrect": false },
+        { "text": "Exacerbate", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "definitionToWord",
+      "definition": "Lack of interest, enthusiasm, or concern",
+      "difficulty": "easy",
+      "options": [
+        { "text": "Passion", "isCorrect": false },
+        { "text": "Zeal", "isCorrect": false },
+        { "text": "Apathy", "isCorrect": true },
+        { "text": "Eagerness", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "definitionToWord",
+      "definition": "Concise and exact use of words in writing or speech",
+      "difficulty": "easy",
+      "options": [
+        { "text": "Brevity", "isCorrect": true },
+        { "text": "Verbosity", "isCorrect": false },
+        { "text": "Lengthiness", "isCorrect": false },
+        { "text": "Ramble", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "definitionToWord",
+      "definition": "Showing shyness, reserve, and modesty",
+      "difficulty": "medium",
+      "options": [
+        { "text": "Bold", "isCorrect": false },
+        { "text": "Outgoing", "isCorrect": false },
+        { "text": "Demure", "isCorrect": true },
+        { "text": "Confident", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "definitionToWord",
+      "definition": "An excessive willingness to serve or please others",
+      "difficulty": "hard",
+      "options": [
+        { "text": "Domineering", "isCorrect": false },
+        { "text": "Arrogant", "isCorrect": false },
+        { "text": "Assertive", "isCorrect": false },
+        { "text": "Obsequious", "isCorrect": true }
+      ]
+    },
+    {
+      "questionType": "definitionToWord",
+      "definition": "Happening or done quickly and without warning",
+      "difficulty": "easy",
+      "options": [
+        { "text": "Gradual", "isCorrect": false },
+        { "text": "Planned", "isCorrect": false },
+        { "text": "Abrupt", "isCorrect": true },
+        { "text": "Slow", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "definitionToWord",
+      "definition": "Excessively proud of or satisfied with oneself",
+      "difficulty": "easy",
+      "options": [
+        { "text": "Humble", "isCorrect": false },
+        { "text": "Modest", "isCorrect": false },
+        { "text": "Uncertain", "isCorrect": false },
+        { "text": "Smug", "isCorrect": true }
+      ]
+    }
+  ]

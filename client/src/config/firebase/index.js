@@ -5,6 +5,9 @@ import { getAuth } from "firebase/auth";
 import { getStorage } from 'firebase/storage';
 
 
+
+console.log("firebase api key", process.env.REACT_APP_FIREBASE_API_KEY);
+console.log("auth ",process.env.REACT_APP_BASE_URL)
 // Your web app's Firebase configuration
 // Replace these with your actual Firebase project configuration
 const firebaseConfig = {
@@ -14,7 +17,6 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 

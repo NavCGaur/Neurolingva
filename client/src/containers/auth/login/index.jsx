@@ -20,8 +20,9 @@ import {
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { Visibility, VisibilityOff, Google, Facebook, Apple } from '@mui/icons-material';
-import { loginSuccess } from "../../../state/slices/authSlice";
+import { loginSuccess, logout  } from "../../../state/slices/authSlice";
 import { useVerifyTokenMutation } from "../../../state/api";
+import Logo from '../../../assets/neurolingvalogo.png' 
 
 // Firebase authentication imports
 import { 
@@ -30,6 +31,7 @@ import {
   signInWithPopup, 
   GoogleAuthProvider, 
   FacebookAuthProvider,
+  signOut,
   OAuthProvider,
   onAuthStateChanged,
   setPersistence, 
@@ -127,14 +129,8 @@ const Login = () => {
         case "Admin":
           rolePath = "/admin/dashboard";
           break;
-        case "Reseller":
-          rolePath = "/reseller/dashboard";
-          break;
-        case "Agency":
-          rolePath = "/agency/dashboard";
-          break;
-        case "Client":
-          rolePath = "/client/dashboard";
+        case "Subscriber":
+          rolePath = "/subscriber/dashboard";
           break;
         case "Guest":
           rolePath = "/guest/dashboard";
@@ -171,6 +167,30 @@ const Login = () => {
         rememberMe ? browserLocalPersistence : browserSessionPersistence
       );
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+      const user = userCredential.user;
+
+      console.log("User credential:", user);
+
+
+      if (!user.emailVerified) {
+        console.log("User email not verified. Logging out...");
+
+        // 1. Sign out from Firebase
+        await signOut(auth);
+
+        // 2. Clear Redux state
+        dispatch(logout());
+
+        // 3. Show message + redirect
+        setSnackbarMessage("Please verify your email before logging in.");
+        setSnackbarSeverity("warning");
+        setSnackbarOpen(true);
+        navigate("/verifyemail");
+        return;
+      }
+
+
       console.log("Firebase login successful:", userCredential);
       const idToken = await userCredential.user.getIdToken();
       console.log("ID Token retrieved:", idToken);
@@ -229,6 +249,27 @@ const Login = () => {
       );
 
       const result = await signInWithPopup(auth, googleProvider);
+
+      const user = result.user;
+
+     console.log("User credential:", user);
+      if (!user.emailVerified) {
+        console.log("User email not verified. Logging out...");
+
+        // 1. Sign out from Firebase
+        await signOut(auth);
+
+        // 2. Clear Redux state
+        dispatch(logout());
+
+        // 3. Show message + redirect
+        setSnackbarMessage("Please verify your email before logging in.");
+        setSnackbarSeverity("warning");
+        setSnackbarOpen(true);
+        navigate("/verifyemail");
+        return;
+      }
+
       console.log("Google sign-in successful:", result);
       const idToken = await result.user.getIdToken();
       console.log("ID Token retrieved:", idToken);
@@ -241,6 +282,7 @@ const Login = () => {
       await handleTokenVerification(idToken, result.user);
     } catch (error) {
       console.error("Google sign-in error:", error);
+      console.log("Error message:", error.message);
       setSnackbarMessage("Google sign-in failed. Please try again.");
       setSnackbarSeverity("error");
       setSnackbarOpen(true);
@@ -265,6 +307,27 @@ const Login = () => {
       );
 
       const result = await signInWithPopup(auth, facebookProvider);
+
+      const user = result.user;
+
+    
+      if (!user.emailVerified) {
+        console.log("User email not verified. Logging out...");
+
+        // 1. Sign out from Firebase
+        await signOut(auth);
+
+        // 2. Clear Redux state
+        dispatch(logout());
+
+        // 3. Show message + redirect
+        setSnackbarMessage("Please verify your email before logging in.");
+        setSnackbarSeverity("warning");
+        setSnackbarOpen(true);
+        navigate("/verifyemail");
+        return;
+      }
+
       console.log("Facebook sign-in successful:", result);
       const idToken = await result.user.getIdToken();
       console.log("ID Token retrieved:", idToken);
@@ -285,7 +348,6 @@ const Login = () => {
       setIsFacebookLoading(false);
     }
   };
-
 
   const handleAppleSignIn = async () => {
     console.log("Attempting Apple sign-in...");
@@ -346,7 +408,7 @@ const Login = () => {
       justifyContent="center"
       sx={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #0f2027, #203a43, #2c5364)",
+        background: "linear-gradient(135deg,#1E91FF, #EDF9FF)",
         padding: 2
       }}
     >
@@ -363,7 +425,7 @@ const Login = () => {
           height: "auto",
           borderRadius: 3,
           backdropFilter: "blur(16px)",
-          backgroundColor: "rgba(17, 25, 40, 0.75)",
+          backgroundColor: "#176DC2",
           border: "1px solid rgba(255, 255, 255, 0.125)",
           boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
           transition: 'all 0.3s ease-in-out',
@@ -373,10 +435,31 @@ const Login = () => {
           }
         }}
       >
-        {console.log("theme mode in login", theme.palette.mode)}
         
         {/* Login form title */}
+
+        <Box display="flex" alignItems="center" justifyContent="center" mb={3}> 
+        <img src={Logo} alt="logo" style={{ width: "50px", height: "50px" }} /> 
+        </Box>
+
         <Typography 
+          variant="h4" 
+          component="h1"
+          textAlign="center"
+          fontWeight="bold"
+          mb={3}
+          sx={{
+            background: "linear-gradient(90deg, #60efff, #00ff87)",
+            backgroundClip: "text",
+            textFillColor: "transparent",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
+        >
+          NEUROLINGVA
+        </Typography>
+
+       {/* <Typography 
           variant="h4" 
           component="h1"
           textAlign="center"
@@ -392,6 +475,7 @@ const Login = () => {
         >
           Login to your account
         </Typography>
+        */}
   
         {/* Social login buttons */}
         <Box display="flex" justifyContent="space-around" mb="2rem">

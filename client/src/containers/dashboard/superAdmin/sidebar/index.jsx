@@ -31,7 +31,7 @@ import {
   import { useEffect, useState } from "react";
   import { useLocation, useNavigate } from "react-router-dom";
   import FlexBetween from "../../../../components/flexbetween";
-  import profileImage from "../../../../assets/images/profilepic.jpg";
+  import profileImage from "../../../../assets/profilepic.jpg";
 
   const navItems = [
     {
@@ -49,31 +49,31 @@ import {
     },
   
     {
-      text: "Overview",
+      text: "Dummy Page",
       icon: <PointOfSaleOutlined />,
     },
     {
-      text: "Daily",
+      text: "Dummy Page",
       icon: <TodayOutlined />,
     },
     {
-      text: "Monthly",
+      text: "Dummy Page",
       icon: <CalendarMonthOutlined />,
     },
     {
-      text: "Breakdown",
+      text: "Dummy Page",
       icon: <PieChartOutlined />,
     },
     {
-      text: "Management",
+      text: "Dummy Page",
       icon: null,
     },
     {
-      text: "Admin",
+      text: "Dummy Page",
       icon: <AdminPanelSettingsOutlined />,
     },
     {
-      text: "Performance",
+      text: "Dummy Page",
       icon: <TrendingUpOutlined />,
     },
   ];
@@ -106,33 +106,32 @@ const Sidebar = ({
             <Drawer
             open={isSidebarOpen}
             onClose={() => setIsSidebarOpen(false)}
-            variant="persistent"
+            variant={isNonMobile ? "persistent" : "temporary"}
             anchor="left"
             sx={{
-                width: drawerWidth,
-                "& .MuiDrawer-paper": {
+              width: drawerWidth,
+              "& .MuiDrawer-paper": {
                 color: theme.palette.secondary[200],
                 backgroundColor: theme.palette.background.alt,
-                boxSixing: "border-box",
+                boxSizing: "border-box",
                 borderWidth: isNonMobile ? 0 : "2px",
                 width: drawerWidth,
-                },
-            }}>
+              },
+            }}
+          >
 
-        <Box width="100%">
-            <Box m="1.5rem 2rem 2rem 3rem">
-                <FlexBetween color={theme.palette.secondary.main}>
-                <Box display="flex" alignItems="center" gap="0.5rem">
-                    <Typography variant="h4" fontWeight="bold">
-                        BRANDFLEX
-                    </Typography>
-                </Box>
-                    {!isNonMobile && (
-                    <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-                    <ChevronLeft />
-                  </IconButton>
-                 )}
-                </FlexBetween>
+          <Box width="100%">
+                    <Box m="1.5rem 2rem 2rem 3rem">
+                      <FlexBetween color={theme.palette.secondary.main}>
+                        <Box display="flex" alignItems="center" gap="0.5rem">
+                          <Typography variant="h4" fontWeight="bold">
+                            BRANDFLEX
+                          </Typography>
+                        </Box>
+                        <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+                          <ChevronLeft />
+                        </IconButton>
+                      </FlexBetween>
             </Box>
             <List>
             {navItems.map(({ text, icon }) => {

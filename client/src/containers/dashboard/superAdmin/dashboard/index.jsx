@@ -28,6 +28,7 @@ import {
 const AdminDashboard = () => {
   const theme = useTheme();
   const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
+  const isMobile = useMediaQuery("(max-width: 600px)");
   const { data: users, isLoading, isError } = useGetAllUsersQuery();
 
   const totalUsers = users ? users.length : "0";
@@ -63,8 +64,9 @@ const AdminDashboard = () => {
   };
 
   return (
-    <Box m="1.5rem 2.5rem">
-      <FlexBetween>
+    <Box m={isMobile ? "1rem" : "1.5rem 2.5rem"}   
+    >
+      <FlexBetween flexDirection={isMobile ? "column" : "row"} gap={isMobile ? "1rem" : "0"}>
         <Header title="ADMIN DASHBOARD" subtitle="Welcome to your dashboard" />
         <Box>
           <Button
@@ -83,20 +85,24 @@ const AdminDashboard = () => {
         </Box>
       </FlexBetween>
 
+ 
+
       <Box
         mt="20px"
         display="grid"
         gridTemplateColumns="repeat(12, 1fr)"
         gap="20px"
         sx={{
-          "& > div": { gridColumn: isNonMediumScreens ? undefined : "span 12" },
+          "& > div": { 
+            gridColumn: isNonMediumScreens ? undefined : "span 12",
+          },
         }}
       >
         {/* First row - Stats and Pie Chart */}
         <Box
-          gridColumn="span 4"
+          gridColumn={isNonMediumScreens ? "span 4" : "span 12"}
           display="grid"
-          gridTemplateColumns="repeat(2, 1fr)"
+          gridTemplateColumns={isMobile ? "1fr" : "repeat(2, 1fr)"}
           gap="20px"
         >
           <StatBox
@@ -117,7 +123,7 @@ const AdminDashboard = () => {
             description="Since last month"
             icon={
               <PointOfSale
-                sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+                sx={{ color: theme.palette.secondary[300], fontSize: "26px" , }}
               />
             }
           />
@@ -147,11 +153,12 @@ const AdminDashboard = () => {
 
         {/* Pie Chart */}
         <Box
-          gridColumn="span 8"
+          gridColumn={isNonMediumScreens ? "span 8" : "span 12"}
           backgroundColor={theme.palette.background.alt}
           p="1.5rem"
           borderRadius="0.55rem"
         >
+
           <Typography variant="h6" sx={{ color: theme.palette.secondary[100] }}>
             Sales By Category
           </Typography>
@@ -168,15 +175,16 @@ const AdminDashboard = () => {
 
         {/* Line Chart - Full Width */}
         <Box
-          
           gridColumn="span 12"
           gridRow="span 2"
-          height="400px"
+          height={isMobile ? "300px" : "400px"}
           backgroundColor={theme.palette.background.alt}
           p="1rem"
           borderRadius="0.55rem"
           mb="3rem"
-          letterSpacing="0.3px"        >
+          letterSpacing="0.3px"
+        >
+
           <Typography variant="h6" sx={{ color: theme.palette.secondary[100] }}>
             Revenue & Profit Overview
           </Typography>

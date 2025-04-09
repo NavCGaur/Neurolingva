@@ -17,10 +17,7 @@ function DropDown(props) {
     const pageId = props.pageId;
     const title = props.title;
 
-    console.log(dropDownData);
-    console.log(pageId);
-    console.log(title);
-
+    
   const [mouseOver, setMouseOver]= useState(false); 
 
   function handleMouseEnter(){

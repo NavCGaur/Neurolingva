@@ -1,0 +1,229 @@
+
+    
+  .navbar__fixedSection {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    background-color: none;
+    display: none;
+}
+
+
+/*Styling horizontal line*/
+.navbar__separatingLine{
+    height: 3px;
+    background-color: rgb(194, 192, 192);
+}
+
+
+/*Styling Logo and Navbar section*/
+.navbar__container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar__logo {
+    margin-left: 6%;
+    font-family: Barlow, sans-serif;
+    font-weight: bolder;
+    font-size: 2.5rem;
+    color: #ffcd38; /* Yellow */
+}
+
+.navbar__navbar{
+    margin-right: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+        
+}
+
+.navbar__navbar a {
+    padding: 10px 25px;
+    margin-right: 5px;
+    font-size: 1.2rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    text-wrap: nowrap;
+    color: #ececec; /* Gray */
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar__navbar a:hover {
+    color: #ffcd38; /* Yellow on hover */
+}
+
+
+.navbar__navbar p{
+    padding: 10px 25px;
+    margin-right: 5px;
+    font-size: 1.2rem;
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 1);
+    text-wrap: nowrap;
+    cursor: pointer;
+}
+
+
+.navbar__loginButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 6rem;
+    height: 3rem;
+    width: 8rem;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #F8D775;
+    border: 2px solid #F8D775;
+    background-color: transparent;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+
+
+.navbar__menu{
+    display: none;
+}
+
+.navbar__close-icon{
+    fill: white;
+    height: 2rem;
+    width: 2rem;
+}
+
+.navbar__menu-icon{
+    fill: white;
+    height: 2rem;
+    width: 2rem;
+
+}
+
+
+
+/*Media queries for responsiveness*/
+@media (min-width:1600px){
+    html{font-size: 12px;}
+}
+
+@media (max-width:1600px){
+    html{
+        font-size: 12px;
+    }
+}
+
+@media (max-width:1150px){
+    html{
+        font-size: 10px;
+    }
+}
+
+@media (max-width:700px){
+    html{
+        font-size: 8px;
+    }
+
+    .navbar{
+        height: 95vh;
+    }
+
+    
+.navbar__opacity-overlay {
+   
+    background-color: rgba(1, 18, 36, 0.7) /* Deep blue with 60% opacity */
+
+  }
+
+
+    
+    
+.navbar__logo{
+    margin-left: 3%;
+   
+    font-size: 4rem;
+
+}
+
+
+.navbar__title{
+    font-size: 6.5rem;
+    margin-bottom: 6rem;
+}
+
+
+.navbar__menu{
+    display: flex;
+    margin: 15px 0;
+    margin-right: 15%;
+    cursor: pointer;
+   
+        }
+ .navbar__menu-icon{
+    height: 2.5rem;
+    width: 2.5rem;
+    margin-right: -2rem;
+        
+ }
+
+.navbar__navbar{
+    display: none;
+}
+
+.navbar__navbar-hidden{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    top: 90px;
+    width: 67vw;
+    height: 50vh;
+    border: 1px solid var(--main-color);
+    border-radius: 25px;
+    text-align: center;
+    margin-left: 15%;
+    z-index: 10;
+    font-size: 2rem;
+    text-shadow: 0 0 25px var(--main-color);
+    background-color: rgba(2, 29, 53, 0.9); 
+        }
+
+
+.navbar__navbar-hidden .navbar__loginButton {
+            display: flex;
+            justify-content: center; /* Center the button horizontally */
+            align-items: center; /* Center the button vertically */
+            margin-left: 6rem;
+            font-size: 2.2rem;
+            width: 60%; /* Adjust width as needed */
+            max-width: 200px; /* Optional: Set a max-width for better appearance */
+        }
+ .navbar__navbar-hidden a{
+    padding: 2rem;
+    margin: 5px;
+
+ }
+
+ .navbar__navbar-hidden p{
+    padding: 2rem;
+    margin: 5px;
+}
+
+
+.navbar__centerButton {
+  
+    height: 6rem;
+    width: 18rem;
+    font-size: 2rem;
+    background-color: #e98c30; /* Orange */
+
+}
+
+
+
+
+}

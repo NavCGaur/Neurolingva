@@ -8,7 +8,6 @@ import { BrowserRouter } from 'react-router-dom';
 
 // Import your application's Redux store and Firebase configuration
 import store from './state/store';
-import './config/firebase';
 
 // Import main application component and styling
 import App from './App';
