@@ -7,7 +7,8 @@ import {
   Chip, 
   LinearProgress, 
   Grid, 
-  Divider 
+  Divider ,
+  Tooltip
 } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
@@ -103,16 +104,26 @@ const PronunciationAnalysis = () => {
         </Typography>
         
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-          {phonemeAnalysis.map((item, index) => (<Chip
-              key={index}
-              icon={item.isCorrect ? <CheckCircleIcon /> : <ErrorIcon />}
-              label={`${item.phoneme} (${Math.round(item.score)}%)`}
-              color={item.isCorrect ? 'success' : 'error'}
-              variant="outlined"
-              sx={{ m: 0.5 }}
-            />
-          ))}
-        </Box>
+            {phonemeAnalysis.map((item, index) => {
+                const getColor = (score) => {
+                if (score >= 90) return 'success';
+                if (score >= 70) return 'warning';
+                return 'error';
+                };
+
+                return (
+                <Tooltip title={`In word: ${item.word}`} key={index}>
+                    <Chip
+                    icon={item.score >= 90 ? <CheckCircleIcon /> : <ErrorIcon />}
+                    label={`${item.phoneme} (${Math.round(item.score)}%)`}
+                    color={getColor(item.score)}
+                    variant="outlined"
+                    sx={{ m: 0.5 }}
+                    />
+                </Tooltip>
+                );
+            })}
+            </Box>
       </Box>
     </Paper>
   );

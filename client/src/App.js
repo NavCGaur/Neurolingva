@@ -27,6 +27,7 @@ import HomePage from "./containers/speech/homePageSpeech";
 
 import { Route, Routes } from "react-router-dom";
 import QuizMain from "./containers/quiz/QuizMain";
+import SpeechShadowingPractice from "./containers/speechShadow/speechShadowPractice";
 
 // Public components grouped into a single page layout
 const PublicPage = () => {
@@ -44,6 +45,7 @@ const PublicPage = () => {
       <SignUp />
       <Navbar />
       <HomePage />
+      <SpeechShadowingPractice />
     </>
   );
 };

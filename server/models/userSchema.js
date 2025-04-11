@@ -8,15 +8,29 @@ const userWordSchema = new mongoose.Schema({
   addedAt: { type: Date, default: Date.now }
 });
 
-export const UserSchema = new mongoose.Schema({
-    uid: { type: String, required: true, unique: true },
-    email: { type: String, required: true },
-      // Vocabulary tracking
-    vocabulary: [userWordSchema],
-    displayName: { type: String },
-    photoURL: { type: String },
-    role: { type: String, enum: ['Guest', 'Admin', 'Subscriber'], default: 'Guest' },
-    createdAt: { type: Date, default: Date.now }
-  });
+
+export const userSchema = new mongoose.Schema({
+  uid: { type: String, required: true, unique: true },
+  email: { type: String, required: true },
   
+  // Vocabulary tracking
+  vocabulary: [userWordSchema],
+  
+  // User profile
+  displayName: { type: String },
+  photoURL: { type: String },
+  
+  // Subscription related fields
+  role: { type: String, enum: ['Guest', 'Admin', 'Subscriber'], default: 'Guest' },
+  stripeCustomerId: { type: String },
+  stripeSubscriptionId: { type: String },
+  planId: { type: String, enum: ['free', 'pro'], default: 'free' },
+  subscriptionStatus: { type: String, enum: ['active', 'trialing', 'past_due', 'canceled', 'unpaid', 'incomplete', 'incomplete_expired', null], default: null },
+  currentPeriodEnd: { type: Date },
+  cancelAtPeriodEnd: { type: Boolean, default: false },
+  
+  createdAt: { type: Date, default: Date.now }
+});
+
+
   

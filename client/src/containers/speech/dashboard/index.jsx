@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { Container, Grid, Typography, Box } from '@mui/material';
+import { Container, Grid, Typography, Paper } from '@mui/material';
 import SpeechRecorder from '../speechRecorder';
 import ReferenceTextInput from '../referenceTextInput';
 import PronunciationAnalysis from '../pronounciationAnalysis';
@@ -32,7 +32,10 @@ const Dashboard = () => {
                   background: 'linear-gradient(to right, rgb(119, 176, 228), rgb(118, 178, 234))',
                   color: 'white',
                   p: 3,
-                  borderRadius: 2
+                  borderRadius: 2,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center'
                 }}
               >
                 <SpeechRecorder 

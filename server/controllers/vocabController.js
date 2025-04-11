@@ -5,7 +5,6 @@ import { updateMultipleUserWordRatings } from '../services/vocab/vocabService.js
 const vocabController= {
 
     getPracticeWords : async (req, res) => {
-        console.log("inside vocab controller", req.query)
         const {userId} = req.query; 
         if (!userId) return res.status(400).json({ error: 'User ID is required' });
 
@@ -20,9 +19,7 @@ const vocabController= {
       submitRatings: async (req, res) => {
         const { userId, ratings } = req.body;
     
-        console.log('Received ratings in controller:', ratings);
-        console.log('Received user ID:', userId);
-    
+ 
         if (!userId || !Array.isArray(ratings)) {
           return res.status(400).json({ message: 'Invalid payload' });
         }

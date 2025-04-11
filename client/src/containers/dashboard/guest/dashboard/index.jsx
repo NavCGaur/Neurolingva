@@ -5,6 +5,7 @@ import Header from "../../../../components/header";
 import { useGetPracticeWordsQuery } from '../../../../state/api/vocabApi';
 import { setWords } from '../../../../state/slices/vocabSlice';
 import VocabCard from '../../../../components/cards/vocabCard/vocabCard';
+import SpeechShadowingPractice from "../../../speechShadow/speechShadowPractice";
 
 import {
   Box,
@@ -55,6 +56,12 @@ const GuestDashboard = () => {
       gradient: 'linear-gradient(to right, #c4e0a6, #8bc34a)',
     },
     {
+      id: "speech shadow",
+      title: "Speech Practice",
+      subtitle: "Master Native Pronounciation",
+      gradient: 'linear-gradient(to right, #ce93d8, #9c27b0)',
+    },
+    {
       id: "quiz",
       title: "Daily Quiz",
       subtitle: "Test your knowledge",
@@ -66,6 +73,7 @@ const GuestDashboard = () => {
       subtitle: "Master the rules",
       gradient: 'linear-gradient(to right, #ce93d8, #9c27b0)',
     },
+    
   ];
 
   const handleFeatureSelect = (featureId) => {
@@ -95,6 +103,12 @@ const GuestDashboard = () => {
         return (
           <Box width="100%" textAlign="center" p={3}>
             <HomePage />  
+          </Box>
+        );
+      case "speech shadow":
+        return (
+          <Box width="100%" textAlign="center" p={3}>
+            <SpeechShadowingPractice />  
           </Box>
         );
       case "quiz":
