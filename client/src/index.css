@@ -1,6 +1,7 @@
 /* ===== BASE RESETS ===== */
 :root {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 
 }
 

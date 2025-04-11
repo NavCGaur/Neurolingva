@@ -260,7 +260,7 @@ const SignUp = () => {
       justifyContent="center"
       sx={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #0f2027, #203a43, #2c5364)",
+        background: "linear-gradient(135deg,#1E91FF, #EDF9FF)",       
         padding: 2
       }}
     >
@@ -275,7 +275,7 @@ const SignUp = () => {
           minHeight: "650px",
           borderRadius: 3,
           backdropFilter: "blur(16px)",
-          backgroundColor: "rgba(17, 25, 40, 0.75)",
+          backgroundColor: "#176DC2",
           border: "1px solid rgba(255, 255, 255, 0.125)",
           boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
           transition: 'all 0.3s ease-in-out',

@@ -9,7 +9,7 @@ const userWordSchema = new mongoose.Schema({
 });
 
 
-export const userSchema = new mongoose.Schema({
+export const UserSchema = new mongoose.Schema({
   uid: { type: String, required: true, unique: true },
   email: { type: String, required: true },
   

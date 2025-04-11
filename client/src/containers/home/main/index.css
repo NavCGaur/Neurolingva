@@ -121,16 +121,18 @@ top: 33%;}
 }
 
 @media (max-width: 480px) {
+
+  .main{
+    background-image: url('../../../assets/mobilehomeimage.png');
+
+  }
   .main__title {
-      font-size: 40px;
+      font-size: 45px;
       -webkit-text-stroke: 3px #003774;
+      top: -20%;
   }
   
-  .main__subtitle-text-back,
-  .main__subtitle-text-front {
-      font-size: 24px;
-      -webkit-text-stroke: 4px;
-  }
+  
   
   .main__overlap-group {
       border-width: 6px;
@@ -144,14 +146,11 @@ top: 33%;}
 
 @media (max-width: 360px) {
   .main__title {
-      font-size: 32px;
+      font-size: 40px;
   }
-  
-  .main__subtitle-text-back,
-  .main__subtitle-text-front {
-      font-size: 20px;
-  }
-  
+ .main__button-container{
+  width: 60%;
+ }
   .main__register-button {
       font-size: 20px;
   }

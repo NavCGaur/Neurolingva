@@ -132,10 +132,12 @@
     }
     
     .why__features-container .featurescard__div {
-        height: 140px;
+        height: 80px;
     }
     
     .why__features-container .featurescard__title-container {
         top: -25%;
     }
+
+   
 }

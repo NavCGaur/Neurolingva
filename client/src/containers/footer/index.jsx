@@ -12,7 +12,7 @@ import TwitterIcon from '../../assets/twitter.png';
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className="footer" id='footer'>
       <div className="footer__wrapper">
         <div footer__applinks>
           <div className='footer__applinks-container'>
@@ -21,7 +21,7 @@ const Footer = () => {
 
           </div>
 
-          <img src={ProductHunt} alt="Social Media" className="footer__social-media-icon" />
+         {/*} <img src={ProductHunt} alt="Social Media" className="footer__social-media-icon" />*/}
         </div>
 
         <div className="footer__container">       

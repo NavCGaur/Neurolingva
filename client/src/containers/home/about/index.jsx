@@ -8,12 +8,12 @@ import { featuresData } from './featuresData';
 
 const About = () => {
   return (
-    <div className='about'>
+    <div className='about' >
       <div className='about__image-container'>
         <img src={AboutImage} alt="about" className='about__image'/>
       </div>
 
-      <div className='about__title'>
+      <div className='about__title'  id='features'>
        Key Features:
       </div>
     

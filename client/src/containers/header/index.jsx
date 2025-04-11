@@ -61,18 +61,22 @@ function Header() {
 
   
 
-  const serviceData = [{serviceName:'GST Registration', 
+  /*const FeaturesData = [{featureName:'', 
                         link: '/gstregistration'},
 
-                       {serviceName:'MSME Registration', 
+                       {featureName:'MSME Registration', 
                         link: '/gstregistration'},
                       
-                      {serviceName:'Business Entity Registration', 
+                      {featureName:'Business Entity Registration', 
                         link: '/gstregistration'},
+
+                      {featureName:'Business Entity Registration', 
+                          link: '/gstregistration'},
                     
                       
 
                         ];
+    */
     
 
   return (
@@ -91,9 +95,10 @@ function Header() {
 
                     <a href='#home'className='header__home' onClick={handleMenu}>Home</a >
 
-                    <DropDown pageId = {'#service'} title = {'Service'} dropDownData={serviceData} onClick={handleMenu} / >
+                    {/*<DropDown pageId = {'#service'} title = {'Features'} dropDownData={FeaturesData} onClick={handleMenu} / >*/}
+                    <a href='#features' className='header__about' onClick={handleMenu}>Features</a>
 
-                    <a href='#about' className='header__about' onClick={handleMenu}>About Us</a>
+                    <a href='#pricing' className='header__about' onClick={handleMenu}>Pricing</a>
 
                     <a href='#footer' className='header__contact' onClick={handleMenu}>Contact Us</a>
 

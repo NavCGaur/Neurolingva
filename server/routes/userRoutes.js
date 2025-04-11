@@ -1,5 +1,6 @@
 import express from 'express';
 import userController from '../controllers/userController.js';
+import { authenticateUser } from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -11,7 +12,11 @@ router.put('/:id',userController.editUser);
 router.delete('/:id',userController.deleteUser);
 router.patch('/update-role', userController.updateUserRole);
 
+// Get current user profile
+router.get('/me', authenticateUser, userController.getCurrentUser);
 
+// Get current user subscription
+router.get('/subscription', authenticateUser, userController.getSubscription);
 
 
 export default router;

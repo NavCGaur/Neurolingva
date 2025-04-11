@@ -28,6 +28,10 @@ import HomePage from "./containers/speech/homePageSpeech";
 import { Route, Routes } from "react-router-dom";
 import QuizMain from "./containers/quiz/QuizMain";
 import SpeechShadowingPractice from "./containers/speechShadow/speechShadowPractice";
+import PricingPage from "./containers/subscription/stripe/pricingPage";
+import SubscriptionSuccessPage from "./containers/subscription/stripe/subscriptionSuccess";
+import AccountSettings from "./containers/subscription/stripe/accountSettings";
+import SubscribePage from "./containers/subscription/stripe/subscribePage";
 
 // Public components grouped into a single page layout
 const PublicPage = () => {
@@ -46,6 +50,10 @@ const PublicPage = () => {
       <Navbar />
       <HomePage />
       <SpeechShadowingPractice />
+      <PricingPage />
+      <SubscriptionSuccessPage />
+      <AccountSettings />
+      <SubscribePage />
     </>
   );
 };
@@ -58,6 +66,8 @@ function App() {
         {/* Public Routes */}
         <Route path="/" element={<PublicPage />} />
         <Route path="/unauthorized" element={<UnAuthorized />} />
+        <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/subscribe" element={<SubscribePage />} />
 
         {/* Protected Routes */}
         <Route path="/admin" element={<ProtectedRoute requiredRole="Admin"><AdminLayout /></ProtectedRoute>}>

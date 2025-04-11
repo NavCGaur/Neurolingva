@@ -108,6 +108,55 @@ const userController = {
     } catch (error) {
       return res.status(400).json({ success: false, message: error.message });
     }
+  },
+
+  getCurrentUser: async (req, res) => {
+    try {
+      const { userId } = req.user;
+      
+      const user = await User.findOne({ uid: userId });
+      
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+      
+      res.status(200).json({
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+        role: user.role,
+        createdAt: user.createdAt
+      });
+    } catch (error) {
+      console.error('Error getting user:', error);
+      res.status(500).json({ error: 'Server error' });
+    }
+  },
+
+  getSubscription: async (req, res) => {
+
+    try {
+      const { userId } = req.user;
+      
+      const user = await User.findOne({ uid: userId });
+      
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+      
+      res.status(200).json({
+        planId: user.planId || 'free',
+        subscriptionStatus: user.subscriptionStatus,
+        stripeCustomerId: user.stripeCustomerId,
+        stripeSubscriptionId: user.stripeSubscriptionId,
+        currentPeriodEnd: user.currentPeriodEnd,
+        cancelAtPeriodEnd: user.cancelAtPeriodEnd || false
+      });
+    } catch (error) {
+      console.error('Error getting subscription:', error);
+      res.status(500).json({ error: 'Server error' });
+    }
   }
 };
 

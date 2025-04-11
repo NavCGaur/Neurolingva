@@ -16,6 +16,7 @@ import vocabRoutes from './routes/vocabRoutes.js';
 import questionRoutes from './routes/questionRoutes.js';
 import speechRoutes from './routes/speechRoutes.js';
 import speechShadowRoutes from './routes/speechShadowRoutes.js';
+import stripeRoutes from './routes/stripeRoutes.js';
 
 // Load environment variables
 
@@ -23,6 +24,9 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
+
+// Special raw body parser for Stripe webhooks
+app.use('/api/stripe/webhook', express.raw({ type: 'application/json' }));
 
 
 // Middleware
@@ -41,6 +45,14 @@ app.use(cors({
 // Explicitly handle preflight (OPTIONS) requests
 app.options('*', cors());
 
+// Add the raw body to the request object for Stripe webhook verification
+app.use((req, res, next) => {
+  if (req.originalUrl === '/api/stripe/webhook') {
+    req.rawBody = req.body;
+  }
+  next(); 
+});
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes); 
@@ -48,6 +60,7 @@ app.use('/api/vocab', vocabRoutes)
 app.use('/api/questions', questionRoutes);
 app.use('/api/speech',speechRoutes);
 app.use('/api/speechShadow',speechShadowRoutes);
+app.use('/api/stripe', stripeRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(process.cwd(), 'client/build')));

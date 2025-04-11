@@ -8,7 +8,7 @@
    
   .header__container {
     position: fixed;
-    height: 5rem;
+    height: 5.5rem;
     padding: 0.4rem 0;
     top: 0;
     width: 100%;
@@ -167,8 +167,11 @@
 @media (max-width:700px){
     html{
         font-size: 8px;
-    }
 
+    }
+    .header__logo{
+        display: none;
+    }
 
     
 .header__opacity-overlay {
@@ -239,12 +242,7 @@
     }
     
     
-.header__logo{
-    margin-left: 3%;
-   
-    font-size: 4rem;
 
-}
 
 .header__centerContainer{
 
@@ -290,6 +288,7 @@
     z-index: 10;
     font-size: 2rem;
     text-shadow: 0 0 25px var(--main-color);
+    color: white;
     background-color: rgba(2, 29, 53, 0.9); 
         }
 
@@ -309,8 +308,14 @@
 
  }
 
+ .nav__button-container{
+  left: 25%;
+ }
+
  .header__navbar-hidden p{
     padding: 2rem;
+
+    
     margin: 5px;
 }
 
@@ -337,15 +342,7 @@
     font-weight: 600;
 }   
 
-.header__designThree{
-    bottom: 2%;
-    left: 4rem;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    row-gap: 20px;
-    position: absolute;
-    z-index: 3;
-}
+
 
 
 }
