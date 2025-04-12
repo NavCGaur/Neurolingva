@@ -19,6 +19,7 @@ const FeaturesCard = ({ title1, title2, description, backgroundImage }) => {
           <div className="featurescard__overlap-group">
             <img 
               className="featurescard__image" 
+              loading="lazy"
               alt="Feature illustration" 
               src={backgroundImage} 
             />

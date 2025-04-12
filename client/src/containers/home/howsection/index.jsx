@@ -55,7 +55,7 @@ const HowSection = () => {
              </div>   
 
              <div className='howsection__image-container-three'>
-                <img src={howsection4image} alt="how"/>
+                <img loading="lazy" src={howsection4image} alt="how"/>
 
                 <div class="howsection__subtitle-container">
                     <div class="howsection__subtitle-text-back">Retain new words with our SRS system that ensures you revisit vocabulary at the most effective intervals to maximize
@@ -67,7 +67,7 @@ const HowSection = () => {
         </div>
 
         <div className="howsection__image-container-bottom">
-            <img src={howsectionBottomImage} alt="how" className='howsection__image-bottom'/>
+            <img loading="lazy" src={howsectionBottomImage} alt="how" className='howsection__image-bottom'/>
 
             <div class="howsection__title-container-bottomimage">
                         <div class="howsection__title-text-back-bottomimage">Track Your Progress</div>

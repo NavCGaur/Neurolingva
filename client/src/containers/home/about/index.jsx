@@ -12,7 +12,7 @@ const About = () => {
   return (
     <div className='about' >
       <div className='about__image-container'>
-        <img src={AboutImage} alt="about" className='about__image'/>
+        <img src={AboutImage} loading="lazy" alt="about" className='about__image'/>
       </div>
 
       <div className='about__title'  id='features'>
