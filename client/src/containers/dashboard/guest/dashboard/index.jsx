@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import FlexBetween from "../../../../components/flexbetween";
 import Header from "../../../../components/header";
@@ -27,6 +28,8 @@ const GuestDashboard = () => {
   const isMobile = useMediaQuery("(max-width: 600px)");
   const dispatch = useDispatch();
   const [selectedFeature, setSelectedFeature] = useState(null);
+  const location = useLocation();
+
 
   const userId = useSelector((state) => state.auth?.user?.uid);
 
@@ -40,6 +43,18 @@ const GuestDashboard = () => {
       dispatch(setWords(words));
     }
   }, [words, dispatch]);
+
+
+  // Get feature from URL if present
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const featureParam = params.get('feature');
+    if (featureParam) {
+      // Convert URL format back to feature ID (e.g., "speech-shadow" to "speech shadow")
+      setSelectedFeature(featureParam.replace("-", " "));
+    }
+  }, [location]);
+
 
   // Feature cards data
   const featureCards = [
@@ -77,8 +92,12 @@ const GuestDashboard = () => {
     
   ];
 
+ // Modify handleFeatureSelect to update the URL
   const handleFeatureSelect = (featureId) => {
     setSelectedFeature(featureId);
+    // Update URL without full page reload
+    const featureParam = featureId.replace(" ", "-");
+    window.history.pushState({}, "", `/guest/dashboard?feature=${featureParam}`);
   };
 
   const renderFeatureContent = () => {
@@ -145,7 +164,7 @@ const GuestDashboard = () => {
           Welcome to your dashboard! Explore new features and enhance your experience.
         </Typography>
     } 
-/>
+      />
       </FlexBetween>
 
       <Box mt="20px">

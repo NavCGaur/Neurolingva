@@ -17,6 +17,11 @@ import {
     ChevronLeft,
     ChevronRightOutlined,
     HomeOutlined,
+    MenuBookOutlined,
+    MicOutlined,
+    RecordVoiceOverOutlined,
+    QuizOutlined,
+    GradeOutlined,
     ShoppingCartOutlined,
     Groups2Outlined,
     ReceiptLongOutlined,
@@ -33,48 +38,38 @@ import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "../../../../components/flexbetween/index";
 import profileImage from "../../../../assets/guestprofilepic.png";
 
+
 const navItems = [
     {
-        text: "Dashboard",
-        icon: <HomeOutlined />,
+      text: "Dashboard",
+      icon: <HomeOutlined />,
     },
     {
-        text: "Customer Master",
-        icon: null,
+      text: "Features",
+      icon: null,
     },
     {
-        text: "Customers",
-        icon: <Groups2Outlined />,
+      text: "Vocabulary",
+      icon: <MenuBookOutlined />, // You can choose appropriate icons
     },
     {
-        text: "Dummy Page",
-        icon: <PointOfSaleOutlined />,
+      text: "Speech",
+      icon: <MicOutlined />,
     },
     {
-        text: "Dummy Page",
-        icon: <TodayOutlined />,
+      text: "Speech Shadow",
+      icon: <RecordVoiceOverOutlined />,
     },
     {
-        text: "Dummy Page",
-        icon: <CalendarMonthOutlined />,
+      text: "Quiz",
+      icon: <QuizOutlined />,
     },
     {
-        text: "Dummy Page",
-        icon: <PieChartOutlined />,
+      text: "Grammar",
+      icon: <GradeOutlined />,
     },
-    {
-        text: "Dummy Page",
-        icon: null,
-    },
-    {
-        text: "Dummy Page",
-        icon: <AdminPanelSettingsOutlined />,
-    },
-    {
-        text: "Dummy Page",
-        icon: <TrendingUpOutlined />,
-    },
-];
+    // Add any other navigation items you need
+  ];
 
 const Sidebar = ({
     user,
@@ -140,17 +135,22 @@ const Sidebar = ({
                                     <ListItem key={text} disablePadding>
                                         <ListItemButton
                                             onClick={() => {
-                                                navigate(`${lcText}`)
+                                                // Handle feature clicks differently
+                                                if (["vocabulary", "speech", "speech shadow", "quiz", "grammar"].includes(lcText.toLowerCase())) {
+                                                navigate(`/guest/dashboard?feature=${lcText.toLowerCase().replace(" ", "-")}`);
+                                                } else {
+                                                navigate(`/${lcText}`);
+                                                }
                                                 setActive(lcText);
                                             }}
                                             sx={{
                                                 backgroundColor:
-                                                    active === lcText
-                                                        ? 'rgba(255, 255, 255, 0.3)'
-                                                        : "transparent",
+                                                active === lcText
+                                                    ? 'rgba(255, 255, 255, 0.3)'
+                                                    : "transparent",
                                                 color: 'white',
                                             }}
-                                        >
+                                            >
                                             <ListItemIcon
                                                 sx={{
                                                     ml: "2rem",
