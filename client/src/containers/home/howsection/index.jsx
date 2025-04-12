@@ -1,9 +1,9 @@
 import React from 'react'
 import './index.css';
 
-import howsectionBottomImage from '../../../assets/howsection5image.png';
-import howsection1image from '../../../assets/howsection1image.png';
-import howsection4image from '../../../assets/howsection4image.png';
+import howsectionBottomImage from '../../../assets/howsection5image.webp';
+import howsection1image from '../../../assets/howsection1image.webp';
+import howsection4image from '../../../assets/howsection4image.webp';
 
 const HowSection = () => {
   return (

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import './index.css';
 
-import AboutImage from '../../../assets/aboutimage.png';
+import AboutImage from '../../../assets/aboutimage.webp';
 
 import FeaturesCard from '../../../components/cards/featuresCard';
 import { featuresData } from './featuresData';
