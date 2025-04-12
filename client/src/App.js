@@ -24,15 +24,15 @@ import './config/firebase';
 import Dashboard from "./containers/speech/dashboard";
 import History from "./containers/speech/history";
 import AnalysisDetails from "./containers/speech/analysisDetails";
-import Navbar from "./containers/speech/navbar";
-import HomePage from "./containers/speech/homePageSpeech";
+//import Navbar from "./containers/speech/navbar";
+//import HomePage from "./containers/speech/homePageSpeech";
 
 import { Route, Routes } from "react-router-dom";
-import QuizMain from "./containers/quiz/QuizMain";
-import SpeechShadowingPractice from "./containers/speechShadow/speechShadowPractice";
+//import QuizMain from "./containers/quiz/QuizMain";
+//import SpeechShadowingPractice from "./containers/speechShadow/speechShadowPractice";
 import PricingPage from "./containers/subscription/stripe/pricingPage";
-import SubscriptionSuccessPage from "./containers/subscription/stripe/subscriptionSuccess";
-import AccountSettings from "./containers/subscription/stripe/accountSettings";
+//import SubscriptionSuccessPage from "./containers/subscription/stripe/subscriptionSuccess";
+//import AccountSettings from "./containers/subscription/stripe/accountSettings";
 import SubscribePage from "./containers/subscription/stripe/subscribePage";
 
 // Public components grouped into a single page layout
@@ -46,16 +46,6 @@ const PublicPage = () => {
       <HowSection />
       <Review />
       <Footer />
-      <QuizMain />
-      <Login />
-      <SignUp />
-      <Navbar />
-      <HomePage />
-      <SpeechShadowingPractice />
-      <PricingPage />
-      <SubscriptionSuccessPage />
-      <AccountSettings />
-      <SubscribePage />
     </>
   );
 };
