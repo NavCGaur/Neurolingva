@@ -16,10 +16,12 @@ import {
   Divider,
   Checkbox, 
   FormControlLabel,
-  Input
+  Input,
+  Link
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { Visibility, VisibilityOff, Google, Facebook, Apple } from '@mui/icons-material';
+import HomeIcon from '@mui/icons-material/Home';
 import { loginSuccess, logout  } from "../../../state/slices/authSlice";
 import { useVerifyTokenMutation } from "../../../state/api";
 import Logo from '../../../assets/neurolingvalogo.png' 
@@ -432,14 +434,31 @@ const Login = () => {
           '&:hover': {
             transform: 'translateY(-5px)',
             boxShadow: "0 12px 40px 0 rgba(31, 38, 135, 0.47)",
-          }
+          },
+          position: "relative",
         }}
       >
         
         {/* Login form title */}
 
         <Box display="flex" alignItems="center" justifyContent="center" mb={3}> 
-        <img src={Logo} alt="logo" style={{ width: "50px", height: "50px" }} /> 
+           <img src={Logo} alt="logo" style={{ width: "50px", height: "50px" }} /> 
+        </Box>
+
+        <Box>
+          <Link href="/" style={{ textDecoration: "none" }}>
+            <HomeIcon
+              style={{
+                position: "absolute",
+                top: "10px",
+                left: "10px",
+                width: "30px",
+                height: "30px",
+                color: "white",
+                cursor: "pointer"
+              }}
+            />
+          </Link>
         </Box>
 
         <Typography 

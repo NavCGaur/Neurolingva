@@ -21,6 +21,8 @@ import {
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { Visibility, VisibilityOff, Google, Facebook } from '@mui/icons-material';
+import HomeIcon from '@mui/icons-material/Home';
+import Logo from '../../../assets/neurolingvalogo.png' 
 import { loginSuccess } from "../../../state/slices/authSlice";
 import { useRegisterUserMutation } from "../../../state/api/index";
 
@@ -285,6 +287,27 @@ const SignUp = () => {
           }
         }}
       >
+
+         <Box display="flex" alignItems="center" justifyContent="center" mb={3}> 
+                   <img src={Logo} alt="logo" style={{ width: "50px", height: "50px" }} /> 
+                </Box>
+        
+                <Box>
+                  <Link href="/" style={{ textDecoration: "none" }}>
+                    <HomeIcon
+                      style={{
+                        position: "absolute",
+                        top: "10px",
+                        left: "10px",
+                        width: "30px",
+                        height: "30px",
+                        color: "white",
+                        cursor: "pointer"
+                      }}
+                    />
+                  </Link>
+                </Box>
+        
         <Typography 
           variant="h4" 
           component="h1"
