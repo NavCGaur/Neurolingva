@@ -11,6 +11,7 @@ import FlexBetween from "../../../../components/flexbetween";
 import { useDispatch } from "react-redux";
 import { setMode } from "../../../../state/slices/themeSlice";
 import profileImage from "../../../../assets/guestprofilepic.png";
+import Logo from '../../../../assets/neurolingvalogo.png' //Logo
 import Logout from "../../../auth/logout";
 import {
   AppBar,
@@ -24,6 +25,7 @@ import {
   MenuItem,
   useTheme,
 } from "@mui/material";
+import { margin } from "@mui/system";
 
 const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
   const dispatch = useDispatch();
@@ -38,9 +40,8 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
     <AppBar
       sx={{
         position: "static",
-        background: "none",
+        background: "#176DC2",
         boxShadow: "none",
-        background:'linear-gradient(to right,#76B2EB,#436585)',
       }}
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
@@ -49,6 +50,10 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
           <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
             <MenuIcon />
           </IconButton>
+          
+         
+          
+          {/*
           <Box 
             sx={{
               display: { xs: 'none', sm: 'flex' },
@@ -58,11 +63,19 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
               p: "0.1rem 1.5rem"
             }}
           >
-            <InputBase placeholder="Search..." />
+          
+          
+           <InputBase placeholder="Search..." />
             <IconButton>
               <Search />
-            </IconButton>
-          </Box>
+            </IconButton> 
+                      </Box>
+
+            
+            */}
+           
+
+
         </FlexBetween>
 
         {/*RIGHT SIDE*/}

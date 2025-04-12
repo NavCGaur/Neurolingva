@@ -1,3 +1,5 @@
+
+
 import Footer from "./containers/footer";
 import Header from "./containers/header";
 import About from "./containers/home/about";
@@ -66,9 +68,10 @@ function App() {
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/pricing" element={<PricingPage />} />
+
         <Route path="/" element={<PublicPage />} />
         <Route path="/unauthorized" element={<UnAuthorized />} />
-        <Route path="/pricing" element={<PricingPage />} />
         <Route path="/subscribe" element={<SubscribePage />} />
 
         {/* Protected Routes */}

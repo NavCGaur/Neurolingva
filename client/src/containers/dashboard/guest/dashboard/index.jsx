@@ -47,31 +47,32 @@ const GuestDashboard = () => {
       id: "vocabulary",
       title: "Vocabulary Practice",
       subtitle: "Review your daily words",
-      gradient: 'linear-gradient(to right,rgb(119, 176, 228),rgb(118, 178, 234))',
+      gradient: '#176DC2',
+
     },
     {
       id: "speech",
       title: "Speech Practice",
       subtitle: "Improve your pronunciation",
-      gradient: 'linear-gradient(to right, #c4e0a6, #8bc34a)',
+      gradient: '#176DC2',
     },
     {
       id: "speech shadow",
       title: "Speech Practice",
       subtitle: "Master Native Pronounciation",
-      gradient: 'linear-gradient(to right, #ce93d8, #9c27b0)',
+      gradient: '#176DC2',
     },
     {
       id: "quiz",
       title: "Daily Quiz",
       subtitle: "Test your knowledge",
-      gradient: 'linear-gradient(to right, #ffcc80, #ff9800)',
+      gradient: '#176DC2',
     },
     {
       id: "grammar",
       title: "Grammar Practice",
       subtitle: "Master the rules",
-      gradient: 'linear-gradient(to right, #ce93d8, #9c27b0)',
+      gradient: '#176DC2',
     },
     
   ];
@@ -86,7 +87,8 @@ const GuestDashboard = () => {
     switch (selectedFeature) {
       case "vocabulary":
         return (
-          <Box width="100%">
+          <Box width="100%" sx={{         background: "linear-gradient(135deg,#1E91FF, #EDF9FF)",
+            textAlign: "center", p: 3 }}>
             <Typography variant="h6" mb={2}>
               Tap each word to reveal details and rate your recall
             </Typography>
@@ -124,7 +126,7 @@ const GuestDashboard = () => {
             <Typography variant="body1" mt={2}>Coming soon! Learn and practice grammar rules.</Typography>
           </Box>
         );
-      default:
+      default:          
         return null;
     }
   };
@@ -140,7 +142,7 @@ const GuestDashboard = () => {
     } 
     subtitle={
         <Typography variant="subtitle1" sx={{ color: "#13315C" }}>
-            Welcome to your dashboard
+          Welcome to your dashboard! Explore new features and enhance your experience.
         </Typography>
     } 
 />
@@ -152,9 +154,12 @@ const GuestDashboard = () => {
             mt={4}
             p={3}
             borderRadius={2}
-            bgcolor="#eaf4f4" // Directly using the desired color 
             boxShadow={3}
             color={"#13315c"}
+            sx={{
+              background: "linear-gradient(135deg,#1E91FF, #EDF9FF)",
+
+            }}
           >
             <Box>
                 <Typography variant="h4" sx={{ color: "#13315C", fontWeight: "bold" }}>
@@ -175,7 +180,9 @@ const GuestDashboard = () => {
                   sx={{
                     height: 220,
                     background: card.gradient,
-                    boxShadow: 4,
+                    backdropFilter: "blur(16px)",
+                    border: "1px solid rgba(255, 255, 255, 0.125)",
+                    boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
                     cursor: 'pointer',
                     transition: 'transform 0.3s, box-shadow 0.3s',
                     '&:hover': {

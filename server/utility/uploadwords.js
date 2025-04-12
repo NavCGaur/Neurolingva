@@ -1,5 +1,5 @@
 // uploadWords.js
-import mongoose from "mongoose";
+/*import mongoose from "mongoose";
 import fs from "fs";
 import dotenv from "dotenv";
 import Word from "../models/wordSchema.js";
@@ -28,3 +28,4 @@ async function uploadWords() {
 }
 
 export default uploadWords;
+*/

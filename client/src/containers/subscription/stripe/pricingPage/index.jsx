@@ -8,19 +8,23 @@ import {
   Typography, 
   Button, 
   Box, 
-  List, 
+  List,   
   ListItem, 
   ListItemIcon, 
   ListItemText,
   ToggleButtonGroup,
   ToggleButton,
-  CircularProgress
+  CircularProgress,
+  Link
 } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useCreateCheckoutSessionMutation } from '../../../../state/api/subscriptionApi';
 import { getAuth } from 'firebase/auth';
+
+import HomeIcon from '@mui/icons-material/Home';
+import Logo from '../../../../assets/neurolingvalogo.png' 
 
 const PricingPage = () => {
   const [billingFrequency, setBillingFrequency] = useState('monthly');
@@ -81,14 +85,37 @@ const handleSubscribe = async (plan) => {
   const buttonColor = '#002D62';
 
   return (
-    <Container id="pricing" sx={{ py: 8 ,
-                      width: '100%',
+    <Container id="pricing" maxWidth={false}
+                    sx={{ py: 8 ,
+                      width: '100vw',
                       background: "linear-gradient(135deg,#1E91FF, #EDF9FF)",       
                      }}>
+
+                  <Box display="flex" alignItems="center" justifyContent="center" mb={1}> 
+                                 <img src={Logo} alt="logo" style={{ width: "50px", height: "50px" }} /> 
+                              </Box>
+                      
+                              <Box>
+                                <Link href="/" style={{ textDecoration: "none" }}>
+                                  <HomeIcon
+                                    style={{
+                                      position: "absolute",
+                                      top: "20px",
+                                      left: "20px",
+                                      width: "50px",
+                                      height: "50px",
+                                      color: "white",
+                                      cursor: "pointer"
+                                    }}
+                                  />
+                                </Link>
+                              </Box>                
+                            
       <Typography variant="h3" align="center" gutterBottom>
         Choose Your Plan
       </Typography>
       
+
       <Box sx={{ display: 'flex', 
                 justifyContent: 'center',
                 mb: 6 ,         

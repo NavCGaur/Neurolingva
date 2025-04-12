@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import path from 'path';
 
 //import uploadWords from './utility/uploadwords.js'
-import uploadQuizQuestion from './utility/uploadQuizQuestion.js'
+//import uploadQuizQuestion from './utility/uploadQuizQuestion.js'
 
 import dotenv from 'dotenv';
 dotenv.config();

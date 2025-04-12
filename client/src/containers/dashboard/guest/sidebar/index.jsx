@@ -104,7 +104,7 @@ const Sidebar = ({
                         width: drawerWidth,
                         "& .MuiDrawer-paper": {
                             color: 'white',
-                            background: '#4B9CD3',
+                            backgroundColor: "#176DC2",
                             boxSizing: "border-box",
                             borderWidth: isNonMobile ? 0 : "2px",
                             width: drawerWidth,
@@ -116,7 +116,7 @@ const Sidebar = ({
                             <FlexBetween>
                                 <Box display="flex" alignItems="center" gap="0.5rem">
                                     <Typography variant="h4" fontWeight="bold" color="white">
-                                        BRANDFLEX
+                                        NEUROLINGVA
                                     </Typography>
                                 </Box>
                                 <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)} sx={{ color: 'white' }}>

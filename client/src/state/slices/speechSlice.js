@@ -28,7 +28,7 @@ const speechSlice = createSlice({
     setReferenceText: (state, action) => {
       state.referenceText = action.payload;
     },
-    clearAudio: (state) => {
+    clearAudio: (state) => {    
       state.audioBlob = null;
       state.transcription = '';
     },

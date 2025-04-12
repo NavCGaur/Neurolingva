@@ -53,21 +53,21 @@ const VocabCard = () => {
   };
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
+    <Box display="flex" flexDirection="column" alignItems="center" gap={3} >
       <Card
-        sx={{ width: 320, height: 350, background: 'linear-gradient(to right, #bbd8f3, #8eb4d7)', cursor: 'pointer' }}
-        onClick={handleCardClick}
+        sx={{ width: 320, minHeight: 400, background: '#176DC2', cursor: 'pointer' }}
+        onClick={handleCardClick} 
       >
         <CardContent sx={{ p: 2, display: 'flex', flexDirection: 'column', height: '100%' }}>
           <Box sx={{ borderBottom: '1px solid rgba(0,0,0,0.1)', pb: 1 }}>
-            <Typography variant="h4" align="center">{current.word}</Typography>
+            <Typography variant="h3" align="center">{current.word}</Typography>
           </Box>
 
-          <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
+          <Box sx={{ flexGrow: 1, overflowY: 'auto',   scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }}>
             <Collapse in={showDetails}>
               <Box mt={1}>
                 <Typography variant="h6"><b>Definition:</b></Typography>
-                <Typography>{current.definition}</Typography>
+                <Typography textAlign={'left'} mt={1}>{current.definition}</Typography>
 
                 {current.exampleSentence && (
                   <>
@@ -151,7 +151,7 @@ const VocabCard = () => {
       )}
 
       {submitted && isSuccess && (
-        <Typography color="success.main">Practice submitted successfully!</Typography>
+        <Typography color="success.main" sx={{ fontSize: "2rem", fontWeight: "bold" }}>Practice submitted successfully!</Typography>
       )}
       {isError && (
         <Typography color="error.main">Error submitting ratings.</Typography>

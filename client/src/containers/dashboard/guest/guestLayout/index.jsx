@@ -51,6 +51,7 @@ function GuestLayout() {
           width: isSidebarOpen ? "calc(100% - 250px)" : "100%",
           transition: "width 0.3s ease",
           
+          
         }}
       > 
         <Navbar 

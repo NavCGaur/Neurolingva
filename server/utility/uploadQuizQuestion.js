@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+/*import mongoose from "mongoose";
 import dotenv from "dotenv";
 import QuizQuestion from "../models/quizQuestionSchema.js";
 import fs from "fs";
@@ -21,3 +21,4 @@ const uploadQuizQuestions = async () => {
   }
 };
 export default uploadQuizQuestions
+*/

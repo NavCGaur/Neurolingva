@@ -99,7 +99,7 @@ function Header() {
                     {/*<DropDown pageId = {'#service'} title = {'Features'} dropDownData={FeaturesData} onClick={handleMenu} / >*/}
                     <a href='#features' className='header__about' onClick={handleMenu}>Features</a>
 
-                    <a href='#pricing' className='header__about' onClick={handleMenu}>Pricing</a>
+                    <Link to='/pricing' className='header__about' onClick={handleMenu}>Pricing</Link>
 
                     <a href='#contact' className='header__contact' onClick={handleMenu}>Contact Us</a>
 

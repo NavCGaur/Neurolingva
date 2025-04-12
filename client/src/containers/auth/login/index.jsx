@@ -22,9 +22,9 @@ import {
 import { useDispatch } from "react-redux";
 import { Visibility, VisibilityOff, Google, Facebook, Apple } from '@mui/icons-material';
 import HomeIcon from '@mui/icons-material/Home';
+import Logo from '../../../assets/neurolingvalogo.png' 
 import { loginSuccess, logout  } from "../../../state/slices/authSlice";
 import { useVerifyTokenMutation } from "../../../state/api";
-import Logo from '../../../assets/neurolingvalogo.png' 
 
 // Firebase authentication imports
 import { 
@@ -199,7 +199,7 @@ const Login = () => {
 
       // Show verification in progress message
       setSnackbarMessage("Login successful! Verifying...");
-      setSnackbarSeverity("info");
+      setSnackbarSeverity("success");
       setSnackbarOpen(true);
 
       // Verify token with backend
@@ -277,7 +277,7 @@ const Login = () => {
       console.log("ID Token retrieved:", idToken);
 
       setSnackbarMessage("Google sign-in successful! Verifying...");
-      setSnackbarSeverity("info");
+      setSnackbarSeverity("success");
       setSnackbarOpen(true);
 
       // Verify token with backend
@@ -335,7 +335,7 @@ const Login = () => {
       console.log("ID Token retrieved:", idToken);
 
       setSnackbarMessage("Facebook sign-in successful! Verifying...");
-      setSnackbarSeverity("info");
+      setSnackbarSeverity("success");
       setSnackbarOpen(true);
 
       // Verify token with backend
@@ -368,7 +368,7 @@ const Login = () => {
       console.log("ID Token retrieved:", idToken);
 
       setSnackbarMessage("Apple sign-in successful! Verifying...");
-      setSnackbarSeverity("info");
+      setSnackbarSeverity("success");
       setSnackbarOpen(true);
 
       // Verify token with backend
