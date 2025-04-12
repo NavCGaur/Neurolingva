@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+
 import './index.css';
 
 import AboutImage from '../../../assets/aboutimage.png';
@@ -34,9 +36,9 @@ const About = () => {
       <div className="about__button-container">
         <div className="about__button-group">
           <div className="about__overlap-group">
-            <div className="about__register-button">
+            <Link to="/login" className="about__register-button">
                 GO TO
-            </div>
+            </Link>
           </div>
         </div>
       </div>

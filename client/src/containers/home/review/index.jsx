@@ -1,5 +1,7 @@
 // ReviewCarousel.jsx
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
+
 import { reviewData } from './reviewData';
 
 import arrowLeft from '../../../assets/leftarrowimage.png';
@@ -108,15 +110,15 @@ const Review = () => {
              <img src={instagramimage} alt='instagram'/>
             </div>
             <div>
-             <p>Instagram: Neurolingva</p>
+             <p>Twitter: Neurolingva</p>
              <img src={twitterimage} alt='instagram'/>
             </div>
             <div>
-             <p>Instagram: Neurolingva</p>
+             <p>Youtube: Neurolingva</p>
              <img src={youtubeimage} alt='instagram'/>
             </div>
             <div>
-             <p>Instagram: Neurolingva</p>
+             <p>Tiktok: Neurolingva</p>
              <img src={tiktokimage} alt='instagram'/>
             </div>           
         </div>
@@ -134,11 +136,23 @@ const Review = () => {
             <div class="joinNeurolingva__subtitle-text-front">Join the Neurolingva Community</div>
         </div>
 
-        <div className="joinNeurolingva__description-one">At Neurolingva, we're not just about learning - we're about improving.     With personalized feedback and
+        <div className="joinNeurolingva__description-one" id='contact'>At Neurolingva, we're not just about learning - we're about improving.     With personalized feedback and
         </div>
         <div className="joinNeurolingva__description-two">AI-powered tools, you’ll experience more than just traditional language learning methods.
         </div>
+
+        <div className="review__button-container" >
+        <div className="review__button-group">
+          <div className="review__overlap-group">
+            <Link to='/login' className="review__register-button">
+                REGISTER
+           </Link>
+        </div>
       </div>
+      </div>
+      </div>
+
+     
       
       <div className="gradient-bar"></div>
 

@@ -1,6 +1,8 @@
 //React imports
 import React, {useState, useEffect} from 'react'
 
+import { Link } from "react-router-dom";
+
 //Style imports
 import './index.css'
 
@@ -10,8 +12,7 @@ import Logo from '../../assets/neurolingvalogo.png'
 
 
 //Component imports
-import DropDown from '../../components/dropdown'
-import { Link } from 'react-router-dom'
+//import DropDown from '../../components/dropdown'
 
 function Header() {    
 
@@ -100,16 +101,17 @@ function Header() {
 
                     <a href='#pricing' className='header__about' onClick={handleMenu}>Pricing</a>
 
-                    <a href='#footer' className='header__contact' onClick={handleMenu}>Contact Us</a>
+                    <a href='#contact' className='header__contact' onClick={handleMenu}>Contact Us</a>
 
                     <div className="nav__button-container">
                             <div className="nav__button-group">
                               <div className="nav__overlap-group">
-                                <div className="nav__register-button">
+                                <Link to="/login" className="nav__register-button">
                                     login
-                              </div>
+                              </Link>
                             </div>
-                          </div></div>
+                          </div>
+                    </div>
 
                 </nav>
 

@@ -64,6 +64,8 @@ function App() {
     <div className="App">
       <Routes>
         {/* Public Routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<PublicPage />} />
         <Route path="/unauthorized" element={<UnAuthorized />} />
         <Route path="/pricing" element={<PricingPage />} />

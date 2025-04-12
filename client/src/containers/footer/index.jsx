@@ -1,9 +1,11 @@
 import React from 'react';
 import './index.css';
 
+import PhoneIcon from '@mui/icons-material/Phone';
+
 import GooglePlayIcon from '../../assets/GooglePlay.png';
 import AppleStoreIcon from '../../assets/Applestore.png';
-import ProductHunt from '../../assets/producthunt.png';
+//import ProductHunt from '../../assets/producthunt.png';
 import FacebookIcon from '../../assets/facebook.png';
 import InstagramIcon from '../../assets/instagram.png'; 
 import YoutubeIcon from '../../assets/youtube.png';
@@ -55,7 +57,7 @@ const Footer = () => {
             <h3 className="footer__heading">Customer Help</h3>
             <ul className="footer__list">
               <li className="footer__item">FAQs</li>
-              <li className="footer__item">Contact Us</li>
+              <li className="footer__item">Contact - <PhoneIcon style={{marginRight: '5px', height:'20px', width:'20px', paddingTop:'5px' }}></PhoneIcon>99 - 9999999</li>
               <li className="footer__item">Activate Voucher Code</li>
               <li className="footer__item">Redeem Promo Code</li>
             </ul>

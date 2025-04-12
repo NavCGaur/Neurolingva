@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 import './index.css';
 const Main = () => {
@@ -16,9 +17,9 @@ const Main = () => {
       <div className="main__button-container">
         <div className="main__button-group">
           <div className="main__overlap-group">
-            <div className="main__register-button">
+            <Link to="/signup" className="main__register-button">
                 REGISTER
-           </div>
+           </Link>
         </div>
       </div>
 
