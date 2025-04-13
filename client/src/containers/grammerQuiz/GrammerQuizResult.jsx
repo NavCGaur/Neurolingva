@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, Typography, Button} from '@mui/material';
 
-const QuizResult = ({ score, totalQuestions, onReset }) => {
+const VocabQuizResult = ({ score, totalQuestions, onReset }) => {
   return (
     <Card sx={{ 
       width: '100%',
@@ -29,4 +29,4 @@ const QuizResult = ({ score, totalQuestions, onReset }) => {
   );
 };
 
-export default QuizResult;
+export default VocabQuizResult;

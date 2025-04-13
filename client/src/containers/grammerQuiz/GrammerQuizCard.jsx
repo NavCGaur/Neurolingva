@@ -10,7 +10,7 @@ import {
   Box
 } from '@mui/material';
 
-const GrammerQuizCard = ({ 
+const GrammarQuizCard = ({ 
   question, 
   onAnswerSubmit, 
   currentQuestion, 
@@ -24,13 +24,36 @@ const GrammerQuizCard = ({
   // Get the question text based on question type
   const getQuestionText = () => {
     switch (question.questionType) {
-      case 'wordToDefinition':
-        return `What is the definition of "${question.word}"?`;
-      case 'definitionToWord':
-        return question.definition;
+      case 'sentenceCorrection':
+        return `Which of these is the correct version of: "${question.sentence}"?`;
+      case 'identifyError':
+        return `Identify the correct version of: "${question.sentence}"`;
+      case 'fillInBlank':
+        return `Fill in the blank: ${question.sentence.replace('___', '__________')}`;
+      case 'chooseCorrectForm':
+        return `Choose the correct form: ${question.sentence}`;
       default:
-        return 'Question text not available';
+        return question.sentence || 'Question text not available';
     }
+  };
+
+  const getExplanationText = () => {
+    if (!showFeedback || !question.explanation) return null;
+    
+    return (
+      <Typography 
+        variant="body2" 
+        sx={{ 
+          mt: 2,
+          p: 2,
+          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          borderRadius: 1,
+          fontStyle: 'italic'
+        }}
+      >
+        <strong>Explanation:</strong> {question.explanation}
+      </Typography>
+    );
   };
 
   const handleAnswerSelect = (answer) => {
@@ -92,7 +115,6 @@ const GrammerQuizCard = ({
       boxShadow: 3,
       mt: 4,
       backgroundColor: "#176DC2",
-
     }}>
       <CardContent sx={{ p: 4 }}>
         <Box mb={3}>
@@ -136,16 +158,19 @@ const GrammerQuizCard = ({
         </RadioGroup>
         
         {showFeedback && (
-          <Typography 
-            variant="body1" 
-            sx={{ 
-              mb: 2,
-              color: 'white',
-              fontWeight: 'bold'
-            }}
-          >
-            {isCorrect ? 'Correct! 🎉' : `Incorrect. The correct answer is: ${correctAnswer}`}
-          </Typography>
+          <>
+            <Typography 
+              variant="body1" 
+              sx={{ 
+                mb: 2,
+                color: 'white',
+                fontWeight: 'bold'
+              }}
+            >
+              {isCorrect ? 'Correct! 🎉' : `Incorrect. The correct answer is: ${correctAnswer}`}
+            </Typography>
+            {getExplanationText()}
+          </>
         )}
         
         <Button
@@ -165,4 +190,4 @@ const GrammerQuizCard = ({
   );
 };
 
-export default GrammerQuizCard;
+export default GrammarQuizCard;

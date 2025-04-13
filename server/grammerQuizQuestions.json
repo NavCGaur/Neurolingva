@@ -1,0 +1,265 @@
+[
+    {
+      "questionType": "sentenceCorrection",
+      "sentence": "The cat layed on the sunny windowsill.",
+      "correctAnswer": "The cat lay on the sunny windowsill.",
+      "explanation": "The past tense of 'lie' (to recline) is 'lay'. 'Layed' is not a standard English word; the past tense of 'lay' (to put down) is 'laid'.",
+      "difficulty": "medium",
+      "options": [
+        { "text": "The cat layed on the sunny windowsill.", "isCorrect": false },
+        { "text": "The cat laid on the sunny windowsill.", "isCorrect": false },
+        { "text": "The cat lie on the sunny windowsill.", "isCorrect": false },
+        { "text": "The cat lay on the sunny windowsill.", "isCorrect": true }
+      ]
+    },
+    {
+      "questionType": "sentenceCorrection",
+      "sentence": "Each of the students need to bring their own lunch.",
+      "correctAnswer": "Each of the students needs to bring his or her own lunch.",
+      "explanation": "'Each' is singular and requires the singular verb 'needs'. Pronoun agreement requires 'his or her' (or rewriting) to match the singular 'Each', although 'their' is increasingly accepted in informal contexts.",
+      "difficulty": "medium",
+      "options": [
+        { "text": "Each of the students need to bring their own lunch.", "isCorrect": false },
+        { "text": "Each of the students needs to bring their own lunch.", "isCorrect": false }, 
+        { "text": "Each of the students need to bring his or her own lunch.", "isCorrect": false },
+        { "text": "Each of the students needs to bring his or her own lunch.", "isCorrect": true }
+      ]
+    },
+     {
+      "questionType": "sentenceCorrection",
+      "sentence": "There is less people here today than yesterday.",
+      "correctAnswer": "There are fewer people here today than yesterday.",
+      "explanation": "'Fewer' is used for countable nouns (like 'people'), while 'less' is used for uncountable nouns (like 'water' or 'time').",
+      "difficulty": "easy",
+      "options": [
+        { "text": "There is less people here today than yesterday.", "isCorrect": false },
+        { "text": "There are less people here today than yesterday.", "isCorrect": false },
+        { "text": "There is fewer people here today than yesterday.", "isCorrect": false },
+        { "text": "There are fewer people here today than yesterday.", "isCorrect": true }
+      ]
+    },
+    {
+      "questionType": "sentenceCorrection",
+      "sentence": "Whom did you say is calling?",
+      "correctAnswer": "Who did you say is calling?",
+      "explanation": "'Who' is the subject of the verb 'is calling'. 'Whom' is used for objects.",
+      "difficulty": "hard",
+      "options": [
+        { "text": "Whom did you say is calling?", "isCorrect": false },
+        { "text": "Who did you say is calling?", "isCorrect": true },
+        { "text": "Whom did you say are calling?", "isCorrect": false },
+        { "text": "Who did you say are calling?", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "sentenceCorrection",
+      "sentence": "The data suggest a different conclusion.",
+      "correctAnswer": "The data suggest a different conclusion.",
+      "explanation": "'Data' is technically the plural of 'datum' and traditionally takes a plural verb ('suggest'). However, it is increasingly treated as a singular mass noun ('suggests'), especially in non-scientific contexts. Both can be considered acceptable depending on style guide, but plural is more formally correct.",
+      "difficulty": "medium",
+      "options": [
+        { "text": "The data suggests a different conclusion.", "isCorrect": false },
+        { "text": "The data suggest a different conclusion.", "isCorrect": true },
+        { "text": "The datas suggest a different conclusion.", "isCorrect": false },
+        { "text": "The datum suggest a different conclusion.", "isCorrect": false }
+      ]
+    },
+  
+     {
+      "questionType": "identifyError",
+      "sentence": "He done it yesterday.",
+      "correctAnswer": "He did it yesterday.",
+      "explanation": "The simple past tense of 'do' is 'did'. 'Done' is the past participle, used with auxiliary verbs (e.g., 'has done').",
+      "difficulty": "easy",
+      "options": [
+        { "text": "He done it yesterday.", "isCorrect": false },
+        { "text": "He did it yesterday.", "isCorrect": true },
+        { "text": "He do it yesterday.", "isCorrect": false },
+        { "text": "He has did it yesterday.", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "identifyError",
+      "sentence": "The reason is because I was late.",
+      "correctAnswer": "The reason is that I was late.",
+      "explanation": "The phrase 'the reason is because' is redundant. Use 'the reason is that' or simply 'I was late because...'.",
+      "difficulty": "medium",
+      "options": [
+        { "text": "The reason is because I was late.", "isCorrect": false },
+        { "text": "The reason is that I was late.", "isCorrect": true },
+        { "text": "The reason is I was late.", "isCorrect": false }, 
+        { "text": "The reason because I was late.", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "identifyError",
+      "sentence": "Could you borrow me your pen?",
+      "correctAnswer": "Could you lend me your pen?",
+      "explanation": "'Lend' means to give something temporarily. 'Borrow' means to receive something temporarily. The person giving the item 'lends'; the person receiving 'borrows'.",
+      "difficulty": "easy",
+      "options": [
+        { "text": "Could you borrow me your pen?", "isCorrect": false },
+        { "text": "Could I lend your pen?", "isCorrect": false },
+        { "text": "Could you lend me your pen?", "isCorrect": true },
+        { "text": "Could I borrow your pen?", "isCorrect": true } 
+      ]
+    },
+    {
+      "questionType": "identifyError",
+      "sentence": "Irregardless of the weather, the game will proceed.",
+      "correctAnswer": "Regardless of the weather, the game will proceed.",
+      "explanation": "'Irregardless' is a non-standard word. The correct word is 'regardless'.",
+      "difficulty": "medium",
+      "options": [
+        { "text": "Irregardless of the weather, the game will proceed.", "isCorrect": false },
+        { "text": "Regardless of the weather, the game will proceed.", "isCorrect": true },
+        { "text": "With regards to the weather, the game will proceed.", "isCorrect": false },
+        { "text": "Disregarding of the weather, the game will proceed.", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "identifyError",
+      "sentence": "Between you and I, this plan won't work.",
+      "correctAnswer": "Between you and me, this plan won't work.",
+      "explanation": "'Between' is a preposition, and prepositions take object pronouns ('me', 'him', 'her', 'us', 'them'). 'I' is a subject pronoun.",
+      "difficulty": "medium",
+      "options": [
+        { "text": "Between you and I, this plan won't work.", "isCorrect": false },
+        { "text": "Between you and me, this plan won't work.", "isCorrect": true },
+        { "text": "Among you and I, this plan won't work.", "isCorrect": false },
+        { "text": "Among you and me, this plan won't work.", "isCorrect": false } 
+      ]
+    },
+  
+    {
+      "questionType": "fillInBlank",
+      "sentence": "She is interested ___ learning Spanish.",
+      "correctAnswer": "in",
+      "explanation": "The preposition 'in' typically follows the adjective 'interested'.",
+      "difficulty": "easy",
+      "options": [
+        { "text": "on", "isCorrect": false },
+        { "text": "at", "isCorrect": false },
+        { "text": "in", "isCorrect": true },
+        { "text": "for", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "fillInBlank",
+      "sentence": "If they ___ (arrive) earlier, they would have seen the beginning.",
+      "correctAnswer": "had arrived",
+      "explanation": "This is a third conditional sentence (past unreal condition), requiring the past perfect tense ('had arrived') in the 'if' clause.",
+      "difficulty": "hard",
+      "options": [
+        { "text": "arrived", "isCorrect": false },
+        { "text": "would arrive", "isCorrect": false },
+        { "text": "had arrived", "isCorrect": true },
+        { "text": "would have arrived", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "fillInBlank",
+      "sentence": "He has lived here ___ 2010.",
+      "correctAnswer": "since",
+      "explanation": "'Since' is used to indicate a starting point in time with perfect tenses. 'For' is used to indicate a duration.",
+      "difficulty": "easy",
+      "options": [
+        { "text": "for", "isCorrect": false },
+        { "text": "since", "isCorrect": true },
+        { "text": "ago", "isCorrect": false },
+        { "text": "from", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "fillInBlank",
+      "sentence": "Neither the manager nor the employees ___ satisfied with the outcome.",
+      "correctAnswer": "were",
+      "explanation": "With 'neither...nor', the verb agrees with the noun closest to it. 'Employees' is plural, so the plural verb 'were' is needed.",
+      "difficulty": "medium",
+      "options": [
+        { "text": "was", "isCorrect": false },
+        { "text": "were", "isCorrect": true },
+        { "text": "is", "isCorrect": false },
+        { "text": "are", "isCorrect": false }
+      ]
+    },
+     {
+      "questionType": "fillInBlank",
+      "sentence": "The book, ___ cover was torn, belonged to the library.",
+      "correctAnswer": "whose",
+      "explanation": "'Whose' is the possessive relative pronoun used for people or things.",
+      "difficulty": "medium",
+      "options": [
+        { "text": "who's", "isCorrect": false },
+        { "text": "which", "isCorrect": false },
+        { "text": "whose", "isCorrect": true },
+        { "text": "that", "isCorrect": false } 
+      ]
+    },
+  
+    {
+      "questionType": "chooseCorrectForm",
+      "sentence": "Yesterday, I ___ (go) to the supermarket.",
+      "correctAnswer": "went",
+      "explanation": "The sentence is set in the past ('Yesterday'), requiring the simple past tense of 'go', which is 'went'.",
+      "difficulty": "easy",
+      "options": [
+        { "text": "go", "isCorrect": false },
+        { "text": "gone", "isCorrect": false },
+        { "text": "went", "isCorrect": true },
+        { "text": "goed", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "chooseCorrectForm",
+      "sentence": "She ___ (study) English for five years already.",
+      "correctAnswer": "has been studying",
+      "explanation": "The present perfect continuous tense ('has been studying') is used to emphasize the duration of an action that started in the past and continues to the present.",
+      "difficulty": "medium",
+      "options": [
+        { "text": "studies", "isCorrect": false },
+        { "text": "is studying", "isCorrect": false },
+        { "text": "has studied", "isCorrect": false }, 
+        { "text": "has been studying", "isCorrect": true }
+      ]
+    },
+     {
+      "questionType": "chooseCorrectForm",
+      "sentence": "The report needs ___ (finish) by tomorrow.",
+      "correctAnswer": "to be finished",
+      "explanation": "This requires the passive infinitive ('to be finished') because the report is receiving the action.",
+      "difficulty": "hard",
+      "options": [
+        { "text": "finishing", "isCorrect": false },
+        { "text": "to finish", "isCorrect": false },
+        { "text": "to be finished", "isCorrect": true },
+        { "text": "be finished", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "chooseCorrectForm",
+      "sentence": "Look! That car ___ (drive) too fast.",
+      "correctAnswer": "is driving",
+      "explanation": "The word 'Look!' indicates an action happening right now, requiring the present continuous tense ('is driving').",
+      "difficulty": "easy",
+      "options": [
+        { "text": "drives", "isCorrect": false },
+        { "text": "is driving", "isCorrect": true },
+        { "text": "drove", "isCorrect": false },
+        { "text": "has driven", "isCorrect": false }
+      ]
+    },
+    {
+      "questionType": "chooseCorrectForm",
+      "sentence": "He spoke very ___ (quick) and left.",
+      "correctAnswer": "quickly",
+      "explanation": "An adverb ('quickly') is needed to modify the verb 'spoke'. 'Quick' is an adjective.",
+      "difficulty": "easy",
+      "options": [
+        { "text": "quick", "isCorrect": false },
+        { "text": "quicker", "isCorrect": false },
+        { "text": "quickly", "isCorrect": true },
+        { "text": "quickness", "isCorrect": false }
+      ]
+    }
+  ]

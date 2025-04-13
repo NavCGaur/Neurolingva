@@ -9,6 +9,8 @@ import { authApi } from "../api/index.js";  // Import the authApi
 import { vocabApi } from "../api/vocabApi.js";
 import vocabQuizreducer from "../slices/vocabQuizSlice.js";
 import {vocabQuizApi} from "../api/vocabQuizApi.js";
+import grammerQuizreducer from "../slices/grammerQuizSlice.js";
+import {grammerQuizApi} from "../api/grammerQuizApi.js";
 import { speechApi } from "../api/speechApi.js";
 import speechReducer from "../slices/speechSlice.js";
 import { speechShadowApi } from "../api/speechShadowApi.js";
@@ -26,6 +28,7 @@ const store = configureStore({
     speechShadow: speechShadowReducer,
     subscription: subscriptionReducer,
     vocabQuiz: vocabQuizreducer,
+    grammerQuiz: grammerQuizreducer,
 
     [subscriptionApi.reducerPath]: subscriptionApi.reducer,
     [speechApi.reducerPath]: speechApi.reducer,  
@@ -33,11 +36,14 @@ const store = configureStore({
     [vocabApi.reducerPath]: vocabApi.reducer,  
     [speechShadowApi.reducerPath]: speechShadowApi.reducer, 
     [vocabQuizApi.reducerPath]: vocabQuizApi.reducer,
+    [grammerQuizApi.reducerPath]: grammerQuizApi.reducer,
+
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(authApi.middleware, 
     vocabApi.middleware,
     vocabQuizApi.middleware,
+    grammerQuizApi.middleware,
     speechApi.middleware, 
     speechShadowApi.middleware,
     subscriptionApi.middleware,

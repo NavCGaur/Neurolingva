@@ -1,5 +1,5 @@
 import express from 'express';
-import { getVocabQuestions, submitVocabAnswers } from '../controllers/questionController.js';
+import { getVocabQuestions, submitVocabAnswers } from '../controllers/vocabQuestionController.js';
 
 const router = express.Router();
 

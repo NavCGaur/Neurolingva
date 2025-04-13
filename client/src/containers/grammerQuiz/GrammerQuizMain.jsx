@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Button, Typography, Box } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetQuestionsQuery } from '../../state/api/quizApi';
+import { useGetGrammerQuestionsQuery } from '../../state/api/grammerQuizApi';
 import { 
   startQuiz,
   nextQuestion, 
@@ -12,11 +12,11 @@ import {
   selectQuizState ,
   incrementScore 
 
-} from '../../state/slices/vocabQuizSlice';
+} from '../../state/slices/grammerQuizSlice';
 import QuizCard from './GrammerQuizCard';
 import QuizResult from './GrammerQuizResult';
 
-const QuizMain = () => {
+const GrammerQuizMain = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth?.user?.uid);
   
@@ -30,7 +30,7 @@ const QuizMain = () => {
     answers: []
   };
   
-  const { data: questions, isLoading, error } = useGetQuestionsQuery(userId, { skip: !userId });
+  const { data: questions, isLoading, error } = useGetGrammerQuestionsQuery(userId, { skip: !userId });
 
   const handleStart = () => {
     dispatch(startQuiz());
@@ -133,4 +133,4 @@ const QuizMain = () => {
     </Box>
   );
 };
-export default QuizMain;
+export default GrammerQuizMain;

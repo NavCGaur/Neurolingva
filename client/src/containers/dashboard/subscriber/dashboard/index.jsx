@@ -19,6 +19,7 @@ import {
   Grid,
 } from "@mui/material";
 import QuizMain from "../../../vocabQuiz/VocabQuizMain";
+import GrammerQuizMain from "../../../grammerQuiz/GrammerQuizMain";
 import { Home } from "@mui/icons-material";
 import HomePage from "../../../speech/homePageSpeech";
 
@@ -79,8 +80,8 @@ const SubscriberDashboard = () => {
     },
     {
       id: "quiz",
-      title: "Daily Quiz",
-      subtitle: "Test your knowledge",
+      title: "Daily Vocab Quiz",
+      subtitle: "Test your Vocabulary",
       gradient: '#176DC2',
     },
     {
@@ -141,8 +142,7 @@ const SubscriberDashboard = () => {
       case "grammar":
         return (
           <Box width="100%" textAlign="center" p={3}>
-            <Typography variant="h6">Grammar Practice Feature</Typography>
-            <Typography variant="body1" mt={2}>Coming soon! Learn and practice grammar rules.</Typography>
+            <GrammerQuizMain />
           </Box>
         );
       default:          

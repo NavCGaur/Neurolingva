@@ -21,6 +21,7 @@ import {
 import QuizMain from "../../../vocabQuiz/VocabQuizMain";
 import { Home } from "@mui/icons-material";
 import HomePage from "../../../speech/homePageSpeech";
+import GrammerQuizMain from "../../../grammerQuiz/GrammerQuizMain";
 
 const GuestDashboard = () => {
   const theme = useTheme();
@@ -79,10 +80,11 @@ const GuestDashboard = () => {
     },
     {
       id: "quiz",
-      title: "Daily Quiz",
-      subtitle: "Test your knowledge",
+      title: "Daily Vocab Quiz",
+      subtitle: "Test your Vocabulary",
       gradient: '#176DC2',
     },
+    
     {
       id: "grammar",
       title: "Grammar Practice",
@@ -140,9 +142,8 @@ const GuestDashboard = () => {
         );
       case "grammar":
         return (
-          <Box width="100%" textAlign="center" p={3}>
-            <Typography variant="h6">Grammar Practice Feature</Typography>
-            <Typography variant="body1" mt={2}>Coming soon! Learn and practice grammar rules.</Typography>
+          <Box width="100%" textAlign="center" p={3}>          
+            <GrammerQuizMain />
           </Box>
         );
       default:          
