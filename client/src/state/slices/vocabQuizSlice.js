@@ -37,7 +37,7 @@ const vocabQuizSlice = createSlice({
   },
 });
 
-export const selectQuizState = (state) => state.quiz;
+export const selectQuizState = (state) => state.vocabQuiz;
 
 
 export const {startQuiz, nextQuestion, addAnswer,  incrementScore ,  setScore, completeQuiz, resetQuiz } = vocabQuizSlice.actions;

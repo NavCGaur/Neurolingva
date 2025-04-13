@@ -37,7 +37,7 @@ const grammerQuizSlice = createSlice({
   },
 });
 
-export const selectQuizState = (state) => state.quiz;
+export const selectQuizState = (state) => state.grammerQuiz;
 
 
 export const {startQuiz, nextQuestion, addAnswer,  incrementScore ,  setScore, completeQuiz, resetQuiz } = grammerQuizSlice.actions;
