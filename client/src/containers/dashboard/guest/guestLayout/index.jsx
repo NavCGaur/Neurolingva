@@ -13,8 +13,9 @@ function GuestLayout() {
 
   const theme = useTheme();
 
-  const user = useSelector((state) => state.user);
-  console.log("Theme default gradient:", theme.palette.background.default);
+  const user = useSelector((state) => state.auth.user);
+  
+  console.log("User in user layout",user);
 
   return (
     <Box display="flex" width="100%" height="100%"
@@ -37,7 +38,7 @@ function GuestLayout() {
           <Sidebar
             user={user || {}}
             isNonMobile={isNonMobile}
-            drawerWidth="250px"
+            drawerWidth="250px" 
             isSidebarOpen={isSidebarOpen}
             setIsSidebarOpen={setIsSidebarOpen}
           />

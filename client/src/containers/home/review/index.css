@@ -143,11 +143,6 @@
   transform: translateY(-2px);
 }
 
-.socialmedia img {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-}
 
 .socialmedia__image img {
   max-width: 100%;
@@ -161,11 +156,10 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vh;
+  height: 60vh;
   width: 100%;
   position: relative;
   font-family: 'open sans', sans-serif;
-  margin-top: 40px;
 }
 
 .joinNeurolingva__subtitle-container {
@@ -225,7 +219,7 @@
 }
 
 .joinNeurolingva__description-two {
-  top: 55%;
+  top: 58%;
   width: 800px;
   left: 46.7%;
   border-bottom-left-radius: 10px;
@@ -233,20 +227,16 @@
 
 }
 
-.gradient-bar {
-  background: linear-gradient(to right, #1E91FF, #EDF9FF);
-  height: 20px;
-  width: 100%;
-}
+
 
 
 .review__button-container {
   height: auto;
   width: 100%;
-  max-width: 393px;
+  max-width: 300px;
   position: relative;
-  top: 70%;
-  left: 35%;
+  top: 75%;
+  left: 42%;
 }
 
 .review__button-group {
@@ -260,26 +250,23 @@
   background: linear-gradient(to right, #008B00, #DBFF30);
   border-radius: 20px;
   height: auto;
-  min-height: 89px;
-  width: 100%;
+  width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15px;
   box-sizing: border-box;
 }
 
 .review__register-button {
   color: #ffffff;
   font-family: "Roboto Flex-Black", Helvetica;
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: 2.00px;
   line-height: normal;
   text-align: center;
   white-space: nowrap;
   width: auto;
-  font-size: 30px;
-  padding: 10px 20px;
+  font-size: 24px!important;
 }
 
 
@@ -312,7 +299,7 @@
     justify-content: center;
   }
   
-  .socialmedia__image img {
+  .review__socialmedia__image {
     width: 300px;
   }
 

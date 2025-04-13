@@ -18,7 +18,7 @@ import {
   CardContent,
   Grid,
 } from "@mui/material";
-import QuizMain from "../../../quiz/QuizMain";
+import QuizMain from "../../../vocabQuiz/VocabQuizMain";
 import { Home } from "@mui/icons-material";
 import HomePage from "../../../speech/homePageSpeech";
 
@@ -156,14 +156,10 @@ const GuestDashboard = () => {
       <Header 
     title={
         <Typography variant="h4" sx={{ color: "#13315C", fontWeight: "bold", fontSize: "2rem" }}>
-            GUEST DASHBOARD
-        </Typography>
+          Welcome! Explore new features and enhance your experience.
+          </Typography>
     } 
-    subtitle={
-        <Typography variant="subtitle1" sx={{ color: "#13315C" }}>
-          Welcome to your dashboard! Explore new features and enhance your experience.
-        </Typography>
-    } 
+   
       />
       </FlexBetween>
 

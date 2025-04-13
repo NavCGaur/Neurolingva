@@ -18,6 +18,8 @@ import SpeakerNotesIcon from '@mui/icons-material/SpeakerNotes';
 import SpeedIcon from '@mui/icons-material/Speed';
 import CalculateIcon from '@mui/icons-material/Calculate';
 
+import SpeechDashboard from '../dashboard';
+
 
 const HomePage = () => {
   const features = [
@@ -50,51 +52,7 @@ const HomePage = () => {
 
   return (
     <Box>
-      {/* Hero Section */}
-      <Box 
-         sx={{ 
-          background: 'linear-gradient(to right, rgb(119, 176, 228), rgb(118, 178, 234))', 
-          color: 'white', 
-          py: 8,
-          borderRadius: 5,
-         
-        }}
-      >
-        <Container maxWidth="lg">
-          <Grid container spacing={4} alignItems="center" justifyContent="center">
-            <Grid item xs={12} md={7}>
-              <Typography variant="h2" component="h1" gutterBottom fontWeight="bold">
-                Master Your Pronunciation
-              </Typography>
-              <Typography variant="h5" paragraph>
-                Improve your speaking skills with advanced speech analysis and real-time feedback
-              </Typography>
-              <Box sx={{ mt: 4 }}>
-              <Button
-                  component={RouterLink}
-                  to="/guest/speech"
-                  variant="contained"
-                  size="large"
-                  sx={{ 
-                    mr: 2, 
-                    px: 4, 
-                    py: 1.5,
-                    bgcolor: '#002D62',
-                    color: 'white',
-                  
-                  }}
-                >
-                  Get Started
-                </Button>
-                
-              </Box>
-            </Grid>
-            
-          </Grid>
-        </Container>
-      </Box>
-      
-    {/*
+       {/*
       //Features Section 
       <Container maxWidth="lg" sx={{ py: 8 }}>
         <Typography variant="h3" component="h2" align="center" gutterBottom>
@@ -139,120 +97,62 @@ const HomePage = () => {
 
 
       {/* How It Works Section */}
-      <Box sx={{ bgcolor: 'grey.100', py: 8 }}>
+      <Box sx={{  background: "linear-gradient(135deg,#1E91FF, #EDF9FF)"  }}>
         <Container maxWidth="lg">
-          <Typography variant="h2" component="h2" align="center" gutterBottom>
-            How It Works
-          </Typography>
+         
           
           <Paper elevation={2} sx={{ p: 4, 
-                                    mt: 4, 
-                                    background: 'linear-gradient(to right, rgb(119, 176, 228), rgb(118, 178, 234))' ,
+                                  
+                                    background: "#176DC2",
                                     borderRadius: 5 
                                     }}>
             <List sx={{ 
-                        fontSize: '1.5rem', // Increase font size globally
+                        fontSize: '1.2rem', // Increase font size globally
                         color:'white',  
+                        display: 'flex',
                         
-                        '& .MuiTypography-root': { fontSize: '1.5rem',
-                          fontWeight: 'bold',
-                          
+                        '& .MuiTypography-root': { fontSize: '1.2rem',
+                          letterSpacing: '0.2px',
                          }, // Specifically target Typography elements
                       }}>
               <ListItem alignItems="flex-start">
-                <ListItemIcon>
-                  <Typography 
-                    variant="h3" 
-                    sx={{ 
-                      color: 'primary.main',
-                      fontWeight: 'bold',
-                      width: 30,
-                      textAlign: 'center'
-                    }}
-                  >
-                    1
-                  </Typography>
-                </ListItemIcon>
+                
                 <ListItemText
-                  primary="Enter reference text"
-                  secondary="Type in the text you want to practice pronouncing"
+                  primary="1. Enter reference text"
+                 
                 />
               </ListItem>
               
               <ListItem alignItems="flex-start">
-                <ListItemIcon>
-                  <Typography 
-                    variant="h3" 
-                    sx={{ 
-                      color: 'primary.main',
-                      fontWeight: 'bold',
-                      width: 30,
-                      textAlign: 'center'
-                    }}
-                  >
-                    2
-                  </Typography>
-                </ListItemIcon>
+                
                 <ListItemText
-                  primary="Record your speech"
-                  secondary="Use the speech recorder to capture your pronunciation"
+                  primary="2. Record your speech"                 
+
                 />
               </ListItem>
               
               <ListItem alignItems="flex-start">
-                <ListItemIcon>
-                  <Typography 
-                    variant="h3" 
-                    sx={{ 
-                      color: 'primary.main',
-                      fontWeight: 'bold',
-                      width: 30,
-                      textAlign: 'center'
-                    }}
-                  >
-                    3
-                  </Typography>
-                </ListItemIcon>
+                
                 <ListItemText
-                  primary="Get detailed analysis"
-                  secondary="Receive feedback on your pronunciation accuracy, word error rate, and phoneme-level analysis"
+                  primary="3. Get detailed analysis"               
+
                 />
               </ListItem>
               
               <ListItem alignItems="flex-start">
-                <ListItemIcon>
-                  <Typography 
-                    variant="h3" 
-                    sx={{ 
-                      color: 'primary.main',
-                      fontWeight: 'bold',
-                      width: 30,
-                      textAlign: 'center'
-                    }}
-                  >
-                    4
-                  </Typography>
-                </ListItemIcon>
+               
                 <ListItemText
-                  primary="Track your progress"
-                  secondary="View your practice history and improvement over time"
+                  primary="4. Track your progress"
+                  
+
                 />
               </ListItem>
             </List>
             
-            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-              <Button
-                component={RouterLink}
-                to="guest/speech"
-                variant="contained"
-                size="large"
-                
-                sx={{ px: 4, py: 1.5, background:"#002D62", color:'white' }}
-              >
-                Start Practicing Now
-              </Button>
-            </Box>
+          
           </Paper>
+
+          <SpeechDashboard />
         </Container>
       </Box>
     </Box>

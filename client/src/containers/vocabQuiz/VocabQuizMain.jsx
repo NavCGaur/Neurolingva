@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Button, Typography, Box } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetQuestionsQuery } from '../../state/api/quizApi';
+import { useGetVocabQuestionsQuery } from '../../state/api/vocabQuizApi';
 import { 
   startQuiz,
   nextQuestion, 
@@ -12,11 +12,11 @@ import {
   selectQuizState ,
   incrementScore 
 
-} from '../../state/slices/quizSlice';
-import QuizCard from './QuizCard';
-import QuizResult from './QuizResult';
+} from '../../state/slices/vocabQuizSlice';
+import QuizCard from './VocabQuizCard';
+import QuizResult from './VocabQuizResult';
 
-const QuizMain = () => {
+const VocabQuizMain = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth?.user?.uid);
   
@@ -30,7 +30,7 @@ const QuizMain = () => {
     answers: []
   };
   
-  const { data: questions, isLoading, error } = useGetQuestionsQuery(userId, { skip: !userId });
+  const { data: questions, isLoading, error } = useGetVocabQuestionsQuery(userId, { skip: !userId });
 
   const handleStart = () => {
     dispatch(startQuiz());
@@ -133,4 +133,4 @@ const QuizMain = () => {
     </Box>
   );
 };
-export default QuizMain;
+export default VocabQuizMain;

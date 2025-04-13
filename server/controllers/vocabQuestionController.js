@@ -1,13 +1,13 @@
-import { fetchQuestions, evaluateAnswers } from '../services/question/index.js';
+import { fetchVocabQuestions, evaluateVocabAnswers } from '../services/vocabQuestion/index.js';
 
-export const getQuestions = async (req, res) => {
+export const getVocabQuestions = async (req, res) => {
     console.log("inside vocab controller", req.query)
     const {userId} = req.query; 
     if (!userId) return res.status(400).json({ error: 'User ID is required' });
 
   try {
 
-    const questions = await fetchQuestions(userId);
+    const questions = await fetchVocabQuestions(userId);
     console.log("Fetched questions successfully");
     res.json(questions);
   } catch (error) {
@@ -16,14 +16,14 @@ export const getQuestions = async (req, res) => {
   }
 };
 
-export const submitAnswers = async (req, res) => {
+export const submitVocabAnswers = async (req, res) => {
   try {
     const { answers } = req.body;
     if (!answers || !Array.isArray(answers)) {
       return res.status(400).json({ message: "Invalid answers format. Must be an array." });
     }
 
-    const result = await evaluateAnswers(answers);
+    const result = await evaluateVocabAnswers(answers);
     console.log("Answers evaluated successfully", result);
     res.json(result);
   } catch (error) {

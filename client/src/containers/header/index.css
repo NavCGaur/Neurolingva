@@ -3,6 +3,8 @@
     width: 100vw;
     font-family: "Open Sans-Bold", Helvetica;
     letter-spacing: 0.2px;
+    background: 'transparent';
+
 
 }
    
@@ -12,7 +14,6 @@
     padding: 0.4rem 0;
     top: 0;
     width: 100%;
-    background: #176DC2;
     z-index: 100;
 }
 
@@ -29,15 +30,13 @@
     padding: 10px 25px;
     margin-right: 5px;
     font-size: 1.5rem;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
     text-wrap: nowrap;
-    color: #ececec; /* Gray */
+    color: #003774; /* Gray */  
     transition: color 0.3s ease-in-out;
+    font-weight: 800;
 }
 
-.header__navbar a:hover {
-    color: #ffcd38; /* Yellow on hover */
-}
+
 
 
 .header__navbar p{

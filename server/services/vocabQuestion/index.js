@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 
 const User = mongoose.model('User', UserSchema);
 
-export const fetchQuestions = async (userId) => {
+export const fetchVocabQuestions = async (userId) => {
   
     try {
       const user = await User.findOne({ uid: userId });
@@ -30,7 +30,7 @@ export const fetchQuestions = async (userId) => {
     }
   };
 
-export const evaluateAnswers = async (answers) => {
+export const evaluateVocabAnswers = async (answers) => {
   try {
     const questions = await Question.find();
 

@@ -8,8 +8,8 @@ const initialState = {
   isStarted: false
 };
 
-const quizSlice = createSlice({
-  name: 'quiz',
+const vocabQuizSlice = createSlice({
+  name: 'vocabQuiz',
   initialState,
   reducers: {
     startQuiz: (state) => {
@@ -40,5 +40,5 @@ const quizSlice = createSlice({
 export const selectQuizState = (state) => state.quiz;
 
 
-export const {startQuiz, nextQuestion, addAnswer,  incrementScore ,  setScore, completeQuiz, resetQuiz } = quizSlice.actions;
-export default quizSlice.reducer;
+export const {startQuiz, nextQuestion, addAnswer,  incrementScore ,  setScore, completeQuiz, resetQuiz } = vocabQuizSlice.actions;
+export default vocabQuizSlice.reducer;

@@ -7,8 +7,8 @@ import themeReducer from "../slices/themeSlice.js"; // Import your themeSlice re
 import vocabReducer from "../slices/vocabSlice.js";
 import { authApi } from "../api/index.js";  // Import the authApi
 import { vocabApi } from "../api/vocabApi.js";
-import quizReducer from "../slices/quizSlice.js";
-import {quizApi} from "../api/quizApi.js";
+import vocabQuizreducer from "../slices/vocabQuizSlice.js";
+import {vocabQuizApi} from "../api/vocabQuizApi.js";
 import { speechApi } from "../api/speechApi.js";
 import speechReducer from "../slices/speechSlice.js";
 import { speechShadowApi } from "../api/speechShadowApi.js";
@@ -25,19 +25,19 @@ const store = configureStore({
     speech: speechReducer,
     speechShadow: speechShadowReducer,
     subscription: subscriptionReducer,
-    quiz: quizReducer,
+    vocabQuiz: vocabQuizreducer,
 
     [subscriptionApi.reducerPath]: subscriptionApi.reducer,
     [speechApi.reducerPath]: speechApi.reducer,  
     [authApi.reducerPath]: authApi.reducer,
     [vocabApi.reducerPath]: vocabApi.reducer,  
     [speechShadowApi.reducerPath]: speechShadowApi.reducer, 
-    [quizApi.reducerPath]: quizApi.reducer,
+    [vocabQuizApi.reducerPath]: vocabQuizApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(authApi.middleware, 
     vocabApi.middleware,
-    quizApi.middleware,
+    vocabQuizApi.middleware,
     speechApi.middleware, 
     speechShadowApi.middleware,
     subscriptionApi.middleware,

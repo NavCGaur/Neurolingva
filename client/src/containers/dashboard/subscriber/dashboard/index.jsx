@@ -1,211 +1,228 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 import FlexBetween from "../../../../components/flexbetween";
 import Header from "../../../../components/header";
-import Papa from "papaparse";
-import { useGetAllUsersQuery } from "../../../../state/api"; 
-import StatBox from "../../../../components/statbox";
-import OverviewChart from "../../../../components/charts/overviewChart";
-import BreakdownChart from "../../../../components/charts/breakdownChart";
-
-
-
-import {
-  DownloadOutlined,
-  Email,
-  PointOfSale,
-  PersonAdd,
-  Traffic,
-} from "@mui/icons-material";
+import { useGetPracticeWordsQuery } from '../../../../state/api/vocabApi';
+import { setWords } from '../../../../state/slices/vocabSlice';
+import VocabCard from '../../../../components/cards/vocabCard/vocabCard';
+import SpeechShadowingPractice from "../../../speechShadow/speechShadowPractice";
 
 import {
   Box,
-  Button,
-  Typography,
   useTheme,
   useMediaQuery,
+  Typography,
+  CircularProgress,
+  Card, 
+  CardContent,
+  Grid,
 } from "@mui/material";
+import QuizMain from "../../../vocabQuiz/VocabQuizMain";
+import { Home } from "@mui/icons-material";
+import HomePage from "../../../speech/homePageSpeech";
 
 const SubscriberDashboard = () => {
   const theme = useTheme();
   const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
   const isMobile = useMediaQuery("(max-width: 600px)");
-  const { data: users, isLoading, isError } = useGetAllUsersQuery();
+  const dispatch = useDispatch();
+  const [selectedFeature, setSelectedFeature] = useState(null);
+  const location = useLocation();
 
-  const totalUsers = users ? users.length : "0";
-  const totalServices = users ? users.length:"0";
 
-  const handleDownload = () => {
-    if (isLoading || isError || !users) {
-      alert("Data is not available yet.");
-      return;
+  const userId = useSelector((state) => state.auth?.user?.uid);
+
+  const { data: words, isLoading } = useGetPracticeWordsQuery(userId, {
+    skip: !userId,
+  });  
+
+  useEffect(() => {
+    if (words) {
+      console.log("words:", words);
+      dispatch(setWords(words));
     }
+  }, [words, dispatch]);
 
-    const csvData = users.map((user) => ({
-      Name: user.name || '',
-      Email: user.email || '',
-      "Residential Address": user.residential_address 
-        ? `${user.residential_address.street || ''}, ${user.residential_address.city || ''}, ${user.residential_address.state || ''}, ${user.residential_address.pincode || ''}`
-        : '',
-      "Business Address": user.business_address 
-        ? `${user.business_address.street || ''}, ${user.business_address.city || ''}, ${user.business_address.state || ''}, ${user.business_address.pincode || ''}`
-        : '',
-      Services: user.services ? user.services.map((service) => service.serviceName).join(", ") : '',
-      Status: user.services ? user.services.map((service) => service.paymentStatus).join(", ") : '',
-    }));
 
-    const csv = Papa.unparse(csvData);
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
+  // Get feature from URL if present
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const featureParam = params.get('feature');
+    if (featureParam) {
+      // Convert URL format back to feature ID (e.g., "speech-shadow" to "speech shadow")
+      setSelectedFeature(featureParam.replace("-", " "));
+    }
+  }, [location]);
 
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "users_report.csv";
-    link.click();
+
+  // Feature cards data
+  const featureCards = [
+    {
+      id: "vocabulary",
+      title: "Vocabulary Practice",
+      subtitle: "Review your daily words",
+      gradient: '#176DC2',
+
+    },
+    {
+      id: "speech",
+      title: "Speech Practice",
+      subtitle: "Improve your pronunciation",
+      gradient: '#176DC2',
+    },
+    {
+      id: "speech shadow",
+      title: "Speech Practice",
+      subtitle: "Master Native Pronounciation",
+      gradient: '#176DC2',
+    },
+    {
+      id: "quiz",
+      title: "Daily Quiz",
+      subtitle: "Test your knowledge",
+      gradient: '#176DC2',
+    },
+    {
+      id: "grammar",
+      title: "Grammar Practice",
+      subtitle: "Master the rules",
+      gradient: '#176DC2',
+    },
+    
+  ];
+
+ // Modify handleFeatureSelect to update the URL
+  const handleFeatureSelect = (featureId) => {
+    setSelectedFeature(featureId);
+    // Update URL without full page reload
+    const featureParam = featureId.replace(" ", "-");
+    window.history.pushState({}, "", `/subscriber/dashboard?feature=${featureParam}`);
+  };
+
+  const renderFeatureContent = () => {
+    if (!selectedFeature) return null;
+
+    switch (selectedFeature) {
+      case "vocabulary":
+        return (
+          <Box width="100%" sx={{         background: "linear-gradient(135deg,#1E91FF, #EDF9FF)",
+            textAlign: "center", p: 3 }}>
+            <Typography variant="h6" mb={2}>
+              Tap each word to reveal details and rate your recall
+            </Typography>
+            {isLoading ? (
+              <Box display="flex" justifyContent="center" alignItems="center" height="100%">
+                <CircularProgress />
+              </Box>
+            ) : (
+              <VocabCard userId={userId} />
+            )}
+          </Box>
+        );
+      case "speech":
+        return (
+          <Box width="100%" textAlign="center" p={3}>
+            <HomePage />  
+          </Box>
+        );
+      case "speech shadow":
+        return (
+          <Box width="100%" textAlign="center" p={3}>
+            <SpeechShadowingPractice />  
+          </Box>
+        );
+      case "quiz":
+        return (
+          <Box width="100%" textAlign="center" p={3}>
+            <QuizMain />
+          </Box>
+        );
+      case "grammar":
+        return (
+          <Box width="100%" textAlign="center" p={3}>
+            <Typography variant="h6">Grammar Practice Feature</Typography>
+            <Typography variant="body1" mt={2}>Coming soon! Learn and practice grammar rules.</Typography>
+          </Box>
+        );
+      default:          
+        return null;
+    }
   };
 
   return (
-    <Box m={isMobile ? "1rem" : "1.5rem 2.5rem"}   
-    >
+    <Box m={isMobile ? "1rem" : "1.5rem 2.5rem"}>
       <FlexBetween flexDirection={isMobile ? "column" : "row"} gap={isMobile ? "1rem" : "0"}>
-        <Header title="RESELLER DASHBOARD" subtitle="Welcome to your dashboard" />
-        <Box>
-          <Button
-            sx={{
-              backgroundColor: theme.palette.secondary.light,
-              color: theme.palette.background.alt,
-              fontSize: "14px",
-              fontWeight: "bold",
-              padding: "10px 20px",
-            }}
-            onClick={handleDownload}
-          >
-            <DownloadOutlined sx={{ mr: "10px" }} />
-            Download All User Data
-          </Button>
-        </Box>
+      <Header 
+    title={
+        <Typography variant="h4" sx={{ color: "#13315C", fontWeight: "bold", fontSize: "2rem" }}>
+          Welcome! Explore new features and enhance your experience.
+          </Typography>
+    } 
+   
+      />
       </FlexBetween>
 
- 
+      <Box mt="20px">
+        {selectedFeature ? (
+          <Box
+            mt={4}
+            p={3}
+            borderRadius={2}
+            boxShadow={3}
+            color={"#13315c"}
+            sx={{
+              background: "linear-gradient(135deg,#1E91FF, #EDF9FF)",
 
-      <Box
-        mt="20px"
-        display="grid"
-        gridTemplateColumns="repeat(12, 1fr)"
-        gap="20px"
-        sx={{
-          "& > div": { 
-            gridColumn: isNonMediumScreens ? undefined : "span 12",
-          },
-        }}
-      >
-        {/* First row - Stats and Pie Chart */}
-        <Box
-          gridColumn={isNonMediumScreens ? "span 4" : "span 12"}
-          display="grid"
-          gridTemplateColumns={isMobile ? "1fr" : "repeat(2, 1fr)"}
-          gap="20px"
-        >
-          <StatBox
-            title="Total Customers"
-            value={users && totalUsers}
-            increase="+14%"
-            description="Since last month"
-            icon={
-              <PersonAdd
-                sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
-              />
-            }
-          />
-          <StatBox
-            title="Total Sales"
-            value={users && totalServices}
-            increase="+21%"
-            description="Since last month"
-            icon={
-              <PointOfSale
-                sx={{ color: theme.palette.secondary[300], fontSize: "26px" , }}
-              />
-            }
-          />
-          <StatBox
-            title="Monthly Sales"
-            value={users && totalUsers}
-            increase="+5%"
-            description="Since last month"
-            icon={
-              <Email
-                sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
-              />
-            }
-          />
-          <StatBox
-            title="Yearly Sales"
-            value={users && 100}
-            increase="+43%"
-            description="Since last year"
-            icon={
-              <Traffic
-                sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
-              />
-            }
-          />
-        </Box>
-
-        {/* Pie Chart */}
-        <Box
-          gridColumn={isNonMediumScreens ? "span 8" : "span 12"}
-          backgroundColor={theme.palette.background.alt}
-          p="1.5rem"
-          borderRadius="0.55rem"
-        >
-
-          <Typography variant="h6" sx={{ color: theme.palette.secondary[100] }}>
-            Sales By Category
-          </Typography>
-          <BreakdownChart isDashboard={true} />
-          <Typography
-            p="0 0.6rem"
-            fontSize="1rem"
-            sx={{ color: theme.palette.secondary[200] }}
+            }}
           >
-            Breakdown of real states and information via category for revenue
-            made for this year and total sales.
-          </Typography>
-        </Box>
+            <Box>
+                <Typography variant="h4" sx={{ color: "#13315C", fontWeight: "bold" }}>
+                    {featureCards.find(card => card.id === selectedFeature)?.title}
+                </Typography>
+                <Typography variant="subtitle1" sx={{ color: "#13315C" }}>
+                    {featureCards.find(card => card.id === selectedFeature)?.subtitle}
+                </Typography>
+            </Box>
 
-        {/* Line Chart - Full Width */}
-        <Box
-          gridColumn="span 12"
-          gridRow="span 2"
-          height={isMobile ? "300px" : "400px"}
-          backgroundColor={theme.palette.background.alt}
-          p="1rem"
-          borderRadius="0.55rem"
-          mb="3rem"
-          letterSpacing="0.3px"
-        >
-
-          <Typography variant="h6" sx={{ color: theme.palette.secondary[100] }}>
-            Revenue & Profit Overview
-          </Typography>
-          <Box height="100%">  
-            <OverviewChart isDashboard={true} />
+            {renderFeatureContent()}
           </Box>
-          <Typography
-            p="0 0.6rem"
-            fontSize="1rem"
-            sx={{ color: theme.palette.secondary[200] }}
-          >
-            Monthly revenue and profit trends showing the overall financial performance 
-            across different time periods. The chart highlights seasonal patterns and 
-            year-over-year growth in sales.
-          </Typography>
-        </Box>
+        ) : (
+          <Grid container spacing={3} mt={2}>
+            {featureCards.map((card) => (
+              <Grid item xs={12} sm={6} md={3} key={card.id}>
+                <Card
+                  sx={{
+                    height: 220,
+                    background: card.gradient,
+                    backdropFilter: "blur(16px)",
+                    border: "1px solid rgba(255, 255, 255, 0.125)",
+                    boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
+                    cursor: 'pointer',
+                    transition: 'transform 0.3s, box-shadow 0.3s',
+                    '&:hover': {
+                      transform: 'translateY(-5px)',
+                      boxShadow: 6,
+                    },
+                  }}
+                  onClick={() => handleFeatureSelect(card.id)}
+                >
+                  <CardContent sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', p: 3 }}>
+                    <Typography variant="h5" component="div" fontWeight="bold" textAlign="center" mb={1} color="#eaf4f4">
+                      {card.title}
+                    </Typography>
+                    <Typography variant="body1" color="#eaf4f4" textAlign="center" >
+                      {card.subtitle}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        )}
       </Box>
     </Box>
   );
 };
 
 export default SubscriberDashboard;
-
-

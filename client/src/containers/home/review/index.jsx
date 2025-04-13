@@ -124,8 +124,8 @@ const Review = () => {
         </div>
         
       </div>
-      <div className='socialmedia__image'>
-            <img src={socialmedia} alt="socialmedia" className='socialmedia__image'/>
+      <div className='review__socialmedia__image'>
+            <img src={socialmedia} alt="socialmedia" className='review__socialmedia__image'/>
 
        </div>
       </div>

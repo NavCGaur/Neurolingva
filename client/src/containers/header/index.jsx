@@ -8,7 +8,7 @@ import './index.css'
 
 import {ReactComponent as MenuIcon} from '../../assets/menu.svg'
 import {ReactComponent as CloseIcon} from '../../assets/xmark.svg'
-import Logo from '../../assets/neurolingvalogo.png'
+//import Logo from '../../assets/neurolingvalogo.png'
 
 
 //Component imports
@@ -92,7 +92,7 @@ function Header() {
                 </div>
 
                 <nav className={menuStatus?'header__navbar-hidden':'header__navbar'} >
-                    <img src={Logo} alt='logo' className='header__logo'/>
+                   {/*<img src={Logo} alt='logo' className='header__logo'/>*/} 
 
                     <a href='#home'className='header__home' onClick={handleMenu}>Home</a >
 

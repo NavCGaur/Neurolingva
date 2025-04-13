@@ -303,9 +303,8 @@ const SpeechShadowingPractice = () => {
         </Typography>
         
         <Grid container spacing={4}>
-          <Grid item xs={12} md={6}>
-            <Paper elevation={0} sx={{ p: 3, borderRadius: 3, height: '100%',  background: 'linear-gradient(to right, rgb(119, 176, 228), rgb(118, 178, 234))',
-  }}>
+          <Grid item xs={12} md={6} sx={{ width: '40%' }}>
+            <Paper elevation={0} sx={{ p: 3, borderRadius: 3, height: '100%',  background: "#176DC2" }}>
               <Stack spacing={3}>
                 <TextField
                   fullWidth
@@ -319,6 +318,7 @@ const SpeechShadowingPractice = () => {
                 
                   sx={{
                     '& .MuiInputLabel-root': {
+                      color: 'white',
                       transform: 'translate(14px, -20px) scale(1)', // Moves label above the border
                     },
                     '& .MuiOutlinedInput-root': {
@@ -326,6 +326,7 @@ const SpeechShadowingPractice = () => {
                     },
                     background: 'white',
                     borderRadius: 3
+
                   }}
                 />
                 
@@ -357,8 +358,8 @@ const SpeechShadowingPractice = () => {
             </Paper>
           </Grid>
           
-          <Grid item xs={12} md={6} >
-            <Paper elevation={0} sx={{ p: 3, borderRadius: 3, height: '100%', background: 'linear-gradient(to right, rgb(119, 176, 228), rgb(118, 178, 234))'}}>
+          <Grid item xs={12} md={6} sx={{ width: '50%' }}>
+            <Paper elevation={0} sx={{ p: 3, borderRadius: 3, height: '100%', background: '#176DC2'}}>
               {nativeAudio ? (
                 <Stack spacing={3}>
                  
@@ -460,7 +461,7 @@ const SpeechShadowingPractice = () => {
                   height: '100%',
                   textAlign: 'center'
                 }}>
-                  <Typography variant="body1" color="text.secondary">
+                  <Typography variant="body1" color="white">
                     Enter text and generate native audio to begin practice
                   </Typography>
                 </Box>

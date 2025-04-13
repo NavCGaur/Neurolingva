@@ -13,8 +13,9 @@ function SubscriberLayout() {
 
   const theme = useTheme();
 
-  const user = useSelector((state) => state.user);
-  console.log("Theme default gradient:", theme.palette.background.default);
+  const user = useSelector((state) => state.auth.user);
+
+  console.log("User in subscriber layout",user);
 
   return (
     <Box display="flex" width="100%" height="100%"
@@ -30,6 +31,7 @@ function SubscriberLayout() {
           flexShrink: 0,
           transition: "width 0.3s ease",
           overflow: "hidden",
+
       }}
       >
         {isNonMobile || isSidebarOpen ? (
@@ -49,6 +51,8 @@ function SubscriberLayout() {
         sx={{
           width: isSidebarOpen ? "calc(100% - 250px)" : "100%",
           transition: "width 0.3s ease",
+          
+          
         }}
       > 
         <Navbar 

@@ -10,7 +10,7 @@ import {
   Box
 } from '@mui/material';
 
-const QuizCard = ({ 
+const VocabQuizCard = ({ 
   question, 
   onAnswerSubmit, 
   currentQuestion, 
@@ -90,7 +90,9 @@ const QuizCard = ({
       maxWidth: 600,
       mx: 'auto',
       boxShadow: 3,
-      mt: 4
+      mt: 4,
+      backgroundColor: "#176DC2",
+
     }}>
       <CardContent sx={{ p: 4 }}>
         <Box mb={3}>
@@ -138,7 +140,7 @@ const QuizCard = ({
             variant="body1" 
             sx={{ 
               mb: 2,
-              color: isCorrect ? 'success.main' : 'error.main',
+              color: 'white',
               fontWeight: 'bold'
             }}
           >
@@ -163,4 +165,4 @@ const QuizCard = ({
   );
 };
 
-export default QuizCard;
+export default VocabQuizCard;

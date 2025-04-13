@@ -46,7 +46,7 @@ const navItems = [
     },
     {
       text: "Features",
-      icon: null,
+      icon: null,   
     },
     {
       text: "Vocabulary",
@@ -71,7 +71,7 @@ const navItems = [
     // Add any other navigation items you need
   ];
 
-const Sidebar = ({
+  const Sidebar = ({
     user,
     drawerWidth,
     isSidebarOpen,
@@ -86,6 +86,20 @@ const Sidebar = ({
     useEffect(() => {
         setActive(pathname.substring(1));
     }, [pathname]);
+
+    // Determine the base path based on user role
+    const getBasePath = () => {
+        if (!user || !user.role) return '/guest'; // Default if no user/role
+        
+        switch(user.role.toLowerCase()) {
+            case 'subscriber':
+                return '/subscriber';
+            case 'admin':
+                return '/admin';
+            default:
+                return '/guest';
+        }
+    };
 
     return (
         <Box component="nav">
@@ -137,9 +151,9 @@ const Sidebar = ({
                                             onClick={() => {
                                                 // Handle feature clicks differently
                                                 if (["vocabulary", "speech", "speech shadow", "quiz", "grammar"].includes(lcText.toLowerCase())) {
-                                                navigate(`/guest/dashboard?feature=${lcText.toLowerCase().replace(" ", "-")}`);
+                                                    navigate(`${getBasePath()}/dashboard?feature=${lcText.toLowerCase().replace(" ", "-")}`);
                                                 } else {
-                                                navigate(`/${lcText}`);
+                                                    navigate(`/${lcText}`);
                                                 }
                                                 setActive(lcText);
                                             }}

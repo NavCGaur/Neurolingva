@@ -400,7 +400,6 @@ const Login = () => {
   };
 
 
-  console.log(theme.palette); // Logs the entire palette object
 
   return (
     <Box

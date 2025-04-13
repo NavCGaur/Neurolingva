@@ -13,7 +13,7 @@ dotenv.config();
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import vocabRoutes from './routes/vocabRoutes.js';
-import questionRoutes from './routes/questionRoutes.js';
+import vocabQuestionRoutes from './routes/questionRoutes.js';
 import speechRoutes from './routes/speechRoutes.js';
 import speechShadowRoutes from './routes/speechShadowRoutes.js';
 import stripeRoutes from './routes/stripeRoutes.js';
@@ -57,7 +57,7 @@ app.use((req, res, next) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes); 
 app.use('/api/vocab', vocabRoutes)
-app.use('/api/questions', questionRoutes);
+app.use('/api/vocab-questions', vocabQuestionRoutes);
 app.use('/api/speech',speechRoutes);
 app.use('/api/speechShadow',speechShadowRoutes);
 app.use('/api/stripe', stripeRoutes);

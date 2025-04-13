@@ -21,7 +21,7 @@ import SubscriberDashboard from "./containers/dashboard/subscriber/dashboard";
 import './config/firebase';
 
 //Speech components
-import Dashboard from "./containers/speech/dashboard";
+import SpeechDashboard  from "./containers/speech/dashboard";
 import History from "./containers/speech/history";
 import AnalysisDetails from "./containers/speech/analysisDetails";
 //import Navbar from "./containers/speech/navbar";
@@ -76,12 +76,11 @@ function App() {
 
         <Route path="/guest" element={<ProtectedRoute requiredRole="Guest"><GuestLayout /></ProtectedRoute>}>
           <Route path="dashboard" element={<GuestDashboard />} />
-          <Route path="speech" element={<Dashboard />} />
 
         </Route>
 
         // Routes for Speech
-        <Route path="speech/dashboard" element={<Dashboard />} />
+        <Route path="speech" element={<SpeechDashboard />} />
         <Route path="speech/history" element={<History />} />
         <Route path="speech/analysis/:id" element={<AnalysisDetails />} />
 
