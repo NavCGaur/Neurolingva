@@ -5,7 +5,6 @@ import mongoose from 'mongoose';
 
 const speechController = {
   async transcribeSpeech(req, res) {
-    console.log("Inside transcribeSpeech controller");
     try {
       const { audioData, language } = req.body;
 
@@ -22,7 +21,6 @@ const speechController = {
   },
 
   async analyzePronunciation(req, res) {
-    console.log("Inside analyzePronunciation controller");
     try {
       const { audioData, referenceText, language } = req.body;
       //const userId = req.user.id;
@@ -66,7 +64,6 @@ const speechController = {
   },
 
   async getUserHistory(req, res) {
-    console.log("Inside getUserHistory controller");
     try {
       const userId = req.user.id;
       const history = await Analysis.find({ userId })

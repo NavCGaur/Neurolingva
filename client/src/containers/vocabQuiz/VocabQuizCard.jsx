@@ -90,28 +90,28 @@ const VocabQuizCard = ({
       maxWidth: 600,
       mx: 'auto',
       boxShadow: 3,
-      mt: 4,
+      mt: 2,
       backgroundColor: "#176DC2",
 
     }}>
       <CardContent sx={{ p: 4 }}>
         <Box mb={3}>
-          <Typography variant="subtitle1" color="textSecondary">
+          <Typography variant="subtitle1" color="white">
             Question {currentQuestion} of {totalQuestions}
           </Typography>
           {question.difficulty && (
-            <Typography variant="caption" color="textSecondary">
+            <Typography variant="caption" color="white">
               Difficulty: {question.difficulty}
             </Typography>
           )}
         </Box>
         
         {/* Display the question text prominently */}
-        <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', mb: 3 }}>
+        <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', mb: 3 , color : 'white' }}>
           {getQuestionText()}
         </Typography>
         
-        <RadioGroup sx={{ my: 2 }}>
+        <RadioGroup sx={{ my: 2, color : 'white' }}>
           {question.options.map((option) => (
             <Box 
               key={option.text}
@@ -129,7 +129,7 @@ const VocabQuizCard = ({
                 checked={selectedAnswer === option.text}
                 onChange={() => handleAnswerSelect(option.text)}
                 disabled={showFeedback}
-                sx={{ width: '100%', ml: 0.5 }}
+                sx={{ width: '100%', ml: 0.5 , color : 'white'}}
               />
             </Box>
           ))}

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Card, CardContent, Typography, Button, Collapse } from '@mui/material';
-import { useSubmitRatingsMutation } from '../../../state/api/vocabApi'; // RTK Query hook
+import { useSubmitRatingsMutation } from '../../state/api/vocabApi'; // RTK Query hook
 
 const VocabCard = () => {
   const words = useSelector(state => state.vocab.words);
@@ -9,7 +9,7 @@ const VocabCard = () => {
   const [showDetails, setShowDetails] = useState(false);
   const [ratings, setRatings] = useState({});
   const [submitted, setSubmitted] = useState(false);
-  const userId = useSelector((state) => state.auth?.user?.uid); // 🔹 Get logged in user's ID
+  const userId = useSelector((state) => state.auth?.user?.uid); 
   
 
   const [submitRatings, { isLoading, isSuccess, isError }] = useSubmitRatingsMutation();

@@ -118,18 +118,18 @@ const GrammarQuizCard = ({
     }}>
       <CardContent sx={{ p: 4 }}>
         <Box mb={3}>
-          <Typography variant="subtitle1" color="textSecondary">
+          <Typography variant="subtitle1" sx={{color: 'white'}}>
             Question {currentQuestion} of {totalQuestions}
           </Typography>
           {question.difficulty && (
-            <Typography variant="caption" color="textSecondary">
+            <Typography variant="caption" color="white">
               Difficulty: {question.difficulty}
             </Typography>
           )}
         </Box>
         
         {/* Display the question text prominently */}
-        <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', mb: 3 }}>
+        <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', mb: 3 , color: 'white'}}>
           {getQuestionText()}
         </Typography>
         
@@ -140,18 +140,19 @@ const GrammarQuizCard = ({
               sx={{
                 p: 1.5,
                 borderRadius: 1,
+                color: 'white',
                 transition: 'all 0.3s ease',
                 ...getOptionStyles(option)
               }}
             >
               <FormControlLabel
                 value={option.text}
-                control={<Radio />}
+                control={<Radio sx={{ color: 'white' }}/>}
                 label={option.text}
                 checked={selectedAnswer === option.text}
                 onChange={() => handleAnswerSelect(option.text)}
                 disabled={showFeedback}
-                sx={{ width: '100%', ml: 0.5 }}
+                sx={{ width: '100%', ml: 0.5 ,}}
               />
             </Box>
           ))}

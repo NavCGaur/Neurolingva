@@ -22,27 +22,20 @@ import {
     RecordVoiceOverOutlined,
     QuizOutlined,
     GradeOutlined,
-    ShoppingCartOutlined,
-    Groups2Outlined,
-    ReceiptLongOutlined,
-    PublicOutlined,
-    PointOfSaleOutlined,
-    TodayOutlined,
-    CalendarMonthOutlined,
-    AdminPanelSettingsOutlined,
-    TrendingUpOutlined,
-    PieChartOutlined,
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { resetQuiz as resetGrammarQuiz } from "../../../../state/slices/grammerQuizSlice";
+import { resetQuiz as resetVocabQuiz } from "../../../../state/slices/vocabQuizSlice";
 import FlexBetween from "../../../../components/flexbetween/index";
 import profileImage from "../../../../assets/guestprofilepic.png";
-
 
 const navItems = [
     {
       text: "Dashboard",
       icon: <HomeOutlined />,
+      path: "dashboard" 
     },
     {
       text: "Features",
@@ -50,46 +43,71 @@ const navItems = [
     },
     {
       text: "Vocabulary",
-      icon: <MenuBookOutlined />, // You can choose appropriate icons
+      icon: <MenuBookOutlined />,
+      feature: "vocabulary"
     },
     {
       text: "Speech",
       icon: <MicOutlined />,
+      feature: "speech"
     },
     {
       text: "Speech Shadow",
       icon: <RecordVoiceOverOutlined />,
+      feature: "speech-shadow"
     },
     {
       text: "Quiz",
       icon: <QuizOutlined />,
+      feature: "quiz"
     },
     {
       text: "Grammar",
       icon: <GradeOutlined />,
+      feature: "grammar"
     },
-    // Add any other navigation items you need
-  ];
+    {
+        text: "Stats Overview",
+        icon: <SettingsOutlined />,
+        feature: "statsoverview"
+    }
+];
 
-  const Sidebar = ({
+const Sidebar = ({
     user,
     drawerWidth,
     isSidebarOpen,
     setIsSidebarOpen,
     isNonMobile,
 }) => {
-    const { pathname } = useLocation();
-    const [active, setActive] = useState("");
+    const location = useLocation();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const theme = useTheme();
-
+    const [searchParams] = useSearchParams();
+    
+    // Determine active item based on current URL and search params
+    const [active, setActive] = useState("");
+    
     useEffect(() => {
-        setActive(pathname.substring(1));
-    }, [pathname]);
+        const pathParts = location.pathname.split('/');
+        const lastPathPart = pathParts[pathParts.length - 1];
+        
+        if (lastPathPart === 'dashboard') {
+            const feature = searchParams.get('feature');
+            if (feature) {
+                setActive(feature);
+            } else {
+                setActive('dashboard');
+            }
+        } else {
+            setActive(lastPathPart);
+        }
+    }, [location, searchParams]);
 
     // Determine the base path based on user role
     const getBasePath = () => {
-        if (!user || !user.role) return '/guest'; // Default if no user/role
+        if (!user || !user.role) return '/guest';
         
         switch(user.role.toLowerCase()) {
             case 'subscriber':
@@ -98,6 +116,45 @@ const navItems = [
                 return '/admin';
             default:
                 return '/guest';
+        }
+    };
+
+    const handleNavigation = (text, lcText, feature) => {
+        const basePath = getBasePath();
+        
+        // Reset relevant state if needed
+        if (active === "grammar" && lcText !== "grammar") {
+            dispatch(resetGrammarQuiz());
+        }
+        
+        if (active === "quiz" && lcText !== "quiz") {
+            dispatch(resetVocabQuiz());
+        }
+        
+        // Handle navigation based on type
+        if (text === "Dashboard") {
+            // Use full page refresh only for the main dashboard
+            window.location.href = `${basePath}/dashboard`;
+            return;
+        }
+        
+        // Handle feature navigation with standard React Router
+        if (feature) {
+            // Reset quiz states if needed
+            if (active === "grammar") {
+                dispatch(resetGrammarQuiz());
+            }
+            if (active === "quiz") {
+                dispatch(resetVocabQuiz());
+            }
+            
+            // Use standard React Router navigation for features
+            navigate(`${basePath}/dashboard?feature=${feature}`);
+            setActive(feature);
+        } else {
+            // Handle other navigation items
+            navigate(`/${lcText}`);
+            setActive(lcText);
         }
     };
 
@@ -134,7 +191,7 @@ const navItems = [
                             </FlexBetween>
                         </Box>
                         <List>
-                            {navItems.map(({ text, icon }) => {
+                            {navItems.map(({ text, icon, feature }) => {
                                 if (!icon) {
                                     return (
                                         <Typography key={text} sx={{ m: "2.25rem 0 1rem 3rem", color: 'white' }}>
@@ -144,43 +201,37 @@ const navItems = [
                                 }
 
                                 const lcText = text.toLowerCase();
+                                const isActive = 
+                                    (active === 'dashboard' && text === 'Dashboard') || 
+                                    (active === feature);
 
                                 return (
                                     <ListItem key={text} disablePadding>
                                         <ListItemButton
-                                            onClick={() => {
-                                                // Handle feature clicks differently
-                                                if (["vocabulary", "speech", "speech shadow", "quiz", "grammar"].includes(lcText.toLowerCase())) {
-                                                    navigate(`${getBasePath()}/dashboard?feature=${lcText.toLowerCase().replace(" ", "-")}`);
-                                                } else {
-                                                    navigate(`/${lcText}`);
-                                                }
-                                                setActive(lcText);
-                                            }}
+                                            onClick={() => handleNavigation(text, lcText, feature)}
                                             sx={{
-                                                backgroundColor:
-                                                active === lcText
+                                                backgroundColor: isActive
                                                     ? 'rgba(255, 255, 255, 0.3)'
                                                     : "transparent",
                                                 color: 'white',
                                             }}
-                                            >
+                                        >
                                             <ListItemIcon
                                                 sx={{
                                                     ml: "2rem",
                                                     color: 'white',
-                                                    opacity: active === lcText ? 1 : 0.8,
+                                                    opacity: isActive ? 1 : 0.8,
                                                 }}
                                             >
                                                 {icon}
                                             </ListItemIcon>
                                             <ListItemText primary={text} primaryTypographyProps={{ color: 'white' }} />
-                                            {active === lcText && (
+                                            {isActive && (
                                                 <ChevronRightOutlined sx={{ ml: "auto", color: 'white' }} />
                                             )}
                                         </ListItemButton>
                                     </ListItem>
-                                )
+                                );
                             })}
                         </List>
                     </Box>
@@ -225,7 +276,7 @@ const navItems = [
                 </Drawer>
             )}
         </Box>
-    )
-}
+    );
+};
 
 export default Sidebar;

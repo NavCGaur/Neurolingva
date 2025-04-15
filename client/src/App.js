@@ -76,8 +76,9 @@ function App() {
 
         <Route path="/guest" element={<ProtectedRoute requiredRole="Guest"><GuestLayout /></ProtectedRoute>}>
           <Route path="dashboard" element={<GuestDashboard />} />
-
         </Route>
+
+        
 
         // Routes for Speech
         <Route path="speech" element={<SpeechDashboard />} />

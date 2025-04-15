@@ -100,28 +100,50 @@ const Review = () => {
          <h2>Follow Us On Social Media </h2>
          <p>Stay updated and join our community on social media! Follow us for language learning tips, pronunciation challenges, and more.</p>
          <div className='socialmedia__links-facebook'>
-            <p>Facebook: Neurolingva</p>
-            <img src={facebookimage} alt='facebook'/>   
+         <p>
+            <a href='https://www.facebook.com/neurolingva1' target='_blank' rel='noopener noreferrer'>
+                Facebook: Neurolingva
+            </a>
+        </p>
+        <img src={facebookimage} alt='facebook'/>
          </div>
          
          <div className='socialmedia__links-others'>
-            <div>
-             <p>Instagram: Neurolingva</p>
-             <img src={instagramimage} alt='instagram'/>
-            </div>
-            <div>
-             <p>Twitter: Neurolingva</p>
-             <img src={twitterimage} alt='instagram'/>
-            </div>
-            <div>
-             <p>Youtube: Neurolingva</p>
-             <img src={youtubeimage} alt='instagram'/>
-            </div>
-            <div>
-             <p>Tiktok: Neurolingva</p>
-             <img src={tiktokimage} alt='instagram'/>
-            </div>           
-        </div>
+           <div>
+            <p>
+              <a href='https://www.instagram.com/neuro_lingva' target='_blank' rel='noopener noreferrer'>
+                Instagram: Neurolingva
+              </a>
+            </p>
+        <img src={instagramimage} alt='instagram'/>
+          </div>
+        <div>
+        <p>
+            <a href='https://x.com/Neurolingva' target='_blank' rel='noopener noreferrer'>
+                Twitter: Neurolingva
+            </a>
+        </p>
+        <img src={twitterimage} alt='twitter'/>
+    </div>
+    <div>
+        <p>
+            <a href='https://www.youtube.com/@Neurolingva' target='_blank' rel='noopener noreferrer'>
+                Youtube: Neurolingva
+            </a>
+        </p>
+        <img src={youtubeimage} alt='youtube'/>
+    </div>
+    <div>
+        <p>
+            <a href='https://www.tiktok.com/@neurolingva' target='_blank' rel='noopener noreferrer'>
+                Tiktok: Neurolingva
+            </a>
+        </p>
+        <img src={tiktokimage} alt='tiktok'/>
+    </div>  
+  
+</div>
+
         
       </div>
       <div className='review__socialmedia__image'>

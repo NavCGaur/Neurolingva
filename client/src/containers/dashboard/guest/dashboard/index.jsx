@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import FlexBetween from "../../../../components/flexbetween";
 import Header from "../../../../components/header";
 import { useGetPracticeWordsQuery } from '../../../../state/api/vocabApi';
 import { setWords } from '../../../../state/slices/vocabSlice';
-import VocabCard from '../../../../components/cards/vocabCard/vocabCard';
+import VocabCard from '../../../vocabCard/vocabCard';
 import SpeechShadowingPractice from "../../../speechShadow/speechShadowPractice";
 
 import {
@@ -18,10 +19,13 @@ import {
   CardContent,
   Grid,
 } from "@mui/material";
-import QuizMain from "../../../vocabQuiz/VocabQuizMain";
+import LockIcon from "@mui/icons-material/Lock";
+
+import VocabQuizMain from "../../../vocabQuiz/VocabQuizMain";
 import { Home } from "@mui/icons-material";
 import HomePage from "../../../speech/homePageSpeech";
 import GrammerQuizMain from "../../../grammerQuiz/GrammerQuizMain";
+import StatsOverview from "../stats/statsOverview";
 
 const GuestDashboard = () => {
   const theme = useTheme();
@@ -30,6 +34,8 @@ const GuestDashboard = () => {
   const dispatch = useDispatch();
   const [selectedFeature, setSelectedFeature] = useState(null);
   const location = useLocation();
+  const navigate = useNavigate();
+
 
 
   const userId = useSelector((state) => state.auth?.user?.uid);
@@ -61,35 +67,71 @@ const GuestDashboard = () => {
   const featureCards = [
     {
       id: "vocabulary",
-      title: "Vocabulary Practice",
+      title: "Basic Spaced Repetition",
       subtitle: "Review your daily words",
       gradient: '#176DC2',
+      isLocked: false,
+
 
     },
-    {
-      id: "speech",
-      title: "Speech Practice",
-      subtitle: "Improve your pronunciation",
-      gradient: '#176DC2',
-    },
-    {
-      id: "speech shadow",
-      title: "Speech Practice",
-      subtitle: "Master Native Pronounciation",
-      gradient: '#176DC2',
-    },
+   
+
     {
       id: "quiz",
       title: "Daily Vocab Quiz",
       subtitle: "Test your Vocabulary",
       gradient: '#176DC2',
+      isLocked: false,
+
     },
     
     {
       id: "grammar",
-      title: "Grammar Practice",
+      title: "Grammar Practice Quiz",
       subtitle: "Master the rules",
       gradient: '#176DC2',
+      isLocked: false,
+
+    },
+    {
+      id: "speech",
+      title: "Pronounciation/ Accent Feedback ",
+      subtitle: "Improve your pronunciation",
+      gradient: '#176DC2',
+      isLocked: false,
+
+    },
+
+     // Premium features
+     {
+      id: "ai feedback",
+      title: "AI powered Pronounciation/ Accent Feedback",
+      subtitle: "Master Pronunciation with AI feeback",
+      isLocked: true,
+      lockedText: "Unlock with PRO! SUBSCRIBE",
+      lockedTooltip: "Subscribe to unlock this premium feature",
+      gradient: '#176DC2',
+
+    },
+     {
+      id: "speech shadow",
+      title: "Speech Shadowing",
+      subtitle: "Master Native Pronunciation",
+      isLocked: true,
+      lockedText: "Unlock with PRO! SUBSCRIBE",
+      lockedTooltip: "Subscribe to unlock this premium feature",
+      gradient: '#176DC2',
+
+    },
+    {
+      id: "praat graph",
+      title: "AI powered Spectrograms",
+      subtitle: "Praat Graph highlighting mispronounciation",
+      isLocked: true,
+      lockedText: "Unlock with PRO! SUBSCRIBE",
+      lockedTooltip: "Subscribe to unlock this premium feature",
+      gradient: '#176DC2',
+
     },
     
   ];
@@ -137,7 +179,7 @@ const GuestDashboard = () => {
       case "quiz":
         return (
           <Box width="100%" textAlign="center" p={3}>
-            <QuizMain />
+            <VocabQuizMain/>
           </Box>
         );
       case "grammar":
@@ -146,6 +188,13 @@ const GuestDashboard = () => {
             <GrammerQuizMain />
           </Box>
         );
+      case "statsoverview":
+        return (
+          <Box width="100%" textAlign="center" p={3}>          
+          <StatsOverview />
+        </Box>
+      ) 
+      
       default:          
         return null;
     }
@@ -167,7 +216,7 @@ const GuestDashboard = () => {
       <Box mt="20px">
         {selectedFeature ? (
           <Box
-            mt={4}
+            mt={2}
             p={3}
             borderRadius={2}
             boxShadow={3}
@@ -191,10 +240,65 @@ const GuestDashboard = () => {
         ) : (
           <Grid container spacing={3} mt={2}>
             {featureCards.map((card) => (
-              <Grid item xs={12} sm={6} md={3} key={card.id}>
+              <Grid item xs={12} sm={6} md={3} key={card.id} >
+
+                {card.isLocked ?
+                <Card
+                  onClick={() => card.isLocked && navigate("/pricing")}
+                  sx={{
+                    height: 220,
+                    width: { xs: '100%', sm: 300, md: 320 }, // Fixed widths per breakpoint
+                    minWidth: 280, // Absolute minimum
+                    maxWidth: '100%', // Never exceed container
+                    cursor: card.isLocked ? "pointer" : "default",
+                    position: "relative",
+                    background: card.gradient,
+                    opacity: card.isLocked ? 0.7 : 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center",
+                    p: 2,
+                    "&:hover": {
+                      transform: card.isLocked ? "scale(1.02)" : "none",
+                      boxShadow: card.isLocked ? theme.shadows[4] : "none",
+                    },
+                    transition: "all 0.3s ease",
+                  }}
+                >
+                  <Typography variant="h6" sx={{ color: "#fff", mb: 1 }}>
+                    {card.title}
+                  </Typography>
+                  
+                  {card.isLocked && (
+                    <>
+                      <LockIcon sx={{ 
+                        color: "#fff", 
+                        fontSize: "2rem",
+                        mb: 1 
+                      }} />
+                      <Typography
+                        variant="subtitle1"
+                        sx={{
+                          color: "#fff",
+                          fontWeight: "bold",
+                          fontSize: "1.1rem",
+                        }}
+                      >
+                        {card.lockedText}
+                      </Typography>
+                    </>
+                  )}
+                </Card>
+                      
+                :
                 <Card
                   sx={{
                     height: 220,
+                    width: { xs: '100%', sm: 300, md: 320 }, // Fixed widths per breakpoint
+                    minWidth: 280, // Absolute minimum
+                    maxWidth: '100%', // Never exceed container
                     background: card.gradient,
                     backdropFilter: "blur(16px)",
                     border: "1px solid rgba(255, 255, 255, 0.125)",
@@ -216,7 +320,7 @@ const GuestDashboard = () => {
                       {card.subtitle}
                     </Typography>
                   </CardContent>
-                </Card>
+                </Card>}
               </Grid>
             ))}
           </Grid>

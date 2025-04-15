@@ -9,10 +9,8 @@ const vocabSlice = createSlice({
   initialState,
   reducers: {
     setWords: (state, action) => {
-        console.log("state",action)
 
       state.words = action.payload; // get only vocabulary array
-      console.log(state.words)
     }
   }
 });

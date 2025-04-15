@@ -21,7 +21,6 @@ const GrammerQuizMain = () => {
   const userId = useSelector((state) => state.auth?.user?.uid);
   
   const quizState = useSelector(selectQuizState);
-  console.log('Quiz State:', quizState, userId);
 
   const { currentQuestion, isComplete, score, answers, isStarted } = quizState || {
     currentQuestion: 0,
@@ -90,7 +89,7 @@ const GrammerQuizMain = () => {
             textAlign: 'center',
             p: 3,
             borderRadius: 2,
-            backgroundColor: 'background.paper',
+            backgroundColor: '#176DC2',
             boxShadow: 1,
             width: '60%',
             maxWidth: '500px',
@@ -100,10 +99,10 @@ const GrammerQuizMain = () => {
             justifyContent: 'center',
             mx: 'auto',
           }}>
-            <Typography variant="h4" gutterBottom>
+            <Typography variant="h4" gutterBottom sx={{ color: 'white' }}>
               Welcome to the Quiz!
             </Typography>
-            <Typography variant="body1" sx={{ mb: 4 }}>
+            <Typography variant="body1" sx={{ mb: 4, color: 'white' }}>
               Test your knowledge with our quiz. Ready to begin?
             </Typography>
             <Button

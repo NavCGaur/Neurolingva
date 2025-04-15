@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Box,
     Divider,
@@ -22,83 +22,76 @@ import {
     RecordVoiceOverOutlined,
     QuizOutlined,
     GradeOutlined,
-    ShoppingCartOutlined,
-    Groups2Outlined,
-    ReceiptLongOutlined,
-    PublicOutlined,
-    PointOfSaleOutlined,
-    TodayOutlined,
-    CalendarMonthOutlined,
-    AdminPanelSettingsOutlined,
-    TrendingUpOutlined,
-    PieChartOutlined,
 } from "@mui/icons-material";
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import FlexBetween from "../../../../components/flexbetween/index";
+import { useDispatch } from "react-redux";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import FlexBetween from "../../../../components/flexbetween";
 import profileImage from "../../../../assets/guestprofilepic.png";
+import { resetQuiz as resetVocabQuiz } from "../../../../state/slices/vocabQuizSlice";
+import { resetQuiz as resetGrammarQuiz } from "../../../../state/slices/grammerQuizSlice";
 
-
+// Updated navItems with feature keys
 const navItems = [
-    {
-      text: "Dashboard",
-      icon: <HomeOutlined />,
-    },
-    {
-      text: "Features",
-      icon: null,
-    },
-    {
-      text: "Vocabulary",
-      icon: <MenuBookOutlined />, // You can choose appropriate icons
-    },
-    {
-      text: "Speech",
-      icon: <MicOutlined />,
-    },
-    {
-      text: "Speech Shadow",
-      icon: <RecordVoiceOverOutlined />,
-    },
-    {
-      text: "Quiz",
-      icon: <QuizOutlined />,
-    },
-    {
-      text: "Grammar",
-      icon: <GradeOutlined />,
-    },
-    // Add any other navigation items you need
-  ];
+    { text: "Dashboard", icon: <HomeOutlined />, path: "dashboard" },
+    { text: "Features", icon: null },
+    { text: "Vocabulary", icon: <MenuBookOutlined />, feature: "vocabulary" },
+    { text: "Speech", icon: <MicOutlined />, feature: "speech" },
+    { text: "Speech Shadow", icon: <RecordVoiceOverOutlined />, feature: "speech-shadow" },
+    { text: "Quiz", icon: <QuizOutlined />, feature: "quiz" },
+    { text: "Grammar", icon: <GradeOutlined />, feature: "grammar" },
+    { text: "Stats Overview", icon: <SettingsOutlined />, feature: "statsoverview"},
+    { text:"Praat Graph", icon:<SettingsOutlined />, feature:"praatgraph"}
+];
 
-  const Sidebar = ({
-    user,
-    drawerWidth,
-    isSidebarOpen,
-    setIsSidebarOpen,
-    isNonMobile,
-}) => {
-    const { pathname } = useLocation();
-    const [active, setActive] = useState("");
+const Sidebar = ({ user, drawerWidth, isSidebarOpen, setIsSidebarOpen, isNonMobile }) => {
+    const location = useLocation();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const theme = useTheme();
+    const [searchParams] = useSearchParams();
+    const [active, setActive] = useState("");
 
     useEffect(() => {
-        setActive(pathname.substring(1));
-    }, [pathname]);
+        const pathParts = location.pathname.split('/');
+        const lastPathPart = pathParts[pathParts.length - 1];
 
-    // Determine the base path based on user role
+        if (lastPathPart === 'dashboard') {
+            const feature = searchParams.get('feature');
+            setActive(feature || 'dashboard');
+        } else {
+            setActive(lastPathPart);
+        }
+    }, [location, searchParams]);
+
     const getBasePath = () => {
-        console.log("User in sidebar",user)
-        if (!user || !user.role) return '/guest'; // Default if no user/role
-        
-        switch(user.role.toLowerCase()) {
-            case 'subscriber':
-                return '/subscriber';
-            case 'admin':
-                return '/admin';
-            default:
-                return '/guest';
+        if (!user || !user.role) return '/guest';
+        switch (user.role.toLowerCase()) {
+            case 'subscriber': return '/subscriber';
+            case 'admin': return '/admin';
+            default: return '/guest';
+        }
+    };
+
+    const handleNavigation = (text, lcText, feature) => {
+        const basePath = getBasePath();
+
+        // Reset quiz slices as needed
+        if (active === "grammar" && lcText !== "grammar") dispatch(resetGrammarQuiz());
+        if (active === "quiz" && lcText !== "quiz") dispatch(resetVocabQuiz());
+
+        if (text === "Dashboard") {
+            window.location.href = `${basePath}/dashboard`;
+            return;
+        }
+
+        if (feature) {
+            if (active === "grammar") dispatch(resetGrammarQuiz());
+            if (active === "quiz") dispatch(resetVocabQuiz());
+            navigate(`${basePath}/dashboard?feature=${feature}`);
+            setActive(feature);
+        } else {
+            navigate(`/${lcText}`);
+            setActive(lcText);
         }
     };
 
@@ -124,18 +117,15 @@ const navItems = [
                     <Box width="100%">
                         <Box m="1.5rem 2rem 2rem 3rem">
                             <FlexBetween>
-                                <Box display="flex" alignItems="center" gap="0.5rem">
-                                    <Typography variant="h4" fontWeight="bold" color="white">
-                                        NEUROLINGVA
-                                    </Typography>
-                                </Box>
+                                <Typography variant="h4" fontWeight="bold" color="white">NEUROLINGVA</Typography>
                                 <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)} sx={{ color: 'white' }}>
                                     <ChevronLeft />
                                 </IconButton>
                             </FlexBetween>
                         </Box>
+
                         <List>
-                            {navItems.map(({ text, icon }) => {
+                            {navItems.map(({ text, icon, feature }) => {
                                 if (!icon) {
                                     return (
                                         <Typography key={text} sx={{ m: "2.25rem 0 1rem 3rem", color: 'white' }}>
@@ -145,43 +135,31 @@ const navItems = [
                                 }
 
                                 const lcText = text.toLowerCase();
+                                const isActive =
+                                    (active === 'dashboard' && text === 'Dashboard') ||
+                                    (active === feature);
 
                                 return (
                                     <ListItem key={text} disablePadding>
                                         <ListItemButton
-                                            onClick={() => {
-                                                // Handle feature clicks differently
-                                                if (["vocabulary", "speech", "speech shadow", "quiz", "grammar"].includes(lcText.toLowerCase())) {
-                                                    navigate(`${getBasePath()}/dashboard?feature=${lcText.toLowerCase().replace(" ", "-")}`);
-                                                } else {
-                                                    navigate(`/${lcText}`);
-                                                }
-                                                setActive(lcText);
-                                            }}
+                                            onClick={() => handleNavigation(text, lcText, feature)}
                                             sx={{
-                                                backgroundColor:
-                                                active === lcText
+                                                backgroundColor: isActive
                                                     ? 'rgba(255, 255, 255, 0.3)'
                                                     : "transparent",
                                                 color: 'white',
                                             }}
-                                            >
-                                            <ListItemIcon
-                                                sx={{
-                                                    ml: "2rem",
-                                                    color: 'white',
-                                                    opacity: active === lcText ? 1 : 0.8,
-                                                }}
-                                            >
+                                        >
+                                            <ListItemIcon sx={{ ml: "2rem", color: 'white', opacity: isActive ? 1 : 0.8 }}>
                                                 {icon}
                                             </ListItemIcon>
                                             <ListItemText primary={text} primaryTypographyProps={{ color: 'white' }} />
-                                            {active === lcText && (
+                                            {isActive && (
                                                 <ChevronRightOutlined sx={{ ml: "auto", color: 'white' }} />
                                             )}
                                         </ListItemButton>
                                     </ListItem>
-                                )
+                                );
                             })}
                         </List>
                     </Box>
@@ -199,34 +177,18 @@ const navItems = [
                                 sx={{ objectFit: "cover" }}
                             />
                             <Box textAlign="left">
-                                <Typography
-                                    fontWeight="bold"
-                                    fontSize="0.9rem"
-                                    color="white"
-                                >
-                                    {user?.name}
-                                </Typography>
-                                <Typography
-                                    fontSize="0.8rem"
-                                    color="white"
-                                    sx={{ opacity: 0.8 }}
-                                >
+                                <Typography fontWeight="bold" fontSize="0.9rem" color="white">{user?.name}</Typography>
+                                <Typography fontSize="0.8rem" color="white" sx={{ opacity: 0.8 }}>
                                     {user?.occupation}
                                 </Typography>
                             </Box>
-                            <SettingsOutlined
-                                sx={{
-                                    color: 'white',
-                                    fontSize: "25px",
-                                    opacity: 0.8,
-                                }}
-                            />
+                            <SettingsOutlined sx={{ color: 'white', fontSize: "25px", opacity: 0.8 }} />
                         </FlexBetween>
                     </Box>
                 </Drawer>
             )}
         </Box>
-    )
-}
+    );
+};
 
 export default Sidebar;

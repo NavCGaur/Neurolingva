@@ -3,12 +3,10 @@ import Stripe from 'stripe';
 
 class StripeController {
   async createCheckoutSession(req, res) {
-    console.log("Creating checkout session...");
     try {
       const { userId } = req.user; // Assuming you have auth middleware that adds user info
       const { priceId, planFrequency } = req.body;
       
-      console.log("UserId, priceId, planFrequency in controller", userId, priceId, planFrequency);
       const session = await stripeService.createCheckoutSession(userId, priceId, planFrequency);
       
       res.status(200).json(session);

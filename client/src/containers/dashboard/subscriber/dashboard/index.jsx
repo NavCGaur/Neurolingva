@@ -5,8 +5,9 @@ import FlexBetween from "../../../../components/flexbetween";
 import Header from "../../../../components/header";
 import { useGetPracticeWordsQuery } from '../../../../state/api/vocabApi';
 import { setWords } from '../../../../state/slices/vocabSlice';
-import VocabCard from '../../../../components/cards/vocabCard/vocabCard';
+import VocabCard from '../../../vocabCard/vocabCard';
 import SpeechShadowingPractice from "../../../speechShadow/speechShadowPractice";
+import StatsOverview from "../stats/statsOverview";
 
 import {
   Box,
@@ -61,22 +62,10 @@ const SubscriberDashboard = () => {
   const featureCards = [
     {
       id: "vocabulary",
-      title: "Vocabulary Practice",
+      title: "AI Powered Spaced Repetition",
       subtitle: "Review your daily words",
       gradient: '#176DC2',
 
-    },
-    {
-      id: "speech",
-      title: "Speech Practice",
-      subtitle: "Improve your pronunciation",
-      gradient: '#176DC2',
-    },
-    {
-      id: "speech shadow",
-      title: "Speech Practice",
-      subtitle: "Master Native Pronounciation",
-      gradient: '#176DC2',
     },
     {
       id: "quiz",
@@ -89,7 +78,26 @@ const SubscriberDashboard = () => {
       title: "Grammar Practice",
       subtitle: "Master the rules",
       gradient: '#176DC2',
+    },  
+    {
+      id: "speech",
+      title: "Speech Practice",
+      subtitle: "Improve your pronunciation",
+      gradient: '#176DC2',
     },
+    {
+      id: "speech shadow",
+      title: "Speech Shadow Practice",
+      subtitle: "Master Native Pronounciation",
+      gradient: '#176DC2',
+    },
+    {
+      id: "praat graph",
+      title: "AI powered Spectrograms",
+      subtitle: "Praat Graph highlighting mispronounciation",
+      gradient: '#176DC2',
+    },
+  
     
   ];
 
@@ -145,6 +153,18 @@ const SubscriberDashboard = () => {
             <GrammerQuizMain />
           </Box>
         );
+      case "statsoverview":
+        return (
+           <Box width="100%" textAlign="center" p={3}>          
+            <StatsOverview />
+           </Box>
+         ) 
+      case "praat graph":
+        return(
+          <Box width="100%" textAlign="center" p={3}>
+            <SpeechShadowingPractice />  
+          </Box>
+        )
       default:          
         return null;
     }
@@ -194,6 +214,9 @@ const SubscriberDashboard = () => {
                 <Card
                   sx={{
                     height: 220,
+                    width: { xs: '100%', sm: 300, md: 320 }, // Fixed widths per breakpoint
+                    minWidth: 280, // Absolute minimum
+                    maxWidth: '100%', // Never exceed container
                     background: card.gradient,
                     backdropFilter: "blur(16px)",
                     border: "1px solid rgba(255, 255, 255, 0.125)",

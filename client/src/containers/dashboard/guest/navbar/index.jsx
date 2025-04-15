@@ -48,7 +48,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
         {/*LEFT SIDE */}
         <FlexBetween>
           <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-            <MenuIcon />
+            <MenuIcon sx={{color  :"white"}}/>
           </IconButton>
           
          

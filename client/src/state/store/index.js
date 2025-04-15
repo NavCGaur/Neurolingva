@@ -17,6 +17,9 @@ import { speechShadowApi } from "../api/speechShadowApi.js";
 import speechShadowReducer from "../slices/speechShadowSlice.js";
 import subscriptionReducer from '../slices/subscriptionSlice';
 import { subscriptionApi } from '../api/subscriptionApi';
+import { statsApi } from "../api/statsApi.js";
+import statsReducer from "../slices/statsSlice.js";
+
 
 const store = configureStore({
   reducer: {
@@ -29,6 +32,8 @@ const store = configureStore({
     subscription: subscriptionReducer,
     vocabQuiz: vocabQuizreducer,
     grammerQuiz: grammerQuizreducer,
+    stats: statsReducer,
+
 
     [subscriptionApi.reducerPath]: subscriptionApi.reducer,
     [speechApi.reducerPath]: speechApi.reducer,  
@@ -37,6 +42,8 @@ const store = configureStore({
     [speechShadowApi.reducerPath]: speechShadowApi.reducer, 
     [vocabQuizApi.reducerPath]: vocabQuizApi.reducer,
     [grammerQuizApi.reducerPath]: grammerQuizApi.reducer,
+    [statsApi.reducerPath]: statsApi.reducer,
+
 
   },
   middleware: (getDefaultMiddleware) =>
@@ -47,6 +54,7 @@ const store = configureStore({
     speechApi.middleware, 
     speechShadowApi.middleware,
     subscriptionApi.middleware,
+    statsApi.middleware
   ), // Add middleware for RTK Query
 });
 

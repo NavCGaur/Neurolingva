@@ -1,14 +1,12 @@
 import { fetchVocabQuestions, evaluateVocabAnswers } from '../services/vocabQuestion/index.js';
 
 export const getVocabQuestions = async (req, res) => {
-    console.log("inside vocab controller", req.query)
     const {userId} = req.query; 
     if (!userId) return res.status(400).json({ error: 'User ID is required' });
 
   try {
 
     const questions = await fetchVocabQuestions(userId);
-    console.log("Fetched questions successfully");
     res.json(questions);
   } catch (error) {
     console.error("Error fetching questions:", error.message);
@@ -24,7 +22,6 @@ export const submitVocabAnswers = async (req, res) => {
     }
 
     const result = await evaluateVocabAnswers(answers);
-    console.log("Answers evaluated successfully", result);
     res.json(result);
   } catch (error) {
     console.error("Error submitting answers:", error.message);
