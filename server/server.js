@@ -26,6 +26,10 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 
+// Special raw body parser for Stripe webhooks
+app.use('/api/stripe/webhook', express.raw({ type: 'application/json' }));
+
+
 
 // Middleware
 //app.use(cors());
@@ -47,8 +51,6 @@ app.options('*', cors());
 
 app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
-// Special raw body parser for Stripe webhooks
-app.use('/api/stripe/webhook', express.raw({ type: 'application/json' }));
 
 
 

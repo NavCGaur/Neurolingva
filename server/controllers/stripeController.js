@@ -36,7 +36,7 @@ class StripeController {
 
     try {
       const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-      event = stripe.webhooks.constructEvent(req.rawBody, sig, endpointSecret);
+      event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
     } catch (err) {
       console.error(`Webhook signature verification failed: ${err.message}`);
       return res.status(400).send(`Webhook Error: ${err.message}`);
