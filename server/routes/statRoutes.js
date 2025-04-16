@@ -7,3 +7,4 @@ router.get('/vocabulary', statsController.getVocabularyStats);
 
 export default router;
 
+    

@@ -8,7 +8,6 @@ export const getGrammerQuestions = async (req, res) => {
   try {
 
     const questions = await fetchGrammerQuestions(userId);
-    console.log("Fetched questions successfully");
     res.json(questions);
   } catch (error) {
     console.error("Error fetching questions:", error.message);
@@ -24,7 +23,6 @@ export const submitGrammerAnswers = async (req, res) => {
     }
 
     const result = await evaluateGrammerAnswers(answers);
-    console.log("Answers evaluated successfully", result);
     res.json(result);
   } catch (error) {
     console.error("Error submitting answers:", error.message);

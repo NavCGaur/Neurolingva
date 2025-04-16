@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, Typography, Button} from '@mui/material';
 
-const VocabQuizResult = ({ score, totalQuestions, onReset }) => {
+const GrammerQuizResult = ({ score, totalQuestions, onReset }) => {
   return (
     <Card sx={{ 
       width: '100%',
@@ -29,4 +29,4 @@ const VocabQuizResult = ({ score, totalQuestions, onReset }) => {
   );
 };
 
-export default VocabQuizResult;
+export default GrammerQuizResult;

@@ -14,7 +14,6 @@ const speechShadowController = {
 
       const audioUrl = await shadowService.textToSpeech(text); 
 
-      console.log("Audio URL in controller:", audioUrl);
 
       res.json({
         success: true,

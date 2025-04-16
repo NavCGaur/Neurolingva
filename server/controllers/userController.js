@@ -25,7 +25,6 @@ const userController = {
       }
       
       const role = requestingUser.role;
-      console.log("Role in controller of user:", role);
 
       // Call the service layer
       const { users, total } = await userService.getUser({
@@ -89,7 +88,6 @@ const userController = {
 
   updateUserRole: async (req, res) => {
     try {
-      console.log("Updating user role...");
       const { email, parentId, role } = req.body;
       const result = await updateUserRoleService(email, parentId, role);
       res.status(200).json({ message: 'User role updated', data: result });

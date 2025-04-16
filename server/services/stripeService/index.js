@@ -75,6 +75,7 @@ class StripeService {
   async handleSubscriptionUpdated(subscription) {
     try {
       const user = await User.findOne({ stripeCustomerId: subscription.customer });
+      console.log("subscription status in webhook:",subscription)
       if (!user) {
         console.error('User not found for customer:', subscription.customer);
         return;
