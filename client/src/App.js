@@ -18,6 +18,7 @@ import GuestLayout from "./containers/dashboard/guest/guestLayout";
 import AdminCRUDDashboard from "./containers/dashboard/superAdmin/crud/userRead";
 import GuestDashboard from "./containers/dashboard/guest/dashboard";
 import SubscriberDashboard from "./containers/dashboard/subscriber/dashboard";  
+import SubscriptionSuccessPage from "./containers/subscription/stripe/subscriptionSuccess";
 import './config/firebase';
 
 //Speech components
@@ -63,6 +64,8 @@ function App() {
         <Route path="/" element={<PublicPage />} />
         <Route path="/unauthorized" element={<UnAuthorized />} />
         <Route path="/subscribe" element={<SubscribePage />} />
+        <Route path="/subscription-success" element={<SubscriptionSuccessPage />} />
+
 
         {/* Protected Routes */}
         <Route path="/admin" element={<ProtectedRoute requiredRole="Admin"><AdminLayout /></ProtectedRoute>}>
