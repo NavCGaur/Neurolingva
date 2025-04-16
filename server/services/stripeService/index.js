@@ -46,7 +46,7 @@ class StripeService {
         payment_method_types: ['card'],
         line_items: [{ price: selectedPriceId, quantity: 1 }],
         mode: 'subscription',
-        success_url: `${DOMAIN}/subscription-success??session_id={CHECKOUT_SESSION_ID}`,
+        success_url: `${DOMAIN}/subscription-success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${DOMAIN}/subscribe`,
         metadata: { userId: user.uid, planId: 'pro' },
       });
