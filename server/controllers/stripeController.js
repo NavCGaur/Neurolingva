@@ -1,5 +1,11 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 import stripeService from '../services/stripeService/index.js';
+
 import Stripe from 'stripe';
+
 
 class StripeController {
   async createCheckoutSession(req, res) {

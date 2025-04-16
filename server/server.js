@@ -22,12 +22,14 @@ import statRoutes from './routes/statRoutes.js';
 
 // Load environment variables
 
+
+// Special raw body parser for Stripe webhooks
+app.use('/api/stripe/webhook', express.raw({ type: 'application/json' }));
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 
-// Special raw body parser for Stripe webhooks
-app.use('/api/stripe/webhook', express.raw({ type: 'application/json' }));
 
 
 
