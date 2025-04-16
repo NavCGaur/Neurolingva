@@ -138,11 +138,7 @@ async handlePaymentSucceeded(paymentIntent) {
 
 async handleCheckoutSessionCompleted(session) {
   try {
-    // Checkout sessions contain more comprehensive information
-    if (session.mode !== 'payment') {
-      // Skip if not a one-time payment (subscription events are handled separately)
-      return;
-    }
+  
     
     const customerId = session.customer;
     const user = await User.findOne({ stripeCustomerId: customerId });
@@ -154,11 +150,10 @@ async handleCheckoutSessionCompleted(session) {
     
     // Check if this was for a Pro plan
     // You can use metadata or line items to determine this
-    const isPro = session.metadata?.plan === 'pro' || 
-                 (session.amount_total >= 1000);
+    const isPro = session.metadata?.planId === 'pro';
     
     if (isPro) {
-      user.role = 'Pro'; // Update to Pro role specifically
+      user.role = 'Subscriber'; // Update to Pro role specifically
       user.planId = 'pro';
       await user.save();
       console.log(`User ${user._id} upgraded to Pro role after checkout ${session.id}`);

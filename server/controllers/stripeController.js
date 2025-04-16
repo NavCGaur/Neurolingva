@@ -42,6 +42,10 @@ class StripeController {
     console.log('Request body type:', typeof req.body);
     console.log('Request body is Buffer?', Buffer.isBuffer(req.body));
 
+    
+const DOMAIN = process.env.FRONTEND_DOMAIN ;
+console.log(DOMAIN);
+
       // Add this to check if environment variables are properly loaded
   console.log('STRIPE_WEBHOOK_SECRET exists:', !!process.env.STRIPE_WEBHOOK_SECRET);
   console.log('STRIPE_SECRET_KEY exists:', !!process.env.STRIPE_SECRET_KEY);
@@ -64,6 +68,9 @@ class StripeController {
         case 'customer.subscription.updated':
           await stripeService.handleSubscriptionUpdated(event.data.object);
           break;
+        case 'payment_intent.succeeded':
+            await stripeService.handlePaymentSucceeded(event.data.object);
+            break;
         case 'customer.subscription.deleted':
           await stripeService.handleSubscriptionDeleted(event.data.object);
           break;
