@@ -18,6 +18,9 @@ const PRICE_IDS = {
 class StripeService {
   async createCheckoutSession(userId, priceId, planFrequency = 'monthly') {
     try {
+
+      const DOMAIN = process.env.FRONTEND_DOMAIN ;
+      console.log(DOMAIN);
       // Find the user to get their email
       const user = await User.findOne({ uid: userId });
       if (!user) throw new Error('User not found');
@@ -46,8 +49,8 @@ class StripeService {
         payment_method_types: ['card'],
         line_items: [{ price: selectedPriceId, quantity: 1 }],
         mode: 'subscription',
-        success_url: `${DOMAIN}/subscription-success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${DOMAIN}/subscribe`,
+        success_url: `https://neurolingva.vercel.app/subscription-success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `https://neurolingva.vercel.app/subscription-success/subscribe`,
         metadata: { userId: user.uid, planId: 'pro' },
       });
 
