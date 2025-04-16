@@ -8,7 +8,8 @@ const User = mongoose.model('User', UserSchema);
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-const DOMAIN = process.env.FRONTEND_DOMAIN || 'http://localhost:3000';
+const DOMAIN = process.env.FRONTEND_DOMAIN ;
+console.log(DOMAIN);
 const PRICE_IDS = {
   PRO_MONTHLY: process.env.STRIPE_PRICE_ID_PRO_MONTHLY,
   PRO_ANNUAL: process.env.STRIPE_PRICE_ID_PRO_ANNUAL
@@ -99,6 +100,76 @@ class StripeService {
       throw error;
     }
   }
+
+ // Add this to your stripeService.js
+async handlePaymentSucceeded(paymentIntent) {
+  try {
+    // Find the customer associated with this payment
+    const customerId = paymentIntent.customer;
+    if (!customerId) {
+      console.log('No customer ID found on payment intent');
+      return;
+    }
+    
+    const user = await User.findOne({ stripeCustomerId: customerId });
+    if (!user) {
+      console.error('User not found for customer:', customerId);
+      return;
+    }
+    
+    // Check payment metadata or amount to determine if this is a Pro payment
+    // You might have different logic based on your setup
+    const isPro = paymentIntent.metadata?.planId === 'pro' || 
+                 (paymentIntent.amount >= 1000); // Example: $10 or more
+    
+    if (isPro) {
+      user.role = 'Subscriber'; // Update to Pro role
+      user.planId = 'pro';
+      await user.save();
+      console.log(`User ${user._id} upgraded to Subscriber role after payment ${paymentIntent.id}`);
+    }
+    
+    return user;
+  } catch (error) {
+    console.error('Error handling payment success:', error);
+    throw error;
+  }
+}
+
+async handleCheckoutSessionCompleted(session) {
+  try {
+    // Checkout sessions contain more comprehensive information
+    if (session.mode !== 'payment') {
+      // Skip if not a one-time payment (subscription events are handled separately)
+      return;
+    }
+    
+    const customerId = session.customer;
+    const user = await User.findOne({ stripeCustomerId: customerId });
+    
+    if (!user) {
+      console.error('User not found for customer:', customerId);
+      return;
+    }
+    
+    // Check if this was for a Pro plan
+    // You can use metadata or line items to determine this
+    const isPro = session.metadata?.plan === 'pro' || 
+                 (session.amount_total >= 1000);
+    
+    if (isPro) {
+      user.role = 'Pro'; // Update to Pro role specifically
+      user.planId = 'pro';
+      await user.save();
+      console.log(`User ${user._id} upgraded to Pro role after checkout ${session.id}`);
+    }
+    
+    return user;
+  } catch (error) {
+    console.error('Error handling checkout session completion:', error);
+    throw error;
+  }
+}
 
   async handleSubscriptionDeleted(subscription) {
     try {
