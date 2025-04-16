@@ -37,6 +37,15 @@ class StripeController {
 
   async handleWebhook(req, res) {
     const sig = req.headers['stripe-signature'];
+
+    console.log('Stripe signature:', sig);
+    console.log('Request body type:', typeof req.body);
+    console.log('Request body is Buffer?', Buffer.isBuffer(req.body));
+
+      // Add this to check if environment variables are properly loaded
+  console.log('STRIPE_WEBHOOK_SECRET exists:', !!process.env.STRIPE_WEBHOOK_SECRET);
+  console.log('STRIPE_SECRET_KEY exists:', !!process.env.STRIPE_SECRET_KEY);
+  
     const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
     let event;
 
