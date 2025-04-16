@@ -53,6 +53,8 @@ class StripeService {
         cancel_url: `https://neurolingva.vercel.app/subscription-success/subscribe`,
         metadata: { userId: user.uid, planId: 'pro' },
       });
+      console.log('Stripe session URL:', session.url);
+
 
       return { sessionId: session.id, url: session.url };
     } catch (error) {

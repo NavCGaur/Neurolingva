@@ -6,12 +6,18 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setSubscriptionInfo } from '../../../../state/slices/subscriptionSlice';
 import { useGetCurrentSubscriptionQuery } from '../../../../state/api/subscriptionApi';
+import { getAuth, signOut } from "firebase/auth";
+
+import { logout } from "../../../../state/slices/authSlice";
+
 
 const SubscriptionSuccessPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session_id');
+  const auth = getAuth();
+  
   
   const { data: subscriptionData, isLoading, isSuccess } = useGetCurrentSubscriptionQuery();
 
@@ -27,10 +33,22 @@ const SubscriptionSuccessPage = () => {
     }
   }, [isSuccess, subscriptionData, dispatch]);
 
-  const handleGoToDashboard = () => {
-    navigate('/dashboard');
+  const handleGoToDashboard = async () => {
+    try {
+      await signOut(auth); // Firebase logout
+  
+      // Clear token and reset app state
+      localStorage.removeItem("token");
+      dispatch(logout()); // Clear Redux auth state
+  
+      // Navigate to login and show optional upgrade message
+      navigate("/login", { state: { upgraded: true } });
+    } catch (error) {
+      console.error("Error during logout:", error);
+      navigate("/login");
+    }
   };
-
+  
   return (
     <Container  sx={{ py: 8,
                                   background: "linear-gradient(135deg,#1E91FF, #EDF9FF)",    
@@ -65,7 +83,7 @@ const SubscriptionSuccessPage = () => {
               Subscription Successful!
             </Typography>
             <Typography variant="body1" paragraph>
-              Thank you for subscribing to our Pro plan. Your account has been upgraded and you now have access to all premium features.
+              Thank you for subscribing to our Pro plan. Your account has been upgraded and you now have access to all premium features. Login to access all features
             </Typography>
             <Typography variant="body2"  paragraph>
               Transaction ID: {sessionId}
@@ -78,7 +96,7 @@ const SubscriptionSuccessPage = () => {
                 onClick={handleGoToDashboard}
                 sx={{ backgroundColor: '#002D62' }}
               >
-                Go to Dashboard
+                Go to Login
               </Button>
             </Box>
           </>
