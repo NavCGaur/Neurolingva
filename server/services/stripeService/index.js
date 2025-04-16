@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import Stripe from 'stripe';
 import  {UserSchema}  from '../../models/userSchema.js';
 import mongoose from 'mongoose';
