@@ -20,13 +20,14 @@ import speechShadowRoutes from './routes/speechShadowRoutes.js';
 import stripeRoutes from './routes/stripeRoutes.js';
 import statRoutes from './routes/statRoutes.js';
 
-// Load environment variables
+
+
+const app = express();
 
 
 // Special raw body parser for Stripe webhooks
 app.use('/api/stripe/webhook', express.raw({ type: 'application/json' }));
 
-const app = express();
 const PORT = process.env.PORT || 5000;
 
 
