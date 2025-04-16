@@ -77,116 +77,181 @@ class StripeService {
 
   async handleSubscriptionUpdated(subscription) {
     try {
+      console.log('Handling subscription update:', subscription.id);
+      
+      // Find user by customer ID
       const user = await User.findOne({ stripeCustomerId: subscription.customer });
-      console.log("subscription status in webhook:",subscription)
       if (!user) {
         console.error('User not found for customer:', subscription.customer);
-        return;
+        return null;
       }
 
-      Object.assign(user, {
+      // Debug logging before update
+      console.log('User before update:', {
+        id: user._id,
+        currentRole: user.role,
+        currentPlan: user.planId,
+        currentStatus: user.subscriptionStatus
+      });
+
+      // Determine new status and role
+      const isActive = ['active', 'trialing'].includes(subscription.status);
+      const newRole = isActive ? 'Subscriber' : 'Guest';
+      const newPlanId = isActive ? 'pro' : 'free';
+
+      // Update user document
+      const updateData = {
         stripeSubscriptionId: subscription.id,
         subscriptionStatus: subscription.status,
         currentPeriodEnd: new Date(subscription.current_period_end * 1000),
         cancelAtPeriodEnd: subscription.cancel_at_period_end,
-        role: ['active', 'trialing'].includes(subscription.status) ? 'Subscriber' : 'Guest',
-        planId: ['active', 'trialing'].includes(subscription.status) ? 'pro' : 'free'
+        role: newRole,
+        planId: newPlanId
+      };
+
+      // Use findOneAndUpdate for atomic operation
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $set: updateData },
+        { new: true, runValidators: true }
+      );
+
+      if (!updatedUser) {
+        throw new Error('Failed to update user document');
+      }
+
+      console.log('User successfully updated:', {
+        id: updatedUser._id,
+        newRole: updatedUser.role,
+        newPlan: updatedUser.planId,
+        newStatus: updatedUser.subscriptionStatus
       });
 
-      await user.save();
-      return user;
+      return updatedUser;
     } catch (error) {
-      console.error('Error handling subscription update:', error);
+      console.error('Error in handleSubscriptionUpdated:', error);
       throw error;
     }
   }
 
- // Add this to your stripeService.js
-async handlePaymentSucceeded(paymentIntent) {
-  try {
-    // Find the customer associated with this payment
-    const customerId = paymentIntent.customer;
-    if (!customerId) {
-      console.log('No customer ID found on payment intent');
-      return;
-    }
-    
-    const user = await User.findOne({ stripeCustomerId: customerId });
-    if (!user) {
-      console.error('User not found for customer:', customerId);
-      return;
-    }
-    
-    // Check payment metadata or amount to determine if this is a Pro payment
-    // You might have different logic based on your setup
-    const isPro = paymentIntent.metadata?.planId === 'pro' || 
-                 (paymentIntent.amount >= 1000); // Example: $10 or more
-    
-    if (isPro) {
-      user.role = 'Subscriber'; // Update to Pro role
-      user.planId = 'pro';
-      await user.save();
-      console.log(`User ${user._id} upgraded to Subscriber role after payment ${paymentIntent.id}`);
-    }
-    
-    return user;
-  } catch (error) {
-    console.error('Error handling payment success:', error);
-    throw error;
-  }
-}
+  async handlePaymentSucceeded(paymentIntent) {
+    try {
+      console.log('Handling payment succeeded:', paymentIntent.id);
+      
+      const customerId = paymentIntent.customer;
+      if (!customerId) {
+        console.log('No customer ID in payment intent');
+        return null;
+      }
 
-async handleCheckoutSessionCompleted(session) {
-  try {
-  
-    
-    const customerId = session.customer;
-    const user = await User.findOne({ stripeCustomerId: customerId });
-    
-    if (!user) {
-      console.error('User not found for customer:', customerId);
-      return;
+      const user = await User.findOne({ stripeCustomerId: customerId });
+      if (!user) {
+        console.error('User not found for customer:', customerId);
+        return null;
+      }
+
+      // Check if this is a pro payment
+      const isPro = paymentIntent.metadata?.planId === 'pro' || 
+                   paymentIntent.amount >= 1000;
+
+      if (isPro) {
+        console.log('Upgrading user to Subscriber after payment');
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: user._id },
+          { 
+            $set: { 
+              role: 'Subscriber',
+              planId: 'pro',
+              subscriptionStatus: 'active'
+            }
+          },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      return user;
+    } catch (error) {
+      console.error('Error in handlePaymentSucceeded:', error);
+      throw error;
     }
-    
-    // Check if this was for a Pro plan
-    // You can use metadata or line items to determine this
-    const isPro = session.metadata?.planId === 'pro';
-    
-    if (isPro) {
-      user.role = 'Subscriber'; // Update to Pro role specifically
-      user.planId = 'pro';
-      await user.save();
-      console.log(`User ${user._id} upgraded to Pro role after checkout ${session.id}`);
-    }
-    
-    return user;
-  } catch (error) {
-    console.error('Error handling checkout session completion:', error);
-    throw error;
   }
-}
+
+  async handleCheckoutSessionCompleted(session) {
+    try {
+      console.log('Handling checkout session completed:', session.id);
+      
+      const customerId = session.customer;
+      if (!customerId) {
+        console.error('No customer ID in session');
+        return null;
+      }
+
+      const user = await User.findOne({ stripeCustomerId: customerId });
+      if (!user) {
+        console.error('User not found for customer:', customerId);
+        return null;
+      }
+
+      // Check if this was for a pro plan
+      const isPro = session.metadata?.planId === 'pro';
+
+      if (isPro) {
+        console.log('Upgrading user to Subscriber after checkout completion');
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: user._id },
+          { 
+            $set: { 
+              role: 'Subscriber',
+              planId: 'pro',
+              subscriptionStatus: 'active'
+            }
+          },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      return user;
+    } catch (error) {
+      console.error('Error in handleCheckoutSessionCompleted:', error);
+      throw error;
+    }
+  }
 
   async handleSubscriptionDeleted(subscription) {
     try {
+      console.log('Handling subscription deleted:', subscription.id);
+      
       const user = await User.findOne({ stripeCustomerId: subscription.customer });
       if (!user) {
         console.error('User not found for customer:', subscription.customer);
-        return;
+        return null;
       }
 
-      Object.assign(user, {
-        subscriptionStatus: 'canceled',
-        role: 'Guest',
-        planId: 'free'
-      });
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { 
+          $set: { 
+            subscriptionStatus: 'canceled',
+            role: 'Guest',
+            planId: 'free',
+            cancelAtPeriodEnd: false
+          }
+        },
+        { new: true }
+      );
 
-      await user.save();
-      return user;
+      console.log('User downgraded after subscription cancellation:', updatedUser);
+      return updatedUser;
     } catch (error) {
-      console.error('Error handling subscription deletion:', error);
+      console.error('Error in handleSubscriptionDeleted:', error);
       throw error;
     }
   }
 }
+
 
 export default new StripeService();

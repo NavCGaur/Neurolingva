@@ -64,7 +64,8 @@ console.log(DOMAIN);
     try {
       // Handle the event
       switch (event.type) {
-        case 'customer.subscription.created':
+        case 'checkout.session.completed':
+          await stripeService.handleCheckoutSessionCompleted(event.data.object);
         case 'customer.subscription.updated':
           await stripeService.handleSubscriptionUpdated(event.data.object);
           break;
